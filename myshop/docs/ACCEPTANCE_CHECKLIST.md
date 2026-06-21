@@ -13,19 +13,24 @@
 
 ## Source Boundaries
 
-- `[ ]` The technical assignment remains the source of functional/backend requirements.
-- `[ ]` Hop & Barley is used only as a visual/frontend reference.
+- `[x]` The technical assignment remains the source of functional/backend requirements.
+- `[x]` Hop & Barley is used only as a visual/frontend reference.
 - `[ ]` The old static frontend is not copied directly.
 - `[ ]` The new frontend is built with Django Templates, HTMX, Alpine.js, and Tailwind CSS.
 
 ## Infrastructure Acceptance
 
 - `[ ]` The project starts with `docker-compose up` on a clean system.
-- `[ ]` Docker Compose runs both the Django application and PostgreSQL database.
-- `[ ]` PostgreSQL is the configured database.
-- `[ ]` Required environment variables are documented in `.env.example` or README.
-- `[ ]` Dependencies are documented in `requirements.txt` or `pyproject.toml`.
-- `[ ]` Static and media files are configured for local development.
+- `[x]` Docker Compose configuration exists for both the Django application and PostgreSQL database.
+- `[x]` PostgreSQL is the configured database.
+- `[x]` Required environment variables are documented in `.env.example` or README.
+- `[x]` Dependencies are documented in `requirements.txt`.
+- `[x]` Static and media files are configured for local development.
+- `[x]` `manage.py`, `config/settings.py`, `config/urls.py`, `config/asgi.py`, and `config/wsgi.py` exist.
+- `[x]` Basic app shells exist for `products`, `orders`, `users`, and `api`.
+- `[x]` pytest-django configuration exists.
+- `[x]` Basic lint and type-check configuration exists.
+- `[x]` Validation script exists at `scripts/validate.ps1`.
 
 ## Data Model Acceptance
 
@@ -100,7 +105,7 @@
 
 ## Admin Acceptance
 
-- `[ ]` Django admin is available at `/admin/`.
+- `[x]` Django admin is wired at `/admin/`.
 - `[ ]` Admin can manage products.
 - `[ ]` Admin can manage categories.
 - `[ ]` Admin can manage orders.
@@ -115,7 +120,7 @@
 
 ## REST API Acceptance
 
-- `[ ]` REST API is available under `/api/`.
+- `[x]` REST API namespace is reserved under `/api/`.
 - `[ ]` JWT access and refresh token mechanism works.
 - `[ ]` `POST /api/users/register/` creates an account.
 - `[ ]` `POST /api/users/login/` returns access and refresh tokens.
@@ -160,7 +165,7 @@
 
 ## Testing Acceptance
 
-- `[ ]` pytest-django is configured.
+- `[x]` pytest-django is configured.
 - `[ ]` Tests cover catalog, filters, search, sorting, and pagination.
 - `[ ]` Tests cover product detail and review restrictions.
 - `[ ]` Tests cover cart behavior and stock validation.
@@ -175,18 +180,18 @@
 
 - `[ ]` Important functions and methods include type annotations.
 - `[ ]` Public APIs and important modules include docstrings.
-- `[ ]` flake8 or equivalent linter is configured.
-- `[ ]` mypy is configured.
+- `[x]` flake8 or equivalent linter is configured.
+- `[x]` mypy is configured.
 - `[ ]` Linters pass without critical errors.
 - `[ ]` Tests pass successfully.
 
 ## Documentation and Submission Acceptance
 
-- `[ ]` README contains project description.
-- `[ ]` README contains Docker installation and startup instructions.
+- `[x]` README contains project description.
+- `[x]` README contains Docker installation and startup instructions.
 - `[ ]` README contains API usage examples including JWT.
-- `[ ]` README contains test and lint commands.
-- `[ ]` README describes project structure.
+- `[x]` README contains test and lint commands.
+- `[x]` README describes project structure.
 - `[ ]` README or docs describe GraphQL example queries.
 - `[ ]` Implementation checklist with completion marks is included.
 - `[ ]` Repository has meaningful commits and branch usage.

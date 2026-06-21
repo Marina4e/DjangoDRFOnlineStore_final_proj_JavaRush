@@ -19,16 +19,17 @@ This repository is for a Django online store built with:
 The technical assignment in `docs/PROJECT_SPEC.md` is the main source of product and backend requirements.
 The Hop & Barley document in `docs/HOP_AND_BARLEY_REFERENCE.md` is only a visual/frontend reference.
 
-Current planning note: both source documents are present but empty. Do not implement business behavior until `docs/PROJECT_SPEC.md` contains the actual assignment.
+Current planning note: the technical assignment and visual reference are present. Treat `docs/PROJECT_SPEC.md` as the functional source of truth and `docs/HOP_AND_BARLEY_REFERENCE.md` as visual guidance only.
 
 ## Non-Negotiable Rules
 
 - Do not treat the visual reference as a functional specification.
-- Do not create Django models, migrations, serializers, views, templates, or package installs during planning-only tasks.
 - Do not invent product rules that are absent from the technical assignment.
 - Keep frontend behavior progressively enhanced: server-rendered templates first, HTMX for partial updates, Alpine.js for local UI state only.
 - Keep API behavior explicit and testable with DRF serializers, permissions, JWT flows, and OpenAPI documentation.
 - Prefer small, focused commits by phase once implementation begins.
+- During Phase 1, do not create Category, Product, Order, OrderItem, Review, Address, or Payment models.
+- During Phase 1, do not implement catalog, cart, checkout, account, JWT, Swagger, or GraphQL behavior.
 
 ## Project Roles
 
