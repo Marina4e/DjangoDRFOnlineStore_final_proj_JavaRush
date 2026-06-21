@@ -1,0 +1,72 @@
+{
+  "files": {
+    "code": [
+      "api/__init__.py",
+      "api/apps.py",
+      "api/urls.py",
+      "config/__init__.py",
+      "config/asgi.py",
+      "config/settings.py",
+      "config/urls.py",
+      "config/wsgi.py",
+      "manage.py",
+      "orders/__init__.py",
+      "orders/admin.py",
+      "orders/apps.py",
+      "orders/migrations/0001_initial.py",
+      "orders/migrations/__init__.py",
+      "orders/models.py",
+      "orders/urls.py",
+      "products/__init__.py",
+      "products/admin.py",
+      "products/apps.py",
+      "products/migrations/0001_initial.py",
+      "products/migrations/__init__.py",
+      "products/models.py",
+      "products/urls.py",
+      "tests/__init__.py",
+      "tests/test_orders_models.py",
+      "tests/test_products_models.py",
+      "tests/test_project_smoke.py",
+      "users/__init__.py",
+      "users/apps.py",
+      "users/urls.py"
+    ],
+    "document": [],
+    "paper": [],
+    "image": [],
+    "video": []
+  },
+  "total_files": 30,
+  "total_words": 1722,
+  "needs_graph": false,
+  "warning": "Corpus is ~1 722 words - fits in a single context window. You may not need a graph.",
+  "skipped_sensitive": [],
+  "graphifyignore_patterns": 22,
+  "git": {
+    "source_owner": "git",
+    "source_hash": "f9e15e94bd420407e3a63685ea97eb77c3b6d861",
+    "branches": [
+      "dev_phase-2",
+      "main"
+    ],
+    "max_commits": 200,
+    "active_within_days": 30
+  },
+  "scope": {
+    "requested_mode": "all",
+    "resolved_mode": "all",
+    "source": "configured-default",
+    "root": ".",
+    "git_root": "..",
+    "head": "f9e15e94bd420407e3a63685ea97eb77c3b6d861",
+    "candidate_count": null,
+    "included_count": 30,
+    "excluded_untracked_count": 0,
+    "excluded_ignored_count": 0,
+    "excluded_sensitive_count": 0,
+    "missing_committed_count": 0,
+    "warnings": [],
+    "recommendation": null
+  }
+}

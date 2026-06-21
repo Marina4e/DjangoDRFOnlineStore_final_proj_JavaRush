@@ -1,0 +1,1 @@
+{"nodes":[{"id":"products_urls","label":"urls.py","file_type":"code","source_file":"products/urls.py","source_location":"L1"}],"edges":[{"source":"products_urls","target":"django_urls","relation":"imports_from","confidence":"EXTRACTED","source_file":"products/urls.py","source_location":"L1","weight":1}]}

@@ -40,21 +40,23 @@
 - `[x]` Configure basic lint and type-check command targets.
 - `[x]` Add a project README skeleton with run, test, lint, and API sections.
 - `[x]` Add `scripts/validate.ps1`.
-- `[ ]` Run validation commands successfully in an environment with dependencies installed.
+- `[x]` Run validation commands successfully in an environment with dependencies installed.
 
 ## Phase 2 - Data Model and Admin Foundation
 
-- `[ ]` Create `Category` model with `id`, `name`, unique `slug`, nullable self-parent, `created_at`, `updated_at`.
-- `[ ]` Create `Product` model with `id`, `name`, unique `slug`, `description`, `price`, `category`, `image`, `is_active`, `stock`, `created_at`, `updated_at`.
+- `[x]` Create `Category` model with `id`, `name`, unique `slug`, nullable self-parent, `created_at`, `updated_at`.
+- `[x]` Create `Product` model with `id`, `name`, unique `slug`, `description`, `price`, `category`, `image`, `is_active`, `stock`, `created_at`, `updated_at`.
 - `[ ]` Add product query helpers for active products, novelty sorting, price sorting, popularity sorting, search, category filtering, and price filtering.
-- `[ ]` Create `Order` model with `user`, `status`, `total_price`, `shipping_address` or address relation, `created_at`, `updated_at`.
-- `[ ]` Create `OrderItem` model with `order`, `product`, `quantity`, and purchase-time `price` snapshot.
-- `[ ]` Create `Review` model with `product`, `user`, `rating`, `comment`, and `created_at`.
+- `[x]` Create `Order` model with `user`, `status`, `total_price`, `shipping_address` or address relation, `created_at`, `updated_at`.
+- `[x]` Create `OrderItem` model with `order`, `product`, `quantity`, and purchase-time `price` snapshot.
+- `[x]` Create `Review` model with `product`, `user`, `rating`, `comment`, and `created_at`.
+- `[x]` Create initial migrations for `products` and `orders`.
 - `[ ]` Decide whether to implement `Address` as a separate model; required if account address management needs reusable saved addresses.
 - `[ ]` Decide whether to implement `Payment` as a separate model; required if mock payment state needs persistence.
-- `[ ]` Add database constraints for positive prices, positive stock, positive quantities, review rating 1-5, and valid order statuses.
-- `[ ]` Add admin screens for products, categories, orders, reviews, and users.
-- `[ ]` Add admin search, list filters, useful list displays, and custom actions.
+- `[x]` Add database constraints for positive prices, positive stock, positive quantities, review rating 1-5, and valid order statuses.
+- `[x]` Add admin screens for products, categories, orders, and reviews.
+- `[x]` Add admin search, list filters, useful list displays, and basic ordering.
+- `[ ]` Add admin custom actions where they provide clear value.
 - `[ ]` Add admin analytics for revenue, top products, and number of orders using aggregations/annotations.
 - `[ ]` Configure role-aware admin access rights.
 
@@ -141,7 +143,8 @@
 
 ## Phase 9 - Tests
 
-- `[ ]` Add model tests for category, product, order, order item, review, and optional address/payment models.
+- `[x]` Add model tests for category, product, order, order item, and review models.
+- `[ ]` Add model tests for optional address/payment models if those models are introduced later.
 - `[ ]` Add catalog tests for pagination, category filtering, price filtering, search, and sorting.
 - `[ ]` Add product page tests for detail display, reviews, add-to-cart, and purchase-gated review submission.
 - `[ ]` Add cart tests for add, remove, quantity update, total calculation, session persistence, and stock validation.

@@ -13,4 +13,9 @@ htmlcov/
 *.sqlite3
 media/
 staticfiles/
+
+docs/
+*.md
+*.txt
+*.ps1
 graphify-out/
