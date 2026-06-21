@@ -1,0 +1,16 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.git/
+node_modules/
+dist/
+build/
+coverage/
+htmlcov/
+.env
+.env.*
+*.sqlite3
+media/
+staticfiles/
+graphify-out/
