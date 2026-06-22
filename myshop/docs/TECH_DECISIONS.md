@@ -88,7 +88,7 @@ Document:
 
 ## GraphQL
 
-GraphQL analytics are required by the assignment as an additional improvement.
+GraphQL analytics should be treated as a bonus phase, not part of the core required implementation path.
 
 Expose a single endpoint at `/graphql/`.
 

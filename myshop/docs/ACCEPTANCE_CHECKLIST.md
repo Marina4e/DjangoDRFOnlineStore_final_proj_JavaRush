@@ -15,8 +15,8 @@
 
 - `[x]` The technical assignment remains the source of functional/backend requirements.
 - `[x]` Hop & Barley is used only as a visual/frontend reference.
-- `[ ]` The old static frontend is not copied directly.
-- `[ ]` The new frontend is built with Django Templates, HTMX, Alpine.js, and Tailwind CSS.
+- `[x]` The old static frontend is not copied directly.
+- `[x]` The new frontend is built with Django Templates, HTMX, Alpine.js, and Tailwind CSS.
 
 ## Infrastructure Acceptance
 
@@ -45,16 +45,16 @@
 
 ## Catalog Acceptance
 
-- `[ ]` Homepage `/` is available.
-- `[ ]` Product list `/products/` is available.
-- `[ ]` Product list has pagination.
-- `[ ]` Product list filters by category.
-- `[ ]` Product list filters by price range.
-- `[ ]` Product list searches by name and description.
-- `[ ]` Product list sorts by price.
-- `[ ]` Product list sorts by popularity.
-- `[ ]` Product list sorts by novelty.
-- `[ ]` Catalog queries are optimized enough to avoid obvious N+1 queries.
+- `[x]` Homepage `/` is available.
+- `[x]` Product list `/products/` is available.
+- `[x]` Product list has pagination.
+- `[x]` Product list filters by category.
+- `[x]` Product list filters by price range.
+- `[x]` Product list searches by name and description.
+- `[x]` Product list sorts by price.
+- `[x]` Product list sorts by popularity.
+- `[x]` Product list sorts by novelty.
+- `[x]` Catalog queries are optimized enough to avoid obvious N+1 queries.
 
 ## Product Page and Reviews Acceptance
 
@@ -154,11 +154,11 @@
 
 ## Frontend Acceptance
 
-- `[ ]` Frontend uses Django Templates as the primary rendering layer.
-- `[ ]` HTMX is used for server-rendered partial updates where appropriate.
-- `[ ]` Alpine.js is limited to local UI state.
-- `[ ]` Tailwind CSS styles the templates.
-- `[ ]` Visual styling is inspired by Hop & Barley but not copied directly.
+- `[x]` Frontend uses Django Templates as the primary rendering layer.
+- `[x]` HTMX is used for server-rendered partial updates where appropriate.
+- `[x]` Alpine.js is limited to local UI state.
+- `[x]` Tailwind CSS styles the templates.
+- `[x]` Visual styling is inspired by Hop & Barley but not copied directly.
 - `[ ]` Pages are responsive across mobile and desktop.
 - `[ ]` Forms show useful validation errors.
 - `[ ]` Core flows do not rely on localStorage auth simulation.
@@ -166,7 +166,7 @@
 ## Testing Acceptance
 
 - `[x]` pytest-django is configured.
-- `[ ]` Tests cover catalog, filters, search, sorting, and pagination.
+- `[x]` Tests cover catalog, filters, search, sorting, and pagination.
 - `[ ]` Tests cover product detail and review restrictions.
 - `[ ]` Tests cover cart behavior and stock validation.
 - `[ ]` Tests cover checkout, order creation, transactions, and emails.
@@ -182,8 +182,8 @@
 - `[ ]` Public APIs and important modules include docstrings.
 - `[x]` flake8 or equivalent linter is configured.
 - `[x]` mypy is configured.
-- `[ ]` Linters pass without critical errors.
-- `[ ]` Tests pass successfully.
+- `[x]` Linters pass without critical errors.
+- `[x]` Tests pass successfully.
 
 ## Documentation and Submission Acceptance
 

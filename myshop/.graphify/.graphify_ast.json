@@ -127,25 +127,11 @@
       "source_location": "L1"
     },
     {
-      "id": "config_urls_home",
-      "label": "home()",
-      "file_type": "code",
-      "source_file": "config/urls.py",
-      "source_location": "L10"
-    },
-    {
       "id": "config_urls_rationale_1",
       "label": "Root URL configuration for the online store project.",
       "file_type": "rationale",
       "source_file": "config/urls.py",
       "source_location": "L1"
-    },
-    {
-      "id": "config_urls_rationale_11",
-      "label": "Return a small placeholder response for the project foundation stage.",
-      "file_type": "rationale",
-      "source_file": "config/urls.py",
-      "source_location": "L11"
     },
     {
       "id": "config_wsgi",
@@ -404,49 +390,84 @@
       "label": "Category",
       "file_type": "code",
       "source_file": "products/models.py",
-      "source_location": "L10"
+      "source_location": "L12"
     },
     {
       "id": "products_models_meta",
       "label": "Meta",
       "file_type": "code",
       "source_file": "products/models.py",
-      "source_location": "L23"
+      "source_location": "L25"
     },
     {
       "id": "products_models_category_str",
       "label": ".__str__()",
       "file_type": "code",
       "source_file": "products/models.py",
-      "source_location": "L27"
+      "source_location": "L29"
+    },
+    {
+      "id": "products_models_productqueryset",
+      "label": "ProductQuerySet",
+      "file_type": "code",
+      "source_file": "products/models.py",
+      "source_location": "L33"
+    },
+    {
+      "id": "products_models_productqueryset_active",
+      "label": ".active()",
+      "file_type": "code",
+      "source_file": "products/models.py",
+      "source_location": "L34"
+    },
+    {
+      "id": "products_models_productqueryset_search",
+      "label": ".search()",
+      "file_type": "code",
+      "source_file": "products/models.py",
+      "source_location": "L37"
+    },
+    {
+      "id": "products_models_productqueryset_in_category",
+      "label": ".in_category()",
+      "file_type": "code",
+      "source_file": "products/models.py",
+      "source_location": "L45"
+    },
+    {
+      "id": "products_models_productqueryset_within_price_range",
+      "label": ".within_price_range()",
+      "file_type": "code",
+      "source_file": "products/models.py",
+      "source_location": "L50"
     },
     {
       "id": "products_models_product",
       "label": "Product",
       "file_type": "code",
       "source_file": "products/models.py",
-      "source_location": "L31"
+      "source_location": "L63"
     },
     {
       "id": "products_models_product_str",
       "label": ".__str__()",
       "file_type": "code",
       "source_file": "products/models.py",
-      "source_location": "L64"
+      "source_location": "L98"
     },
     {
       "id": "products_models_review",
       "label": "Review",
       "file_type": "code",
       "source_file": "products/models.py",
-      "source_location": "L68"
+      "source_location": "L102"
     },
     {
       "id": "products_models_review_str",
       "label": ".__str__()",
       "file_type": "code",
       "source_file": "products/models.py",
-      "source_location": "L90"
+      "source_location": "L124"
     },
     {
       "id": "products_urls",
@@ -454,6 +475,76 @@
       "file_type": "code",
       "source_file": "products/urls.py",
       "source_location": "L1"
+    },
+    {
+      "id": "products_views",
+      "label": "views.py",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "products_views_parse_decimal",
+      "label": "parse_decimal()",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L14"
+    },
+    {
+      "id": "products_views_homepageview",
+      "label": "HomePageView",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L24"
+    },
+    {
+      "id": "templateview",
+      "label": "TemplateView",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "products_views_homepageview_get_context_data",
+      "label": ".get_context_data()",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L27"
+    },
+    {
+      "id": "products_views_productcatalogview",
+      "label": "ProductCatalogView",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L38"
+    },
+    {
+      "id": "listview",
+      "label": "ListView",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "products_views_productcatalogview_get_template_names",
+      "label": ".get_template_names()",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L51"
+    },
+    {
+      "id": "products_views_productcatalogview_get_queryset",
+      "label": ".get_queryset()",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L56"
+    },
+    {
+      "id": "products_views_productcatalogview_get_context_data",
+      "label": ".get_context_data()",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L89"
     },
     {
       "id": "tests_init",
@@ -468,6 +559,83 @@
       "file_type": "rationale",
       "source_file": "tests/__init__.py",
       "source_location": "L1"
+    },
+    {
+      "id": "tests_test_catalog_views",
+      "label": "test_catalog_views.py",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_catalog_views_catalog_data",
+      "label": "catalog_data()",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L17"
+    },
+    {
+      "id": "tests_test_catalog_views_test_catalog_page_renders",
+      "label": "test_catalog_page_renders()",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L96"
+    },
+    {
+      "id": "tests_test_catalog_views_test_catalog_filters_by_category",
+      "label": "test_catalog_filters_by_category()",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L104"
+    },
+    {
+      "id": "tests_test_catalog_views_test_catalog_filters_by_price_range",
+      "label": "test_catalog_filters_by_price_range()",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L113"
+    },
+    {
+      "id": "tests_test_catalog_views_test_catalog_searches_name_and_description",
+      "label": "test_catalog_searches_name_and_description()",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L125"
+    },
+    {
+      "id": "tests_test_catalog_views_test_catalog_sorts_by_price",
+      "label": "test_catalog_sorts_by_price()",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L133"
+    },
+    {
+      "id": "tests_test_catalog_views_test_catalog_sorts_by_popularity",
+      "label": "test_catalog_sorts_by_popularity()",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L141"
+    },
+    {
+      "id": "tests_test_catalog_views_test_catalog_sorts_by_novelty",
+      "label": "test_catalog_sorts_by_novelty()",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L150"
+    },
+    {
+      "id": "tests_test_catalog_views_test_catalog_paginates_results",
+      "label": "test_catalog_paginates_results()",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L158"
+    },
+    {
+      "id": "tests_test_catalog_views_test_catalog_htmx_returns_partial",
+      "label": "test_catalog_htmx_returns_partial()",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L167"
     },
     {
       "id": "tests_test_orders_models",
@@ -617,15 +785,15 @@
       "source_location": "L1"
     },
     {
-      "id": "tests_test_project_smoke_test_homepage_placeholder",
-      "label": "test_homepage_placeholder()",
+      "id": "tests_test_project_smoke_test_homepage_renders_catalog_entry_experience",
+      "label": "test_homepage_renders_catalog_entry_experience()",
       "file_type": "code",
       "source_file": "tests/test_project_smoke.py",
-      "source_location": "L6"
+      "source_location": "L10"
     },
     {
       "id": "tests_test_project_smoke_rationale_1",
-      "label": "Smoke tests for the project foundation stage.",
+      "label": "Smoke tests for the product catalog entry stage.",
       "file_type": "rationale",
       "source_file": "tests/test_project_smoke.py",
       "source_location": "L1"
@@ -849,7 +1017,7 @@
     },
     {
       "source": "config_urls",
-      "target": "django_http",
+      "target": "django_urls",
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "config/urls.py",
@@ -858,20 +1026,11 @@
     },
     {
       "source": "config_urls",
-      "target": "django_urls",
+      "target": "products_views",
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "config/urls.py",
       "source_location": "L7",
-      "weight": 1
-    },
-    {
-      "source": "config_urls",
-      "target": "config_urls_home",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "config/urls.py",
-      "source_location": "L10",
       "weight": 1
     },
     {
@@ -881,15 +1040,6 @@
       "confidence": "EXTRACTED",
       "source_file": "config/urls.py",
       "source_location": "L1",
-      "weight": 1
-    },
-    {
-      "source": "config_urls_rationale_11",
-      "target": "config_urls_home",
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "config/urls.py",
-      "source_location": "L11",
       "weight": 1
     },
     {
@@ -1335,16 +1485,16 @@
     },
     {
       "source": "products_models",
-      "target": "django_conf",
+      "target": "typing",
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1
     },
     {
       "source": "products_models",
-      "target": "django_core_validators",
+      "target": "django_conf",
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
@@ -1353,7 +1503,7 @@
     },
     {
       "source": "products_models",
-      "target": "django_db",
+      "target": "django_core_validators",
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
@@ -1362,11 +1512,29 @@
     },
     {
       "source": "products_models",
+      "target": "django_db",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "products/models.py",
+      "source_location": "L8",
+      "weight": 1
+    },
+    {
+      "source": "products_models",
+      "target": "django_db_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "products/models.py",
+      "source_location": "L9",
+      "weight": 1
+    },
+    {
+      "source": "products_models",
       "target": "products_models_category",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
-      "source_location": "L10",
+      "source_location": "L12",
       "weight": 1
     },
     {
@@ -1375,7 +1543,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
-      "source_location": "L23",
+      "source_location": "L25",
       "weight": 1
     },
     {
@@ -1384,7 +1552,52 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
-      "source_location": "L27",
+      "source_location": "L29",
+      "weight": 1
+    },
+    {
+      "source": "products_models",
+      "target": "products_models_productqueryset",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "products/models.py",
+      "source_location": "L33",
+      "weight": 1
+    },
+    {
+      "source": "products_models_productqueryset",
+      "target": "products_models_productqueryset_active",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "products/models.py",
+      "source_location": "L34",
+      "weight": 1
+    },
+    {
+      "source": "products_models_productqueryset",
+      "target": "products_models_productqueryset_search",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "products/models.py",
+      "source_location": "L37",
+      "weight": 1
+    },
+    {
+      "source": "products_models_productqueryset",
+      "target": "products_models_productqueryset_in_category",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "products/models.py",
+      "source_location": "L45",
+      "weight": 1
+    },
+    {
+      "source": "products_models_productqueryset",
+      "target": "products_models_productqueryset_within_price_range",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "products/models.py",
+      "source_location": "L50",
       "weight": 1
     },
     {
@@ -1393,7 +1606,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
-      "source_location": "L31",
+      "source_location": "L63",
       "weight": 1
     },
     {
@@ -1402,7 +1615,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
-      "source_location": "L51",
+      "source_location": "L85",
       "weight": 1
     },
     {
@@ -1411,7 +1624,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
-      "source_location": "L64",
+      "source_location": "L98",
       "weight": 1
     },
     {
@@ -1420,7 +1633,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
-      "source_location": "L68",
+      "source_location": "L102",
       "weight": 1
     },
     {
@@ -1429,7 +1642,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
-      "source_location": "L81",
+      "source_location": "L115",
       "weight": 1
     },
     {
@@ -1438,7 +1651,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "products/models.py",
-      "source_location": "L90",
+      "source_location": "L124",
       "weight": 1
     },
     {
@@ -1451,12 +1664,318 @@
       "weight": 1
     },
     {
+      "source": "products_urls",
+      "target": "products_views",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "products/urls.py",
+      "source_location": "L3",
+      "weight": 1
+    },
+    {
+      "source": "products_views",
+      "target": "decimal",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L3",
+      "weight": 1
+    },
+    {
+      "source": "products_views",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L4",
+      "weight": 1
+    },
+    {
+      "source": "products_views",
+      "target": "django_db_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L6",
+      "weight": 1
+    },
+    {
+      "source": "products_views",
+      "target": "django_db_models_functions",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L7",
+      "weight": 1
+    },
+    {
+      "source": "products_views",
+      "target": "django_views_generic",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L8",
+      "weight": 1
+    },
+    {
+      "source": "products_views",
+      "target": "orders_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L10",
+      "weight": 1
+    },
+    {
+      "source": "products_views",
+      "target": "products_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L11",
+      "weight": 1
+    },
+    {
+      "source": "products_views",
+      "target": "products_views_parse_decimal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L14",
+      "weight": 1
+    },
+    {
+      "source": "products_views",
+      "target": "products_views_homepageview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L24",
+      "weight": 1
+    },
+    {
+      "source": "products_views_homepageview",
+      "target": "templateview",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L24",
+      "weight": 1
+    },
+    {
+      "source": "products_views_homepageview",
+      "target": "products_views_homepageview_get_context_data",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L27",
+      "weight": 1
+    },
+    {
+      "source": "products_views",
+      "target": "products_views_productcatalogview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L38",
+      "weight": 1
+    },
+    {
+      "source": "products_views_productcatalogview",
+      "target": "listview",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L38",
+      "weight": 1
+    },
+    {
+      "source": "products_views_productcatalogview",
+      "target": "products_views_productcatalogview_get_template_names",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L51",
+      "weight": 1
+    },
+    {
+      "source": "products_views_productcatalogview",
+      "target": "products_views_productcatalogview_get_queryset",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L56",
+      "weight": 1
+    },
+    {
+      "source": "products_views_productcatalogview",
+      "target": "products_views_productcatalogview_get_context_data",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L89",
+      "weight": 1
+    },
+    {
+      "source": "products_views_productcatalogview_get_queryset",
+      "target": "products_views_parse_decimal",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L77",
+      "weight": 1
+    },
+    {
       "source": "tests_init_rationale_1",
       "target": "tests_init",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "tests/__init__.py",
       "source_location": "L1",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "decimal",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L3",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "pytest",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L5",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "django_urls",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L6",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "django_utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L7",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "orders_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L9",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "products_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L10",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "tests_test_catalog_views_catalog_data",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L17",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "tests_test_catalog_views_test_catalog_page_renders",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L96",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "tests_test_catalog_views_test_catalog_filters_by_category",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L104",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "tests_test_catalog_views_test_catalog_filters_by_price_range",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L113",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "tests_test_catalog_views_test_catalog_searches_name_and_description",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L125",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "tests_test_catalog_views_test_catalog_sorts_by_price",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L133",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "tests_test_catalog_views_test_catalog_sorts_by_popularity",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L141",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "tests_test_catalog_views_test_catalog_sorts_by_novelty",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L150",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "tests_test_catalog_views_test_catalog_paginates_results",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L158",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
+      "target": "tests_test_catalog_views_test_catalog_htmx_returns_partial",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L167",
       "weight": 1
     },
     {
@@ -1722,8 +2241,8 @@
     },
     {
       "source": "tests_test_project_smoke",
-      "target": "django_urls",
-      "relation": "imports_from",
+      "target": "pytest",
+      "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_project_smoke.py",
       "source_location": "L3",
@@ -1731,11 +2250,20 @@
     },
     {
       "source": "tests_test_project_smoke",
-      "target": "tests_test_project_smoke_test_homepage_placeholder",
+      "target": "django_urls",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_project_smoke.py",
+      "source_location": "L4",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_project_smoke",
+      "target": "tests_test_project_smoke_test_homepage_renders_catalog_entry_experience",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_project_smoke.py",
-      "source_location": "L6",
+      "source_location": "L10",
       "weight": 1
     },
     {
@@ -1784,6 +2312,15 @@
       "weight": 1
     },
     {
+      "source": "config_urls_rationale_1",
+      "target": "products_views_homepageview",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "config/urls.py",
+      "source_location": "L7",
+      "weight": 0.8
+    },
+    {
       "source": "orders_admin_orderiteminline",
       "target": "orders_models_order",
       "relation": "uses",
@@ -1898,6 +2435,24 @@
       "confidence": "INFERRED",
       "source_file": "products/admin.py",
       "source_location": "L3",
+      "weight": 0.8
+    },
+    {
+      "source": "products_views_homepageview",
+      "target": "orders_models_orderitem",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "products/views.py",
+      "source_location": "L10",
+      "weight": 0.8
+    },
+    {
+      "source": "products_views_productcatalogview",
+      "target": "orders_models_orderitem",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "products/views.py",
+      "source_location": "L10",
       "weight": 0.8
     }
   ],

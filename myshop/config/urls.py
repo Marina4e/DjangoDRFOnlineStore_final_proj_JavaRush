@@ -3,17 +3,12 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.http import HttpRequest, HttpResponse
 from django.urls import include, path
-
-
-def home(request: HttpRequest) -> HttpResponse:
-    """Return a small placeholder response for the project foundation stage."""
-    return HttpResponse("myshop foundation is up", content_type="text/plain")
+from products.views import HomePageView
 
 
 urlpatterns = [
-    path("", home, name="home"),
+    path("", HomePageView.as_view(), name="home"),
     path("admin/", admin.site.urls),
     path("products/", include("products.urls")),
     path("orders/", include("orders.urls")),

@@ -24,8 +24,8 @@
     "hash": "db00137c62de571a4e5ec90d48cd6a55"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/config/urls.py": {
-    "mtime": 1782049741321.127,
-    "hash": "22a8003eefc99e2aeebc2a6681456488"
+    "mtime": 1782130507023.476,
+    "hash": "7ac221fd7122f7df9caab271d8560e52"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/config/wsgi.py": {
     "mtime": 1782049741084.4058,
@@ -56,8 +56,8 @@
     "hash": "b8d74e4191db1bcd95a57c9fed9902e9"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/products/urls.py": {
-    "mtime": 1782057333456.6443,
-    "hash": "3a77b53d64241a437fb47c4ce5a8489f"
+    "mtime": 1782130501270.5527,
+    "hash": "3cd8c8ee5febdc32a5dff92d1a49ee03"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/scripts/validate.ps1": {
     "mtime": 1782049975486.8162,
@@ -68,8 +68,8 @@
     "hash": "f96e15311f84618db8b83ffdff7ef651"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/tests/test_project_smoke.py": {
-    "mtime": 1782049790017.7283,
-    "hash": "28fe8a3213bd8782e6bb62b5ca5b1ae0"
+    "mtime": 1782131064805.152,
+    "hash": "cc8c535e75adebcbe33a75b2e0670ea1"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/users/__init__.py": {
     "mtime": 1782049767885.6133,
@@ -160,8 +160,8 @@
     "hash": "68b329da9893e34099c7d8ad5cb9c940"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/products/models.py": {
-    "mtime": 1782057340482.153,
-    "hash": "7dcba952f43d306b2fe86a46391921de"
+    "mtime": 1782130814194.2622,
+    "hash": "88367ef103e4f2ddc54dd039664c4077"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/tests/test_orders_models.py": {
     "mtime": 1782057257229.855,
@@ -170,5 +170,33 @@
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/tests/test_products_models.py": {
     "mtime": 1782057257227.8525,
     "hash": "09927c8cd85dc5d9dd628b3b5a125351"
+  },
+  "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/products/views.py": {
+    "mtime": 1782130814197.633,
+    "hash": "f36c119e9e312eec35c455120f1bcf35"
+  },
+  "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/tests/test_catalog_views.py": {
+    "mtime": 1782130814197.633,
+    "hash": "4a4019f9afac8be4cfe720f20ca91fec"
+  },
+  "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/templates/base.html": {
+    "mtime": 1782130586409.513,
+    "hash": "f638c0ca0b1fdd8f135c66087af64afd"
+  },
+  "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/templates/products/catalog.html": {
+    "mtime": 1782130651141.6921,
+    "hash": "6119dc4d322a4afd8605315eb7d0b3fb"
+  },
+  "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/templates/products/home.html": {
+    "mtime": 1782130586420.4038,
+    "hash": "4ca58cafafac9066a50aa42ced203aa6"
+  },
+  "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/templates/products/partials/catalog_results.html": {
+    "mtime": 1782130586424.4016,
+    "hash": "c4bb9487a02fbb61f78b4d095965d157"
+  },
+  "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/templates/products/partials/product_card.html": {
+    "mtime": 1782130586425.3994,
+    "hash": "f3f13b132e6650437dc66ec29a7552e7"
   }
 }

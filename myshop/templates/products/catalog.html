@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Product Catalog{% endblock %}
+
+{% block content %}
+  <section class="border-b border-amber-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <p class="text-sm uppercase tracking-[0.18em] text-amber-700">Catalog</p>
+      <h1 class="mt-2 text-3xl font-semibold tracking-tight text-stone-950">Ingredients and essentials</h1>
+      <p class="mt-3 max-w-2xl text-sm leading-6 text-stone-600">
+        Filter by category and price, search product descriptions, and sort the catalog by price, popularity, or novelty.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8" x-data="{ filtersOpen: false }">
+    <div class="mb-4 flex items-center justify-between gap-4 lg:hidden">
+      <h2 class="text-sm font-semibold uppercase tracking-[0.14em] text-stone-700">Filters</h2>
+      <button
+        type="button"
+        class="rounded-md border border-amber-300 bg-white px-4 py-2 text-sm font-medium text-stone-800"
+        @click="filtersOpen = !filtersOpen"
+      >
+        Toggle
+      </button>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
+      <aside
+        class="hidden rounded-lg border border-amber-200 bg-white p-5 shadow-sm lg:block"
+        :class="{ 'block': filtersOpen }"
+      >
+        <form
+          id="catalog-filters"
+          action="{% url 'product-list' %}"
+          method="get"
+          class="space-y-5"
+          hx-get="{% url 'product-list' %}"
+          hx-target="#catalog-results"
+          hx-push-url="true"
+          hx-trigger="change delay:150ms, submit, keyup changed delay:350ms from:#catalog-search"
+        >
+          <div class="space-y-2">
+            <label for="catalog-search" class="text-sm font-medium text-stone-800">Search</label>
+            <input
+              id="catalog-search"
+              type="search"
+              name="q"
+              value="{{ current_search }}"
+              placeholder="Malt, hops, yeast..."
+              class="w-full rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
+            >
+          </div>
+
+          <div class="space-y-2">
+            <label for="catalog-category" class="text-sm font-medium text-stone-800">Category</label>
+            <select
+              id="catalog-category"
+              name="category"
+              class="w-full rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
+            >
+              <option value="">All categories</option>
+              {% for category in categories %}
+                <option value="{{ category.slug }}" {% if current_category == category.slug %}selected{% endif %}>
+                  {{ category.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            <div class="space-y-2">
+              <label for="catalog-min-price" class="text-sm font-medium text-stone-800">Min price</label>
+              <input
+                id="catalog-min-price"
+                type="number"
+                name="min_price"
+                min="0"
+                step="0.01"
+                value="{{ current_min_price }}"
+                class="w-full rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
+              >
+            </div>
+            <div class="space-y-2">
+              <label for="catalog-max-price" class="text-sm font-medium text-stone-800">Max price</label>
+              <input
+                id="catalog-max-price"
+                type="number"
+                name="max_price"
+                min="0"
+                step="0.01"
+                value="{{ current_max_price }}"
+                class="w-full rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
+              >
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="catalog-sort" class="text-sm font-medium text-stone-800">Sort</label>
+            <select
+              id="catalog-sort"
+              name="sort"
+              class="w-full rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
+            >
+              <option value="newest" {% if current_sort == "newest" %}selected{% endif %}>Newest first</option>
+              <option value="price_asc" {% if current_sort == "price_asc" %}selected{% endif %}>Price: low to high</option>
+              <option value="price_desc" {% if current_sort == "price_desc" %}selected{% endif %}>Price: high to low</option>
+              <option value="popularity" {% if current_sort == "popularity" %}selected{% endif %}>Most popular</option>
+            </select>
+          </div>
+
+          <div class="flex gap-3">
+            <button
+              type="submit"
+              class="inline-flex flex-1 items-center justify-center rounded-md bg-stone-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-stone-800"
+            >
+              Apply
+            </button>
+            <a
+              href="{% url 'product-list' %}"
+              class="inline-flex items-center justify-center rounded-md border border-amber-300 px-4 py-2.5 text-sm font-medium text-stone-700 transition hover:border-amber-400 hover:text-stone-950"
+            >
+              Reset
+            </a>
+          </div>
+        </form>
+      </aside>
+
+      <div id="catalog-results">
+        {% include "products/partials/catalog_results.html" %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

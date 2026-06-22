@@ -1,0 +1,74 @@
+<div class="space-y-6">
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <p class="text-sm text-stone-500">Showing {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ paginator.count }} active products</p>
+    </div>
+    <div class="text-sm text-stone-600">
+      {% if current_search or current_category or current_min_price or current_max_price %}
+        Refined results
+      {% else %}
+        Browse the full catalog
+      {% endif %}
+    </div>
+  </div>
+
+  {% if products %}
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {% for product in products %}
+        {% include "products/partials/product_card.html" with product=product %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="rounded-lg border border-dashed border-amber-300 bg-white px-6 py-10 text-sm text-stone-600">
+      No products matched the current catalog filters.
+    </div>
+  {% endif %}
+
+  {% if is_paginated %}
+    <nav class="flex flex-wrap items-center gap-2 pt-2" aria-label="Pagination">
+      {% if page_obj.has_previous %}
+        <a
+          href="?{{ page_query_prefix }}page={{ page_obj.previous_page_number }}"
+          hx-get="?{{ page_query_prefix }}page={{ page_obj.previous_page_number }}"
+          hx-target="#catalog-results"
+          hx-push-url="true"
+          class="inline-flex items-center rounded-md border border-amber-300 bg-white px-3 py-2 text-sm font-medium text-stone-700 transition hover:border-amber-400 hover:text-stone-950"
+        >
+          Previous
+        </a>
+      {% endif %}
+
+      {% for page_number in page_numbers %}
+        {% if page_number == paginator.ELLIPSIS %}
+          <span class="px-2 text-sm text-stone-400">{{ page_number }}</span>
+        {% elif page_number == page_obj.number %}
+          <span class="inline-flex min-w-10 items-center justify-center rounded-md bg-stone-950 px-3 py-2 text-sm font-semibold text-white">
+            {{ page_number }}
+          </span>
+        {% else %}
+          <a
+            href="?{{ page_query_prefix }}page={{ page_number }}"
+            hx-get="?{{ page_query_prefix }}page={{ page_number }}"
+            hx-target="#catalog-results"
+            hx-push-url="true"
+            class="inline-flex min-w-10 items-center justify-center rounded-md border border-amber-300 bg-white px-3 py-2 text-sm font-medium text-stone-700 transition hover:border-amber-400 hover:text-stone-950"
+          >
+            {{ page_number }}
+          </a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a
+          href="?{{ page_query_prefix }}page={{ page_obj.next_page_number }}"
+          hx-get="?{{ page_query_prefix }}page={{ page_obj.next_page_number }}"
+          hx-target="#catalog-results"
+          hx-push-url="true"
+          class="inline-flex items-center rounded-md border border-amber-300 bg-white px-3 py-2 text-sm font-medium text-stone-700 transition hover:border-amber-400 hover:text-stone-950"
+        >
+          Next
+        </a>
+      {% endif %}
+    </nav>
+  {% endif %}
+</div>

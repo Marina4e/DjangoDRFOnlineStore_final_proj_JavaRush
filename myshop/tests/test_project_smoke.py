@@ -1,10 +1,15 @@
-"""Smoke tests for the project foundation stage."""
+"""Smoke tests for the product catalog entry stage."""
 
+import pytest
 from django.urls import reverse
 
 
-def test_homepage_placeholder(client) -> None:
+pytestmark = pytest.mark.django_db
+
+
+def test_homepage_renders_catalog_entry_experience(client) -> None:
     response = client.get(reverse("home"))
 
     assert response.status_code == 200
-    assert response.content == b"myshop foundation is up"
+    assert b"Browse catalog" in response.content
+    assert b"Fresh additions to the catalog" in response.content

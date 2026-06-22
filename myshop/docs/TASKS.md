@@ -60,7 +60,92 @@
 - `[ ]` Add admin analytics for revenue, top products, and number of orders using aggregations/annotations.
 - `[ ]` Configure role-aware admin access rights.
 
-## Phase 3 - Web Authentication and Account
+## Phase 3 - Product Catalog Web UI
+
+- `[x]` Build homepage `/` with product catalog entry experience.
+- `[x]` Build product list `/products/` with pagination.
+- `[x]` Add category filtering.
+- `[x]` Add price range filtering.
+- `[x]` Add search by product name and description.
+- `[x]` Add sorting by price.
+- `[x]` Add sorting by popularity.
+- `[x]` Add sorting by novelty.
+- `[x]` Optimize catalog queries with appropriate `select_related` and annotations for catalog pages.
+- `[x]` Use Django Templates, HTMX, Alpine.js, and Tailwind CSS for the new frontend.
+- `[x]` Use Hop & Barley only for visual direction; do not copy the old frontend directly.
+- `[x]` Add tests for catalog rendering, filtering, search, sorting, and pagination.
+- `[x]` Run `graphify .` before implementation only for code structure and use `graphify scope inspect . --scope auto` when the full command stops on semantic corpus detection.
+- `[x]` Run validation after implementation.
+- `[!]` Run `graphify .` again after implementation if possible; the command still stops on semantic corpus detection after AST scanning.
+- `[x]` Update `docs/TASKS.md`.
+- `[x]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[x]` Provide the exact local run command.
+- `[x]` Provide the exact browser URL.
+- `[x]` Provide a short manual QA checklist for the user.
+- `[ ]` Provide the next exact prompt for Phase 4.
+- `[ ]` Wait for the user's manual browser check before marking the phase complete.
+
+## Phase 4 - Product Detail and Review Display
+
+- `[ ]` Build product detail page `/product/<slug>/` with name, description, price, image, rating, reviews, and quantity selection UI.
+- `[ ]` Show review list and rating display on the product page.
+- `[ ]` Prepare review-related query behavior without implementing purchase-gated submission yet.
+- `[ ]` Add tests for product detail rendering and review display behavior.
+- `[ ]` Run `graphify .` before implementation only for code structure.
+- `[ ]` Run validation after implementation.
+- `[ ]` Run `graphify .` again after implementation if possible.
+- `[ ]` Update `docs/TASKS.md`.
+- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[ ]` Provide the exact local run command.
+- `[ ]` Provide the exact browser URL.
+- `[ ]` Provide a short manual QA checklist for the user.
+- `[ ]` Provide the next exact prompt for Phase 5.
+- `[ ]` Wait for the user's manual browser check before marking the phase complete.
+
+## Phase 5 - Cart Web UI
+
+- `[ ]` Implement session-backed cart at `/cart/`.
+- `[ ]` Add products to cart with quantity selection.
+- `[ ]` Update cart item quantities.
+- `[ ]` Remove cart items.
+- `[ ]` Calculate cart totals from current product prices.
+- `[ ]` Validate product stock before adding/updating cart quantities.
+- `[ ]` Show useful Django messages for cart actions and validation failures.
+- `[ ]` Add cart tests for add, remove, quantity update, total calculation, session persistence, and stock validation.
+- `[ ]` Run `graphify .` before implementation only for code structure.
+- `[ ]` Run validation after implementation.
+- `[ ]` Run `graphify .` again after implementation if possible.
+- `[ ]` Update `docs/TASKS.md`.
+- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[ ]` Provide the exact local run command.
+- `[ ]` Provide the exact browser URL.
+- `[ ]` Provide a short manual QA checklist for the user.
+- `[ ]` Provide the next exact prompt for Phase 6.
+- `[ ]` Wait for the user's manual browser check before marking the phase complete.
+
+## Phase 6 - Checkout Web UI
+
+- `[ ]` Implement checkout page `/checkout/` with contact details and delivery address form.
+- `[ ]` Add mock payment method selection.
+- `[ ]` Create order records inside a database transaction.
+- `[ ]` Create order items with price snapshots.
+- `[ ]` Decrease stock or otherwise enforce stock availability at order creation.
+- `[ ]` Send email notification to the user.
+- `[ ]` Send email notification to the administrator.
+- `[ ]` Handle checkout errors and form validation cleanly.
+- `[ ]` Add checkout tests for validation, transaction behavior, order creation, order items, stock handling, and email notifications.
+- `[ ]` Run `graphify .` before implementation only for code structure.
+- `[ ]` Run validation after implementation.
+- `[ ]` Run `graphify .` again after implementation if possible.
+- `[ ]` Update `docs/TASKS.md`.
+- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[ ]` Provide the exact local run command.
+- `[ ]` Provide the exact browser URL.
+- `[ ]` Provide a short manual QA checklist for the user.
+- `[ ]` Provide the next exact prompt for Phase 7.
+- `[ ]` Wait for the user's manual browser check before marking the phase complete.
+
+## Phase 7 - Authentication and Users
 
 - `[ ]` Implement browser registration with Django session authentication.
 - `[ ]` Implement browser login and logout with Django session authentication.
@@ -70,43 +155,19 @@
 - `[ ]` Implement account order history with filtering.
 - `[ ]` Ensure account pages require authenticated users.
 - `[ ]` Replace any visual-reference localStorage auth simulation with real Django auth state.
+- `[ ]` Add tests for registration, login/logout, profile editing, password change, addresses, and order history filtering.
+- `[ ]` Run `graphify .` before implementation only for code structure.
+- `[ ]` Run validation after implementation.
+- `[ ]` Run `graphify .` again after implementation if possible.
+- `[ ]` Update `docs/TASKS.md`.
+- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[ ]` Provide the exact local run command.
+- `[ ]` Provide the exact browser URL.
+- `[ ]` Provide a short manual QA checklist for the user.
+- `[ ]` Provide the next exact prompt for Phase 8.
+- `[ ]` Wait for the user's manual browser check before marking the phase complete.
 
-## Phase 4 - Catalog and Product Web UI
-
-- `[ ]` Build homepage `/` with product catalog entry experience.
-- `[ ]` Build product list `/products/` with pagination.
-- `[ ]` Add category filtering.
-- `[ ]` Add price range filtering.
-- `[ ]` Add search by product name and description.
-- `[ ]` Add sorting by price.
-- `[ ]` Add sorting by popularity.
-- `[ ]` Add sorting by novelty.
-- `[ ]` Optimize catalog queries with appropriate `select_related`, `prefetch_related`, annotations, and indexes.
-- `[ ]` Build product detail page `/product/<slug>/` with name, description, price, image, rating, reviews, add-to-cart button, and quantity selection.
-- `[ ]` Implement review submission only for authenticated users who purchased the product.
-- `[ ]` Validate review rating from 1 to 5.
-- `[ ]` Use Django Templates, HTMX, Alpine.js, and Tailwind CSS for the new frontend.
-- `[ ]` Use Hop & Barley only for visual direction; do not copy the old frontend directly.
-
-## Phase 5 - Cart and Checkout Web UI
-
-- `[ ]` Implement session-backed cart at `/cart/`.
-- `[ ]` Add products to cart with quantity selection.
-- `[ ]` Update cart item quantities.
-- `[ ]` Remove cart items.
-- `[ ]` Calculate cart totals from current product prices.
-- `[ ]` Validate product stock before adding/updating cart quantities.
-- `[ ]` Show useful Django messages for cart actions and validation failures.
-- `[ ]` Implement checkout page `/checkout/` with contact details and delivery address form.
-- `[ ]` Add mock payment method selection.
-- `[ ]` Create order records inside a database transaction.
-- `[ ]` Create order items with price snapshots.
-- `[ ]` Decrease stock or otherwise enforce stock availability at order creation.
-- `[ ]` Send email notification to the user.
-- `[ ]` Send email notification to the administrator.
-- `[ ]` Handle checkout errors and form validation cleanly.
-
-## Phase 6 - REST API
+## Phase 8 - REST API and JWT
 
 - `[ ]` Configure DRF under `/api/`.
 - `[ ]` Configure JWT access and refresh tokens.
@@ -123,41 +184,41 @@
 - `[ ]` Enforce that users can view/change only their own API data.
 - `[ ]` Add serializers with explicit validation for products, orders, cart items, users, and reviews.
 - `[ ]` Add API pagination and permissions.
+- `[ ]` Add REST API tests for JWT, products, cart, orders, reviews, permissions, and own-data restrictions.
+- `[ ]` Run `graphify .` before implementation only for code structure.
+- `[ ]` Run validation after implementation.
+- `[ ]` Run `graphify .` again after implementation if possible.
+- `[ ]` Update `docs/TASKS.md`.
+- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[ ]` Provide the exact local run command.
+- `[ ]` Provide the exact browser URL.
+- `[ ]` Provide a short manual QA checklist for the user.
+- `[ ]` Provide the next exact prompt for Phase 9.
+- `[ ]` Wait for the user's manual browser check before marking the phase complete.
 
-## Phase 7 - API Documentation
+## Phase 9 - Swagger/OpenAPI and Final Coverage Expansion
 
 - `[ ]` Configure Swagger/OpenAPI at `/api/docs/`.
 - `[ ]` Document JWT authorization scheme.
 - `[ ]` Document access and refresh token formats and refresh process.
 - `[ ]` Add request examples for registration, JWT login, products, cart, orders, and reviews.
 - `[ ]` Ensure generated schemas match implemented serializers and views.
-
-## Phase 8 - GraphQL Analytics
-
-- `[ ]` Configure a single GraphQL endpoint at `/graphql/`.
-- `[ ]` Add authorization rules for analytics access.
-- `[ ]` Implement order analytics: revenue, quantity, average order value, and trends.
-- `[ ]` Implement product analytics: popular products and stock balances.
-- `[ ]` Implement user analytics: activity and repeat purchases.
-- `[ ]` Document GraphQL types and example queries.
-
-## Phase 9 - Tests
-
-- `[x]` Add model tests for category, product, order, order item, and review models.
-- `[ ]` Add model tests for optional address/payment models if those models are introduced later.
-- `[ ]` Add catalog tests for pagination, category filtering, price filtering, search, and sorting.
-- `[ ]` Add product page tests for detail display, reviews, add-to-cart, and purchase-gated review submission.
-- `[ ]` Add cart tests for add, remove, quantity update, total calculation, session persistence, and stock validation.
-- `[ ]` Add checkout tests for validation, transaction behavior, order creation, order items, stock handling, and email notifications.
-- `[ ]` Add account tests for registration, login/logout, profile editing, password change, addresses, and order history filtering.
-- `[ ]` Add admin tests for configured management and analytics behavior where practical.
-- `[ ]` Add REST API tests for JWT, products, cart, orders, reviews, permissions, and own-data restrictions.
 - `[ ]` Add OpenAPI availability/schema smoke tests.
-- `[ ]` Add GraphQL analytics tests.
-- `[ ]` Add regression test that a user cannot order more products than are in stock.
-- `[ ]` Aim for extended coverage target of at least 80% if time allows.
+- `[ ]` Expand final coverage across implemented catalog, detail, cart, checkout, auth, and API behavior.
+- `[ ]` Add regression tests that are still missing, including stock and access restrictions.
+- `[ ]` Push toward the extended coverage target of at least 80% if time allows.
+- `[ ]` Run `graphify .` before implementation only for code structure.
+- `[ ]` Run validation after implementation.
+- `[ ]` Run `graphify .` again after implementation if possible.
+- `[ ]` Update `docs/TASKS.md`.
+- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[ ]` Provide the exact local run command.
+- `[ ]` Provide the exact browser URL.
+- `[ ]` Provide a short manual QA checklist for the user.
+- `[ ]` Provide the next exact prompt for Phase 10.
+- `[ ]` Wait for the user's manual browser check before marking the phase complete.
 
-## Phase 10 - Quality, Documentation, and Submission
+## Phase 10 - Final Hardening, README, Submission Prep
 
 - `[ ]` Add type annotations to functions and methods.
 - `[ ]` Add docstrings for public APIs and important modules.
@@ -170,3 +231,32 @@
 - `[ ]` Add implementation checklist with completion marks.
 - `[ ]` Prepare deployment link or video demonstration instructions.
 - `[ ]` Maintain meaningful commits and branch names such as `feature/...`, `develop/...`, and stable `main`.
+- `[ ]` Run `graphify .` before implementation only for code structure.
+- `[ ]` Run validation after implementation.
+- `[ ]` Run `graphify .` again after implementation if possible.
+- `[ ]` Update `docs/TASKS.md`.
+- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[ ]` Provide the exact local run command.
+- `[ ]` Provide the exact browser URL.
+- `[ ]` Provide a short manual QA checklist for the user.
+- `[ ]` Provide the next exact prompt for the Bonus Phase if needed.
+- `[ ]` Wait for the user's manual browser check before marking the phase complete.
+
+## Bonus Phase - GraphQL Analytics
+
+- `[ ]` Configure a single GraphQL endpoint at `/graphql/`.
+- `[ ]` Add authorization rules for analytics access.
+- `[ ]` Implement order analytics: revenue, quantity, average order value, and trends.
+- `[ ]` Implement product analytics: popular products and stock balances.
+- `[ ]` Implement user analytics: activity and repeat purchases.
+- `[ ]` Document GraphQL types and example queries.
+- `[ ]` Add GraphQL analytics tests.
+- `[ ]` Run `graphify .` before implementation only for code structure.
+- `[ ]` Run validation after implementation.
+- `[ ]` Run `graphify .` again after implementation if possible.
+- `[ ]` Update `docs/TASKS.md`.
+- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[ ]` Provide the exact local run command.
+- `[ ]` Provide the exact browser URL.
+- `[ ]` Provide a short manual QA checklist for the user.
+- `[ ]` Wait for the user's manual browser check before marking the phase complete.

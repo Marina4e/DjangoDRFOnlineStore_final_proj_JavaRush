@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Hop & Barley Store{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+  </head>
+  <body class="min-h-screen bg-amber-50 text-stone-900">
+    <div class="min-h-screen">
+      <header class="border-b border-amber-200 bg-white/90 backdrop-blur">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+          <a href="{% url 'home' %}" class="text-lg font-semibold tracking-tight text-stone-900">
+            Hop & Barley Store
+          </a>
+          <nav class="flex items-center gap-4 text-sm text-stone-700">
+            <a href="{% url 'home' %}" class="transition hover:text-stone-950">Home</a>
+            <a href="{% url 'product-list' %}" class="transition hover:text-stone-950">Catalog</a>
+            <a href="/admin/" class="transition hover:text-stone-950">Admin</a>
+          </nav>
+        </div>
+      </header>
+      <main>
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>

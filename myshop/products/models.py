@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 from decimal import Decimal
+from typing import cast
 
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.db.models import Q, QuerySet
 
 
 class Category(models.Model):
@@ -28,6 +30,36 @@ class Category(models.Model):
         return str(self.name)
 
 
+class ProductQuerySet(QuerySet["Product"]):
+    def active(self) -> "ProductQuerySet":
+        return cast(ProductQuerySet, self.filter(is_active=True))
+
+    def search(self, term: str) -> "ProductQuerySet":
+        if not term:
+            return self
+        return cast(
+            ProductQuerySet,
+            self.filter(Q(name__icontains=term) | Q(description__icontains=term)),
+        )
+
+    def in_category(self, category_slug: str) -> "ProductQuerySet":
+        if not category_slug:
+            return self
+        return cast(ProductQuerySet, self.filter(category__slug=category_slug))
+
+    def within_price_range(
+        self,
+        min_price: Decimal | None,
+        max_price: Decimal | None,
+    ) -> "ProductQuerySet":
+        queryset: ProductQuerySet = self
+        if min_price is not None:
+            queryset = queryset.filter(price__gte=min_price)
+        if max_price is not None:
+            queryset = queryset.filter(price__lte=max_price)
+        return queryset
+
+
 class Product(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
@@ -47,6 +79,8 @@ class Product(models.Model):
     stock = models.IntegerField(validators=[MinValueValidator(0)])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = ProductQuerySet.as_manager()
 
     class Meta:
         ordering = ["name"]

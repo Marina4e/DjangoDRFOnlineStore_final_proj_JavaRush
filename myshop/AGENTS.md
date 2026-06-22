@@ -46,6 +46,9 @@ Current planning note: the technical assignment and visual reference are present
 3. Follow `docs/IMPLEMENTATION_PLAN.md` phase by phase.
 4. Work from `docs/TASKS.md`; keep task status current.
 5. Validate against `docs/ACCEPTANCE_CHECKLIST.md` before calling the project complete.
+6. Before each future implementation phase, run `graphify .` only to understand the current code structure.
+7. After each future implementation phase, run validation commands, provide the exact local run command, provide the exact browser URL, and give a short manual QA checklist.
+8. Do not consider a future implementation phase complete until the user confirms the manual browser check.
 
 ## Quality Bar
 
@@ -68,3 +71,4 @@ Do not rewrite the whole project without a plan.
 First read PROJECT_SPEC.md, then create or update TASKS.md.
 Work in small steps.
 After each change, explain what files were changed and how to test them.
+Use Graphify only for code structure, never as a requirements source.

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Discover Craft Ingredients{% endblock %}
+
+{% block content %}
+  <section class="border-b border-amber-200 bg-gradient-to-br from-stone-950 via-stone-900 to-amber-900 text-amber-50">
+    <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8 lg:py-24">
+      <div class="space-y-6">
+        <p class="text-sm uppercase tracking-[0.2em] text-amber-200">Brew better, stock smarter</p>
+        <h1 class="max-w-2xl text-4xl font-semibold tracking-tight sm:text-5xl">
+          Build your next batch from a clean, fast product catalog.
+        </h1>
+        <p class="max-w-2xl text-base leading-7 text-amber-100/85">
+          Browse ingredients and brewing essentials with quick filters, practical search, and a storefront that stays focused on the buying flow.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="{% url 'product-list' %}"
+            class="inline-flex items-center justify-center rounded-md bg-amber-300 px-5 py-3 text-sm font-semibold text-stone-950 transition hover:bg-amber-200"
+          >
+            Browse catalog
+          </a>
+        </div>
+      </div>
+      <div class="grid gap-4 rounded-lg border border-white/10 bg-white/10 p-4 backdrop-blur">
+        <div class="grid gap-3 sm:grid-cols-2">
+          {% for category in top_categories %}
+            <a
+              href="{% url 'product-list' %}?category={{ category.slug }}"
+              class="rounded-md border border-white/10 bg-white/10 px-4 py-4 text-sm font-medium text-amber-50 transition hover:bg-white/15"
+            >
+              {{ category.name }}
+            </a>
+          {% empty %}
+            <div class="rounded-md border border-dashed border-white/20 px-4 py-6 text-sm text-amber-100/80 sm:col-span-2">
+              Categories will show up here as products are added.
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="mb-8 flex items-end justify-between gap-4">
+      <div>
+        <p class="text-sm uppercase tracking-[0.16em] text-amber-700">Newest arrivals</p>
+        <h2 class="mt-2 text-2xl font-semibold tracking-tight text-stone-950">Fresh additions to the catalog</h2>
+      </div>
+      <a href="{% url 'product-list' %}?sort=newest" class="text-sm font-medium text-amber-900 hover:text-stone-950">
+        View all
+      </a>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {% for product in featured_products %}
+        {% include "products/partials/product_card.html" with product=product %}
+      {% empty %}
+        <div class="rounded-lg border border-dashed border-amber-300 bg-white px-6 py-10 text-sm text-stone-600 md:col-span-2 xl:col-span-3">
+          Add active products in the admin to populate the homepage catalog entry experience.
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}
