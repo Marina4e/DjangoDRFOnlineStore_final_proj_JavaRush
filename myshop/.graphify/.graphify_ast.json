@@ -547,6 +547,41 @@
       "source_location": "L89"
     },
     {
+      "id": "products_views_productdetailview",
+      "label": "ProductDetailView",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L117"
+    },
+    {
+      "id": "detailview",
+      "label": "DetailView",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "products_views_productdetailview_get_template_names",
+      "label": ".get_template_names()",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L124"
+    },
+    {
+      "id": "products_views_productdetailview_get_queryset",
+      "label": ".get_queryset()",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L132"
+    },
+    {
+      "id": "products_views_productdetailview_get_context_data",
+      "label": ".get_context_data()",
+      "file_type": "code",
+      "source_file": "products/views.py",
+      "source_location": "L155"
+    },
+    {
       "id": "tests_init",
       "label": "__init__.py",
       "file_type": "code",
@@ -582,60 +617,67 @@
       "source_location": "L96"
     },
     {
+      "id": "tests_test_catalog_views_test_catalog_cards_link_to_product_detail",
+      "label": "test_catalog_cards_link_to_product_detail()",
+      "file_type": "code",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L104"
+    },
+    {
       "id": "tests_test_catalog_views_test_catalog_filters_by_category",
       "label": "test_catalog_filters_by_category()",
       "file_type": "code",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L104"
+      "source_location": "L113"
     },
     {
       "id": "tests_test_catalog_views_test_catalog_filters_by_price_range",
       "label": "test_catalog_filters_by_price_range()",
       "file_type": "code",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L113"
+      "source_location": "L122"
     },
     {
       "id": "tests_test_catalog_views_test_catalog_searches_name_and_description",
       "label": "test_catalog_searches_name_and_description()",
       "file_type": "code",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L125"
+      "source_location": "L134"
     },
     {
       "id": "tests_test_catalog_views_test_catalog_sorts_by_price",
       "label": "test_catalog_sorts_by_price()",
       "file_type": "code",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L133"
+      "source_location": "L142"
     },
     {
       "id": "tests_test_catalog_views_test_catalog_sorts_by_popularity",
       "label": "test_catalog_sorts_by_popularity()",
       "file_type": "code",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L141"
+      "source_location": "L150"
     },
     {
       "id": "tests_test_catalog_views_test_catalog_sorts_by_novelty",
       "label": "test_catalog_sorts_by_novelty()",
       "file_type": "code",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L150"
+      "source_location": "L159"
     },
     {
       "id": "tests_test_catalog_views_test_catalog_paginates_results",
       "label": "test_catalog_paginates_results()",
       "file_type": "code",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L158"
+      "source_location": "L167"
     },
     {
       "id": "tests_test_catalog_views_test_catalog_htmx_returns_partial",
       "label": "test_catalog_htmx_returns_partial()",
       "file_type": "code",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L167"
+      "source_location": "L176"
     },
     {
       "id": "tests_test_orders_models",
@@ -706,6 +748,48 @@
       "file_type": "code",
       "source_file": "tests/test_orders_models.py",
       "source_location": "L90"
+    },
+    {
+      "id": "tests_test_product_detail_views",
+      "label": "test_product_detail_views.py",
+      "file_type": "code",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_product_detail_views_detail_product",
+      "label": "detail_product()",
+      "file_type": "code",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L15"
+    },
+    {
+      "id": "tests_test_product_detail_views_test_product_detail_page_renders",
+      "label": "test_product_detail_page_renders()",
+      "file_type": "code",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L50"
+    },
+    {
+      "id": "tests_test_product_detail_views_test_product_detail_context_contains_rating_summary",
+      "label": "test_product_detail_context_contains_rating_summary()",
+      "file_type": "code",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L62"
+    },
+    {
+      "id": "tests_test_product_detail_views_test_product_detail_htmx_reviews_fragment_renders_existing_reviews",
+      "label": "test_product_detail_htmx_reviews_fragment_renders_existing_reviews()",
+      "file_type": "code",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L73"
+    },
+    {
+      "id": "tests_test_product_detail_views_test_product_detail_handles_products_without_reviews",
+      "label": "test_product_detail_handles_products_without_reviews()",
+      "file_type": "code",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L93"
     },
     {
       "id": "tests_test_products_models",
@@ -1817,6 +1901,51 @@
       "weight": 1
     },
     {
+      "source": "products_views",
+      "target": "products_views_productdetailview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L117",
+      "weight": 1
+    },
+    {
+      "source": "products_views_productdetailview",
+      "target": "detailview",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L117",
+      "weight": 1
+    },
+    {
+      "source": "products_views_productdetailview",
+      "target": "products_views_productdetailview_get_template_names",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L124",
+      "weight": 1
+    },
+    {
+      "source": "products_views_productdetailview",
+      "target": "products_views_productdetailview_get_queryset",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L132",
+      "weight": 1
+    },
+    {
+      "source": "products_views_productdetailview",
+      "target": "products_views_productdetailview_get_context_data",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "products/views.py",
+      "source_location": "L155",
+      "weight": 1
+    },
+    {
       "source": "products_views_productcatalogview_get_queryset",
       "target": "products_views_parse_decimal",
       "relation": "calls",
@@ -1908,7 +2037,7 @@
     },
     {
       "source": "tests_test_catalog_views",
-      "target": "tests_test_catalog_views_test_catalog_filters_by_category",
+      "target": "tests_test_catalog_views_test_catalog_cards_link_to_product_detail",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_catalog_views.py",
@@ -1917,7 +2046,7 @@
     },
     {
       "source": "tests_test_catalog_views",
-      "target": "tests_test_catalog_views_test_catalog_filters_by_price_range",
+      "target": "tests_test_catalog_views_test_catalog_filters_by_category",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_catalog_views.py",
@@ -1926,11 +2055,20 @@
     },
     {
       "source": "tests_test_catalog_views",
+      "target": "tests_test_catalog_views_test_catalog_filters_by_price_range",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_catalog_views.py",
+      "source_location": "L122",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_catalog_views",
       "target": "tests_test_catalog_views_test_catalog_searches_name_and_description",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L125",
+      "source_location": "L134",
       "weight": 1
     },
     {
@@ -1939,7 +2077,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L133",
+      "source_location": "L142",
       "weight": 1
     },
     {
@@ -1948,7 +2086,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L141",
+      "source_location": "L150",
       "weight": 1
     },
     {
@@ -1957,7 +2095,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L150",
+      "source_location": "L159",
       "weight": 1
     },
     {
@@ -1966,7 +2104,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L158",
+      "source_location": "L167",
       "weight": 1
     },
     {
@@ -1975,7 +2113,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "tests/test_catalog_views.py",
-      "source_location": "L167",
+      "source_location": "L176",
       "weight": 1
     },
     {
@@ -2111,6 +2249,87 @@
       "confidence": "EXTRACTED",
       "source_file": "tests/test_orders_models.py",
       "source_location": "L90",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_product_detail_views",
+      "target": "decimal",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L3",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_product_detail_views",
+      "target": "pytest",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L5",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_product_detail_views",
+      "target": "django_urls",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L6",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_product_detail_views",
+      "target": "products_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L8",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_product_detail_views",
+      "target": "tests_test_product_detail_views_detail_product",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L15",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_product_detail_views",
+      "target": "tests_test_product_detail_views_test_product_detail_page_renders",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L50",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_product_detail_views",
+      "target": "tests_test_product_detail_views_test_product_detail_context_contains_rating_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L62",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_product_detail_views",
+      "target": "tests_test_product_detail_views_test_product_detail_htmx_reviews_fragment_renders_existing_reviews",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L73",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_product_detail_views",
+      "target": "tests_test_product_detail_views_test_product_detail_handles_products_without_reviews",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_product_detail_views.py",
+      "source_location": "L93",
       "weight": 1
     },
     {
@@ -2321,6 +2540,15 @@
       "weight": 0.8
     },
     {
+      "source": "config_urls_rationale_1",
+      "target": "products_views_productdetailview",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "config/urls.py",
+      "source_location": "L7",
+      "weight": 0.8
+    },
+    {
       "source": "orders_admin_orderiteminline",
       "target": "orders_models_order",
       "relation": "uses",
@@ -2448,6 +2676,15 @@
     },
     {
       "source": "products_views_productcatalogview",
+      "target": "orders_models_orderitem",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "products/views.py",
+      "source_location": "L10",
+      "weight": 0.8
+    },
+    {
+      "source": "products_views_productdetailview",
       "target": "orders_models_orderitem",
       "relation": "uses",
       "confidence": "INFERRED",

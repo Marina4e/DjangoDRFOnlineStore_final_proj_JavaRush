@@ -46,7 +46,7 @@
 
 - `[x]` Create `Category` model with `id`, `name`, unique `slug`, nullable self-parent, `created_at`, `updated_at`.
 - `[x]` Create `Product` model with `id`, `name`, unique `slug`, `description`, `price`, `category`, `image`, `is_active`, `stock`, `created_at`, `updated_at`.
-- `[ ]` Add product query helpers for active products, novelty sorting, price sorting, popularity sorting, search, category filtering, and price filtering.
+- `[x]` Add product query helpers for active products, novelty sorting, price sorting, popularity sorting, search, category filtering, and price filtering.
 - `[x]` Create `Order` model with `user`, `status`, `total_price`, `shipping_address` or address relation, `created_at`, `updated_at`.
 - `[x]` Create `OrderItem` model with `order`, `product`, `quantity`, and purchase-time `price` snapshot.
 - `[x]` Create `Review` model with `product`, `user`, `rating`, `comment`, and `created_at`.
@@ -87,18 +87,18 @@
 
 ## Phase 4 - Product Detail and Review Display
 
-- `[ ]` Build product detail page `/product/<slug>/` with name, description, price, image, rating, reviews, and quantity selection UI.
-- `[ ]` Show review list and rating display on the product page.
-- `[ ]` Prepare review-related query behavior without implementing purchase-gated submission yet.
-- `[ ]` Add tests for product detail rendering and review display behavior.
-- `[ ]` Run `graphify .` before implementation only for code structure.
-- `[ ]` Run validation after implementation.
-- `[ ]` Run `graphify .` again after implementation if possible.
-- `[ ]` Update `docs/TASKS.md`.
-- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
-- `[ ]` Provide the exact local run command.
-- `[ ]` Provide the exact browser URL.
-- `[ ]` Provide a short manual QA checklist for the user.
+- `[x]` Build product detail page `/product/<slug>/` with name, description, price, image, rating, reviews, and quantity selection UI.
+- `[x]` Show review list and rating display on the product page.
+- `[x]` Prepare review-related query behavior without implementing purchase-gated submission yet.
+- `[x]` Add tests for product detail rendering and review display behavior.
+- `[x]` Run `graphify .` before implementation only for code structure.
+- `[x]` Run validation after implementation.
+- `[!]` Run `graphify .` again after implementation if possible; the command still stops on semantic corpus detection after AST scanning.
+- `[x]` Update `docs/TASKS.md`.
+- `[x]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[x]` Provide the exact local run command.
+- `[x]` Provide the exact browser URL.
+- `[x]` Provide a short manual QA checklist for the user.
 - `[ ]` Provide the next exact prompt for Phase 5.
 - `[ ]` Wait for the user's manual browser check before marking the phase complete.
 

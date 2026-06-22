@@ -101,6 +101,15 @@ def test_catalog_page_renders(client, catalog_data) -> None:
     assert b"Ingredients and essentials" in response.content
 
 
+def test_catalog_cards_link_to_product_detail(client, catalog_data) -> None:
+    product = catalog_data["products"][0]
+
+    response = client.get(reverse("product-list"))
+
+    assert response.status_code == 200
+    assert reverse("product-detail", kwargs={"slug": product.slug}).encode() in response.content
+
+
 def test_catalog_filters_by_category(client, catalog_data) -> None:
     response = client.get(reverse("product-list"), {"category": catalog_data["hops"].slug})
 

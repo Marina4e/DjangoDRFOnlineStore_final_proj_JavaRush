@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+  <section class="border-b border-amber-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center gap-2 text-sm text-stone-500">
+        <a href="{% url 'home' %}" class="transition hover:text-stone-900">Home</a>
+        <span>/</span>
+        <a href="{% url 'product-list' %}" class="transition hover:text-stone-900">Catalog</a>
+        <span>/</span>
+        <span class="text-stone-700">{{ product.name }}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="overflow-hidden rounded-lg border border-amber-200 bg-white shadow-sm">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" class="h-full min-h-80 w-full object-cover">
+        {% else %}
+          <div class="flex min-h-80 items-center justify-center bg-gradient-to-br from-amber-100 via-amber-50 to-stone-100 px-6 text-center">
+            <div>
+              <p class="text-xs uppercase tracking-[0.2em] text-amber-700">{{ product.category.name }}</p>
+              <h1 class="mt-3 text-3xl font-semibold tracking-tight text-stone-950">{{ product.name }}</h1>
+              <p class="mt-3 text-sm text-stone-600">Product image will appear here when one is uploaded.</p>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="space-y-6">
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-amber-900">
+              {{ product.category.name }}
+            </span>
+            <span class="rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] {{ stock_state_tone }}">
+              {{ stock_state }}
+            </span>
+          </div>
+
+          <div class="space-y-3">
+            <h1 class="text-4xl font-semibold tracking-tight text-stone-950">{{ product.name }}</h1>
+            <div class="flex flex-wrap items-center gap-4 text-sm text-stone-600">
+              <span class="text-lg font-semibold text-amber-900">${{ product.price }}</span>
+              <span>{{ product.stock }} available</span>
+              <span>{{ product.popularity }} sold</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 text-sm text-stone-600">
+              <span class="font-medium text-stone-800">
+                {% if product.average_rating %}
+                  {{ product.average_rating|floatformat:1 }}/5
+                {% else %}
+                  No ratings yet
+                {% endif %}
+              </span>
+              <span>{{ product.review_count }} review{{ product.review_count|pluralize }}</span>
+            </div>
+          </div>
+
+          <p class="max-w-2xl text-base leading-7 text-stone-700">{{ product.description }}</p>
+        </div>
+
+        <div class="rounded-lg border border-amber-200 bg-white p-5 shadow-sm">
+          <div class="mb-4 flex items-center justify-between gap-4">
+            <div>
+              <h2 class="text-lg font-semibold tracking-tight text-stone-950">Quantity</h2>
+              <p class="mt-1 text-sm text-stone-600">UI only for this phase. Cart behavior comes next.</p>
+            </div>
+          </div>
+
+          {% if product.stock > 0 %}
+            <div class="flex flex-wrap items-center gap-3">
+              <label for="quantity" class="text-sm font-medium text-stone-800">Choose quantity</label>
+              <select
+                id="quantity"
+                name="quantity"
+                class="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
+              >
+                {% for quantity in quantity_options %}
+                  <option value="{{ quantity }}">{{ quantity }}</option>
+                {% endfor %}
+              </select>
+              <button
+                type="button"
+                disabled
+                class="rounded-md bg-stone-300 px-4 py-2 text-sm font-semibold text-stone-600"
+              >
+                Add to cart in Phase 5
+              </button>
+            </div>
+          {% else %}
+            <p class="text-sm text-stone-600">This product is currently unavailable for quantity selection.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+    <div class="rounded-lg border border-amber-200 bg-white p-6 shadow-sm">
+      <div class="mb-5 flex items-center justify-between gap-4">
+        <div>
+          <p class="text-sm uppercase tracking-[0.16em] text-amber-700">Reviews</p>
+          <h2 class="mt-2 text-2xl font-semibold tracking-tight text-stone-950">Customer notes and ratings</h2>
+        </div>
+      </div>
+
+      <div
+        id="product-review-list"
+        hx-get="{% url 'product-detail' slug=product.slug %}?fragment=reviews"
+        hx-trigger="load"
+        hx-target="#product-review-list"
+        class="min-h-24"
+      >
+        {% include "products/partials/review_list.html" %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

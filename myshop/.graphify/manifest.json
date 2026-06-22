@@ -24,8 +24,8 @@
     "hash": "db00137c62de571a4e5ec90d48cd6a55"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/config/urls.py": {
-    "mtime": 1782130507023.476,
-    "hash": "7ac221fd7122f7df9caab271d8560e52"
+    "mtime": 1782133708812.4875,
+    "hash": "009ffea4fdf233baf11c4ca8d0807024"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/config/wsgi.py": {
     "mtime": 1782049741084.4058,
@@ -172,12 +172,12 @@
     "hash": "09927c8cd85dc5d9dd628b3b5a125351"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/products/views.py": {
-    "mtime": 1782130814197.633,
-    "hash": "f36c119e9e312eec35c455120f1bcf35"
+    "mtime": 1782133704298.9639,
+    "hash": "155ee478e02cd20881824450a869917a"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/tests/test_catalog_views.py": {
-    "mtime": 1782130814197.633,
-    "hash": "4a4019f9afac8be4cfe720f20ca91fec"
+    "mtime": 1782133775565.6326,
+    "hash": "11b85094b2cedd5acb04ee5b22f36932"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/templates/base.html": {
     "mtime": 1782130586409.513,
@@ -196,7 +196,19 @@
     "hash": "c4bb9487a02fbb61f78b4d095965d157"
   },
   "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/templates/products/partials/product_card.html": {
-    "mtime": 1782130586425.3994,
-    "hash": "f3f13b132e6650437dc66ec29a7552e7"
+    "mtime": 1782133755004.8015,
+    "hash": "0a7df63811629f243cf07ab269e33436"
+  },
+  "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/tests/test_product_detail_views.py": {
+    "mtime": 1782133775562.1123,
+    "hash": "b20c2bef9d7bd56d6ec707df56c4c618"
+  },
+  "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/templates/products/detail.html": {
+    "mtime": 1782133784616.884,
+    "hash": "d8030a512900a586d11db319241fdf1b"
+  },
+  "D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/templates/products/partials/review_list.html": {
+    "mtime": 1782133755009.2605,
+    "hash": "33f5616a390c2e27c2818dd0a4fb22c7"
   }
 }

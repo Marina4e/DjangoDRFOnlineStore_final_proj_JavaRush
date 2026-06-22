@@ -58,10 +58,10 @@
 
 ## Product Page and Reviews Acceptance
 
-- `[ ]` Product detail page `/product/<slug>/` is available.
-- `[ ]` Product page displays name, description, price, image, rating, and reviews.
-- `[ ]` Product page includes add-to-cart and quantity controls.
-- `[ ]` Review rating is limited to 1-5.
+- `[x]` Product detail page `/product/<slug>/` is available.
+- `[x]` Product page displays name, description, price, image, rating, and reviews.
+- `[x]` Product page includes add-to-cart and quantity controls.
+- `[x]` Review rating is limited to 1-5.
 - `[ ]` Reviews can be submitted only by authenticated users who purchased the product.
 - `[ ]` Users who did not purchase the product cannot submit a review.
 
