@@ -1,3 +1,10 @@
+![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
+![Django 5.1](https://img.shields.io/badge/Django-5.1-092E20?logo=django&logoColor=white)
+![DRF API](https://img.shields.io/badge/DRF-API-A30000)
+![PostgreSQL 16](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?logo=docker&logoColor=white)
+![pytest](https://img.shields.io/badge/pytest-tested-0A9EDC?logo=pytest&logoColor=white)
+
 # myshop
 
 ## Project Description
