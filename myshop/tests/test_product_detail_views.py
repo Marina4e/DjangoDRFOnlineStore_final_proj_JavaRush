@@ -56,7 +56,7 @@ def test_product_detail_page_renders(client, detail_product) -> None:
     assert any(template.name == "products/detail.html" for template in response.templates)
     assert b"House Saison Yeast" in response.content
     assert b"Dry and peppery fermentation profile" in response.content
-    assert b"Add to cart in Phase 5" in response.content
+    assert b"Add to cart" in response.content
 
 
 def test_product_detail_context_contains_rating_summary(client, detail_product) -> None:

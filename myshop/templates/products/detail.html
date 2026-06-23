@@ -68,12 +68,14 @@
           <div class="mb-4 flex items-center justify-between gap-4">
             <div>
               <h2 class="text-lg font-semibold tracking-tight text-stone-950">Quantity</h2>
-              <p class="mt-1 text-sm text-stone-600">UI only for this phase. Cart behavior comes next.</p>
+              <p class="mt-1 text-sm text-stone-600">Add this product to the session-backed cart.</p>
             </div>
           </div>
 
           {% if product.stock > 0 %}
-            <div class="flex flex-wrap items-center gap-3">
+            <form method="post" action="{% url 'cart-add' product_id=product.id %}" class="flex flex-wrap items-center gap-3">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
               <label for="quantity" class="text-sm font-medium text-stone-800">Choose quantity</label>
               <select
                 id="quantity"
@@ -85,13 +87,12 @@
                 {% endfor %}
               </select>
               <button
-                type="button"
-                disabled
-                class="rounded-md bg-stone-300 px-4 py-2 text-sm font-semibold text-stone-600"
+                type="submit"
+                class="rounded-md bg-stone-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-stone-800"
               >
-                Add to cart in Phase 5
+                Add to cart
               </button>
-            </div>
+            </form>
           {% else %}
             <p class="text-sm text-stone-600">This product is currently unavailable for quantity selection.</p>
           {% endif %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+  <section class="border-b border-amber-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <p class="text-sm uppercase tracking-[0.18em] text-amber-700">Cart</p>
+      <h1 class="mt-2 text-3xl font-semibold tracking-tight text-stone-950">Your selected products</h1>
+      <p class="mt-3 max-w-2xl text-sm leading-6 text-stone-600">
+        Review quantities, remove items, and confirm the current catalog pricing before checkout is added.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div id="cart-shell">
+      {% include "orders/partials/cart_shell.html" %}
+    </div>
+  </section>
+{% endblock %}

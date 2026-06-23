@@ -67,15 +67,15 @@
 
 ## Cart Acceptance
 
-- `[ ]` Cart page `/cart/` is available.
-- `[ ]` Cart data is stored in the Django session.
-- `[ ]` Users can add products to the cart.
-- `[ ]` Users can remove products from the cart.
-- `[ ]` Users can change product quantities.
-- `[ ]` Cart totals are calculated correctly.
-- `[ ]` Cart operations validate product stock.
-- `[ ]` A user cannot order more products than are available in stock.
-- `[ ]` Cart actions use helpful messages or inline validation feedback.
+- `[x]` Cart page `/cart/` is available.
+- `[x]` Cart data is stored in the Django session.
+- `[x]` Users can add products to the cart.
+- `[x]` Users can remove products from the cart.
+- `[x]` Users can change product quantities.
+- `[x]` Cart totals are calculated correctly.
+- `[x]` Cart operations validate product stock.
+- `[x]` A user cannot order more products than are available in stock.
+- `[x]` Cart actions use helpful messages or inline validation feedback.
 
 ## Checkout Acceptance
 
@@ -168,7 +168,7 @@
 - `[x]` pytest-django is configured.
 - `[x]` Tests cover catalog, filters, search, sorting, and pagination.
 - `[ ]` Tests cover product detail and review restrictions.
-- `[ ]` Tests cover cart behavior and stock validation.
+- `[x]` Tests cover cart behavior and stock validation.
 - `[ ]` Tests cover checkout, order creation, transactions, and emails.
 - `[ ]` Tests cover registration, login/logout, account editing, password change, addresses, and order history.
 - `[ ]` Tests cover REST API JWT auth, permissions, and own-data restrictions.

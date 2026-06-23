@@ -101,3 +101,10 @@ Not Found: /product/
 [22/Jun/2026 16:22:38] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
 [22/Jun/2026 16:22:38] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
 [22/Jun/2026 16:23:24] "GET /products/?sort=newest HTTP/1.1" 200 8500
+D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop\orders\urls.py changed, reloading.
+Watching for file changes with StatReloader
+D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop\config\urls.py changed, reloading.
+Watching for file changes with StatReloader
+D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop\orders\views.py changed, reloading.
+Watching for file changes with StatReloader
+[22/Jun/2026 16:36:15] "GET /cart/ HTTP/1.1" 200 2429

@@ -104,22 +104,22 @@
 
 ## Phase 5 - Cart Web UI
 
-- `[ ]` Implement session-backed cart at `/cart/`.
-- `[ ]` Add products to cart with quantity selection.
-- `[ ]` Update cart item quantities.
-- `[ ]` Remove cart items.
-- `[ ]` Calculate cart totals from current product prices.
-- `[ ]` Validate product stock before adding/updating cart quantities.
-- `[ ]` Show useful Django messages for cart actions and validation failures.
-- `[ ]` Add cart tests for add, remove, quantity update, total calculation, session persistence, and stock validation.
-- `[ ]` Run `graphify .` before implementation only for code structure.
-- `[ ]` Run validation after implementation.
-- `[ ]` Run `graphify .` again after implementation if possible.
-- `[ ]` Update `docs/TASKS.md`.
-- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
-- `[ ]` Provide the exact local run command.
-- `[ ]` Provide the exact browser URL.
-- `[ ]` Provide a short manual QA checklist for the user.
+- `[x]` Implement session-backed cart at `/cart/`.
+- `[x]` Add products to cart with quantity selection.
+- `[x]` Update cart item quantities.
+- `[x]` Remove cart items.
+- `[x]` Calculate cart totals from current product prices.
+- `[x]` Validate product stock before adding/updating cart quantities.
+- `[x]` Show useful Django messages for cart actions and validation failures.
+- `[x]` Add cart tests for add, remove, quantity update, total calculation, session persistence, and stock validation.
+- `[x]` Attempt Graphify before implementation with code-only intent; the CLI rejected multiple path arguments for `graphify config products orders users api tests`, so code structure was read directly.
+- `[x]` Run validation after implementation.
+- `[!]` Run `graphify .` again after implementation if possible; the command still stops on semantic corpus detection after AST scanning.
+- `[x]` Update `docs/TASKS.md`.
+- `[x]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[x]` Provide the exact local run command.
+- `[x]` Provide the exact browser URL.
+- `[x]` Provide a short manual QA checklist for the user.
 - `[ ]` Provide the next exact prompt for Phase 6.
 - `[ ]` Wait for the user's manual browser check before marking the phase complete.
 

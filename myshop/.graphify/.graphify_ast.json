@@ -218,6 +218,97 @@
       "source_location": ""
     },
     {
+      "id": "orders_cart",
+      "label": "cart.py",
+      "file_type": "code",
+      "source_file": "orders/cart.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "orders_cart_cartline",
+      "label": "CartLine",
+      "file_type": "code",
+      "source_file": "orders/cart.py",
+      "source_location": "L15"
+    },
+    {
+      "id": "orders_cart_carterror",
+      "label": "CartError",
+      "file_type": "code",
+      "source_file": "orders/cart.py",
+      "source_location": "L21"
+    },
+    {
+      "id": "exception",
+      "label": "Exception",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "orders_cart_get_cart_data",
+      "label": "_get_cart_data()",
+      "file_type": "code",
+      "source_file": "orders/cart.py",
+      "source_location": "L25"
+    },
+    {
+      "id": "orders_cart_save_cart_data",
+      "label": "_save_cart_data()",
+      "file_type": "code",
+      "source_file": "orders/cart.py",
+      "source_location": "L30"
+    },
+    {
+      "id": "orders_cart_add_product",
+      "label": "add_product()",
+      "file_type": "code",
+      "source_file": "orders/cart.py",
+      "source_location": "L35"
+    },
+    {
+      "id": "orders_cart_update_product_quantity",
+      "label": "update_product_quantity()",
+      "file_type": "code",
+      "source_file": "orders/cart.py",
+      "source_location": "L52"
+    },
+    {
+      "id": "orders_cart_remove_product",
+      "label": "remove_product()",
+      "file_type": "code",
+      "source_file": "orders/cart.py",
+      "source_location": "L64"
+    },
+    {
+      "id": "orders_cart_get_cart_summary",
+      "label": "get_cart_summary()",
+      "file_type": "code",
+      "source_file": "orders/cart.py",
+      "source_location": "L71"
+    },
+    {
+      "id": "orders_cart_rationale_22",
+      "label": "Raised when a cart operation cannot be completed.",
+      "file_type": "rationale",
+      "source_file": "orders/cart.py",
+      "source_location": "L22"
+    },
+    {
+      "id": "orders_forms",
+      "label": "forms.py",
+      "file_type": "code",
+      "source_file": "orders/forms.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "orders_forms_cartquantityform",
+      "label": "CartQuantityForm",
+      "file_type": "code",
+      "source_file": "orders/forms.py",
+      "source_location": "L6"
+    },
+    {
       "id": "migrations_0001_initial",
       "label": "0001_initial.py",
       "file_type": "code",
@@ -293,6 +384,48 @@
       "file_type": "code",
       "source_file": "orders/urls.py",
       "source_location": "L1"
+    },
+    {
+      "id": "orders_views",
+      "label": "views.py",
+      "file_type": "code",
+      "source_file": "orders/views.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "orders_views_render_cart",
+      "label": "_render_cart()",
+      "file_type": "code",
+      "source_file": "orders/views.py",
+      "source_location": "L22"
+    },
+    {
+      "id": "orders_views_cart_detail",
+      "label": "cart_detail()",
+      "file_type": "code",
+      "source_file": "orders/views.py",
+      "source_location": "L36"
+    },
+    {
+      "id": "orders_views_cart_add",
+      "label": "cart_add()",
+      "file_type": "code",
+      "source_file": "orders/views.py",
+      "source_location": "L41"
+    },
+    {
+      "id": "orders_views_cart_update",
+      "label": "cart_update()",
+      "file_type": "code",
+      "source_file": "orders/views.py",
+      "source_location": "L65"
+    },
+    {
+      "id": "orders_views_cart_remove",
+      "label": "cart_remove()",
+      "file_type": "code",
+      "source_file": "orders/views.py",
+      "source_location": "L85"
     },
     {
       "id": "products_init",
@@ -594,6 +727,76 @@
       "file_type": "rationale",
       "source_file": "tests/__init__.py",
       "source_location": "L1"
+    },
+    {
+      "id": "tests_test_cart_views",
+      "label": "test_cart_views.py",
+      "file_type": "code",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_test_cart_views_cart_product",
+      "label": "cart_product()",
+      "file_type": "code",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L16"
+    },
+    {
+      "id": "tests_test_cart_views_test_cart_page_renders_empty_state",
+      "label": "test_cart_page_renders_empty_state()",
+      "file_type": "code",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L31"
+    },
+    {
+      "id": "tests_test_cart_views_test_add_to_cart_stores_session_data",
+      "label": "test_add_to_cart_stores_session_data()",
+      "file_type": "code",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L38"
+    },
+    {
+      "id": "tests_test_cart_views_test_cart_page_shows_added_product_and_total",
+      "label": "test_cart_page_shows_added_product_and_total()",
+      "file_type": "code",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L48"
+    },
+    {
+      "id": "tests_test_cart_views_test_cart_update_changes_quantity_and_persists",
+      "label": "test_cart_update_changes_quantity_and_persists()",
+      "file_type": "code",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L60"
+    },
+    {
+      "id": "tests_test_cart_views_test_cart_remove_deletes_item_from_session",
+      "label": "test_cart_remove_deletes_item_from_session()",
+      "file_type": "code",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L76"
+    },
+    {
+      "id": "tests_test_cart_views_test_add_to_cart_rejects_quantity_over_stock",
+      "label": "test_add_to_cart_rejects_quantity_over_stock()",
+      "file_type": "code",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L91"
+    },
+    {
+      "id": "tests_test_cart_views_test_cart_update_rejects_quantity_over_stock",
+      "label": "test_cart_update_rejects_quantity_over_stock()",
+      "file_type": "code",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L103"
+    },
+    {
+      "id": "tests_test_cart_views_test_cart_summary_uses_current_product_price",
+      "label": "test_cart_summary_uses_current_product_price()",
+      "file_type": "code",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L119"
     },
     {
       "id": "tests_test_catalog_views",
@@ -1253,6 +1456,249 @@
       "weight": 1
     },
     {
+      "source": "orders_cart",
+      "target": "dataclasses",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L3",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart",
+      "target": "decimal",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L4",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart",
+      "target": "django_contrib_sessions_backends_base",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L6",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart",
+      "target": "products_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L8",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart",
+      "target": "orders_cart_cartline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L15",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart",
+      "target": "orders_cart_carterror",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L21",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_carterror",
+      "target": "exception",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L21",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart",
+      "target": "orders_cart_get_cart_data",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L25",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart",
+      "target": "orders_cart_save_cart_data",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L30",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart",
+      "target": "orders_cart_add_product",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L35",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart",
+      "target": "orders_cart_update_product_quantity",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L52",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart",
+      "target": "orders_cart_remove_product",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L64",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart",
+      "target": "orders_cart_get_cart_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L71",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_add_product",
+      "target": "orders_cart_carterror",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L37",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_add_product",
+      "target": "orders_cart_get_cart_data",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L41",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_add_product",
+      "target": "orders_cart_save_cart_data",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L48",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_update_product_quantity",
+      "target": "orders_cart_carterror",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L54",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_update_product_quantity",
+      "target": "orders_cart_get_cart_data",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L58",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_update_product_quantity",
+      "target": "orders_cart_save_cart_data",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L60",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_remove_product",
+      "target": "orders_cart_get_cart_data",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L65",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_remove_product",
+      "target": "orders_cart_save_cart_data",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L68",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_get_cart_summary",
+      "target": "orders_cart_get_cart_data",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L72",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_get_cart_summary",
+      "target": "orders_cart_cartline",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L94",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_get_cart_summary",
+      "target": "orders_cart_save_cart_data",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L104",
+      "weight": 1
+    },
+    {
+      "source": "orders_cart_rationale_22",
+      "target": "orders_cart_carterror",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/cart.py",
+      "source_location": "L22",
+      "weight": 1
+    },
+    {
+      "source": "orders_forms",
+      "target": "django",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/forms.py",
+      "source_location": "L3",
+      "weight": 1
+    },
+    {
+      "source": "orders_forms",
+      "target": "orders_forms_cartquantityform",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/forms.py",
+      "source_location": "L6",
+      "weight": 1
+    },
+    {
       "source": "migrations_0001_initial",
       "target": "django_core_validators",
       "relation": "imports",
@@ -1421,6 +1867,168 @@
       "confidence": "EXTRACTED",
       "source_file": "orders/urls.py",
       "source_location": "L1",
+      "weight": 1
+    },
+    {
+      "source": "orders_urls",
+      "target": "orders_views",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/urls.py",
+      "source_location": "L3",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L3",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "django_contrib",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L5",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "django_http",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L6",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "django_shortcuts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L7",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "django_urls",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L8",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "django_views_decorators_http",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L9",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "orders_cart",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L11",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "orders_forms",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L18",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "products_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L19",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "orders_views_render_cart",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L22",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "orders_views_cart_detail",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L36",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "orders_views_cart_add",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L41",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "orders_views_cart_update",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L65",
+      "weight": 1
+    },
+    {
+      "source": "orders_views",
+      "target": "orders_views_cart_remove",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L85",
+      "weight": 1
+    },
+    {
+      "source": "orders_views_cart_detail",
+      "target": "orders_views_render_cart",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L37",
+      "weight": 1
+    },
+    {
+      "source": "orders_views_cart_update",
+      "target": "orders_views_render_cart",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L71",
+      "weight": 1
+    },
+    {
+      "source": "orders_views_cart_remove",
+      "target": "orders_views_render_cart",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/views.py",
+      "source_location": "L89",
       "weight": 1
     },
     {
@@ -1961,6 +2569,132 @@
       "confidence": "EXTRACTED",
       "source_file": "tests/__init__.py",
       "source_location": "L1",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "decimal",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L3",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L4",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "pytest",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L6",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "django_urls",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L7",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "products_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L9",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "tests_test_cart_views_cart_product",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L16",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "tests_test_cart_views_test_cart_page_renders_empty_state",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L31",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "tests_test_cart_views_test_add_to_cart_stores_session_data",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L38",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "tests_test_cart_views_test_cart_page_shows_added_product_and_total",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L48",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "tests_test_cart_views_test_cart_update_changes_quantity_and_persists",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L60",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "tests_test_cart_views_test_cart_remove_deletes_item_from_session",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L76",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "tests_test_cart_views_test_add_to_cart_rejects_quantity_over_stock",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L91",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "tests_test_cart_views_test_cart_update_rejects_quantity_over_stock",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L103",
+      "weight": 1
+    },
+    {
+      "source": "tests_test_cart_views",
+      "target": "tests_test_cart_views_test_cart_summary_uses_current_product_price",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cart_views.py",
+      "source_location": "L119",
       "weight": 1
     },
     {
