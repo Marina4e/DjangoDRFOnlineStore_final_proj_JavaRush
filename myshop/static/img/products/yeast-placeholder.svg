@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <rect width="1200" height="900" fill="#E8E2C8"/>
+  <rect x="78" y="78" width="1044" height="744" rx="36" fill="#FBF8EF"/>
+  <circle cx="875" cy="258" r="126" fill="#D4C89A"/>
+  <circle cx="968" cy="346" r="76" fill="#C3B47E"/>
+  <path d="M284 658C284 488 378 320 566 204C632 262 682 334 714 420C722 538 672 660 564 786C440 832 346 824 284 762C262 740 250 706 250 662C250 660 250 658 250 656" fill="#C7A96B"/>
+  <path d="M568 786C670 670 720 548 716 420C796 488 848 554 872 618C910 722 854 808 704 846C654 858 608 838 568 786Z" fill="#E2C37F"/>
+  <ellipse cx="468" cy="392" rx="48" ry="42" fill="#FBF8EF"/>
+  <ellipse cx="544" cy="474" rx="58" ry="50" fill="#FBF8EF"/>
+  <ellipse cx="458" cy="568" rx="44" ry="38" fill="#FBF8EF"/>
+  <text x="114" y="790" fill="#5B3A1D" font-family="Georgia, serif" font-size="76" font-weight="700">Yeast Culture</text>
+  <text x="118" y="842" fill="#8A6A43" font-family="Arial, sans-serif" font-size="28">Expressive fermentation profiles for farmhouse and Belgian styles</text>
+</svg>

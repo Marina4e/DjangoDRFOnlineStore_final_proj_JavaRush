@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <rect width="1200" height="900" fill="#EEE0CC"/>
+  <rect x="80" y="80" width="1040" height="740" rx="36" fill="#FCF7F0"/>
+  <rect x="760" y="170" width="220" height="420" rx="26" fill="#C49A6C"/>
+  <rect x="808" y="130" width="124" height="92" rx="18" fill="#E0B982"/>
+  <path d="M298 640C318 470 408 314 548 210C644 276 710 366 746 480C680 610 558 724 380 822C326 778 298 718 298 640Z" fill="#B07A3B"/>
+  <path d="M376 822C538 726 652 614 718 486C760 568 780 634 780 684C780 796 694 852 522 852C466 852 418 842 376 822Z" fill="#D19A54"/>
+  <path d="M474 256C506 360 516 468 504 580C494 672 458 754 398 826" stroke="#FCF7F0" stroke-width="28" stroke-linecap="round"/>
+  <path d="M418 360C466 408 498 462 514 522" stroke="#FCF7F0" stroke-width="20" stroke-linecap="round"/>
+  <path d="M388 482C438 530 472 586 490 648" stroke="#FCF7F0" stroke-width="20" stroke-linecap="round"/>
+  <text x="116" y="786" fill="#5B3A1D" font-family="Georgia, serif" font-size="76" font-weight="700">Malt Reserve</text>
+  <text x="118" y="838" fill="#8A6A43" font-family="Arial, sans-serif" font-size="28">Roasted grain character, biscuit sweetness, and richer body</text>
+</svg>

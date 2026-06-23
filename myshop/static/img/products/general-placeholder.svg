@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <rect width="1200" height="900" fill="#EDE2D2"/>
+  <rect x="82" y="82" width="1036" height="736" rx="38" fill="#FCF8F3"/>
+  <rect x="798" y="188" width="168" height="420" rx="30" fill="#8E5A2B"/>
+  <rect x="832" y="144" width="100" height="90" rx="18" fill="#C78F52"/>
+  <path d="M336 704C336 536 422 378 556 266C676 352 752 462 782 596C706 696 592 778 440 842C370 810 336 764 336 704Z" fill="#B77D37"/>
+  <path d="M454 842C590 782 694 700 764 596C820 662 848 720 848 770C848 826 792 854 680 854C580 854 504 850 454 842Z" fill="#DCA158"/>
+  <path d="M520 236C544 318 552 404 544 494C534 602 490 718 412 842" stroke="#FCF8F3" stroke-width="28" stroke-linecap="round"/>
+  <text x="112" y="790" fill="#5B3A1D" font-family="Georgia, serif" font-size="76" font-weight="700">Brew Essentials</text>
+  <text x="116" y="842" fill="#8A6A43" font-family="Arial, sans-serif" font-size="28">Store-ready fallback imagery for products without uploaded photos</text>
+</svg>

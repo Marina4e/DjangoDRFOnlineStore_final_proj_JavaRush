@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ product.name }}{% endblock %}
 
@@ -18,17 +19,11 @@
   <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
     <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
       <div class="overflow-hidden rounded-lg border border-amber-200 bg-white shadow-sm">
-        {% if product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}" class="h-full min-h-80 w-full object-cover">
-        {% else %}
-          <div class="flex min-h-80 items-center justify-center bg-gradient-to-br from-amber-100 via-amber-50 to-stone-100 px-6 text-center">
-            <div>
-              <p class="text-xs uppercase tracking-[0.2em] text-amber-700">{{ product.category.name }}</p>
-              <h1 class="mt-3 text-3xl font-semibold tracking-tight text-stone-950">{{ product.name }}</h1>
-              <p class="mt-3 text-sm text-stone-600">Product image will appear here when one is uploaded.</p>
-            </div>
-          </div>
-        {% endif %}
+        <img
+          src="{% if product.image %}{{ product.image.url }}{% else %}{% static product.placeholder_image_path %}{% endif %}"
+          alt="{{ product.name }}"
+          class="h-full min-h-80 w-full object-cover"
+        >
       </div>
 
       <div class="space-y-6">

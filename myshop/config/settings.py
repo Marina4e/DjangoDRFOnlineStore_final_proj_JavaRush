@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "drf_spectacular",
+    "graphene_django",
     "products.apps.ProductsConfig",
     "orders.apps.OrdersConfig",
     "users.apps.UsersConfig",
@@ -185,4 +186,8 @@ SPECTACULAR_SETTINGS = {
     ),
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
+}
+
+GRAPHENE = {
+    "SCHEMA": "graphql_api.schema.schema",
 }

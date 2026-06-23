@@ -18,7 +18,7 @@
 - Swagger/OpenAPI documentation at `/api/docs/`
 - PostgreSQL and Docker Compose support for local infrastructure
 
-The GraphQL analytics bonus is intentionally not implemented yet.
+The project now also includes a staff-only GraphQL analytics endpoint at `/graphql/`.
 
 ## Features
 
@@ -30,6 +30,7 @@ The GraphQL analytics bonus is intentionally not implemented yet.
 - Account order history filtered to the authenticated user
 - JWT-protected REST API for products, cart, orders, users, and reviews
 - Swagger/OpenAPI docs with request examples and JWT guidance
+- Staff-only GraphQL analytics for orders, products, and users
 
 ## Local Development
 
@@ -102,6 +103,7 @@ docker compose down
 - Admin: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 - API docs: [http://127.0.0.1:8000/api/docs/](http://127.0.0.1:8000/api/docs/)
 - API schema: [http://127.0.0.1:8000/api/schema/](http://127.0.0.1:8000/api/schema/)
+- GraphQL analytics: [http://127.0.0.1:8000/graphql/](http://127.0.0.1:8000/graphql/)
 
 ## Tests and Quality Checks
 
@@ -183,6 +185,72 @@ curl -X POST http://127.0.0.1:8000/api/products/1/reviews/ \
 
 Note: `/api/cart/` and `POST /api/orders/` use the current Django session cart, so API clients must preserve cookies between cart updates and order creation.
 
+## GraphQL Analytics
+
+The GraphQL analytics endpoint is available at `/graphql/`.
+
+Access rules:
+
+- anonymous users are rejected
+- authenticated non-staff users are rejected
+- only staff/admin users can access the GraphQL analytics data
+
+How to get access:
+
+1. Create a staff or superuser account.
+2. Sign in through the browser at `/admin/` or any existing Django session-auth flow.
+3. Open `/graphql/` in the same browser session.
+
+What the schema exposes:
+
+- `totalRevenue`
+- `totalQuantitySold`
+- `averageOrderValue`
+- `revenueTrends(granularity: DAY | MONTH)`
+- `popularProducts(limit: Int)`
+- `productRevenue(limit: Int)`
+- `stockBalances(limit: Int)`
+- `activeUsers(limit: Int)`
+- `repeatPurchasers(limit: Int)`
+- `orderCountPerUser(limit: Int)`
+
+Example query:
+
+```graphql
+query AnalyticsDashboard {
+  totalRevenue
+  totalQuantitySold
+  averageOrderValue
+  revenueTrends(granularity: MONTH) {
+    period
+    revenue
+    orderCount
+    quantitySold
+  }
+  popularProducts(limit: 5) {
+    name
+    soldQuantity
+    revenue
+    stock
+    imageUrl
+  }
+  activeUsers(limit: 5) {
+    username
+    orderCount
+    totalSpent
+  }
+  repeatPurchasers(limit: 5) {
+    username
+    orderCount
+  }
+}
+```
+
+How to test `/graphql/`:
+
+- browser: sign in as a staff/admin user and open `/graphql/` to use GraphiQL
+- automated request: send a POST request with a GraphQL JSON body while authenticated as a staff/admin user
+
 ## Project Structure
 
 - `config/` Django settings, root URLs, ASGI, and WSGI
@@ -190,6 +258,7 @@ Note: `/api/cart/` and `POST /api/orders/` use the current Django session cart, 
 - `orders/` cart helpers, checkout forms, order services, and cart/checkout views
 - `users/` browser auth, profile, address models/forms/views
 - `api/` DRF serializers, API views, and API routes
+- `graphql_api/` GraphQL analytics schema and protected endpoint view
 - `templates/` shared Django templates and HTMX partials
 - `static/` shared static assets
 - `media/` uploaded media for development
@@ -208,10 +277,10 @@ Note: `/api/cart/` and `POST /api/orders/` use the current Django session cart, 
 - `[x]` Browser registration, login, account pages, and address management are implemented
 - `[x]` REST API with JWT authentication is implemented
 - `[x]` Swagger/OpenAPI documentation is implemented
+- `[x]` GraphQL analytics endpoint is implemented for staff/admin use
 - `[x]` Tests, flake8, and mypy pass
 - `[x]` README contains run, Docker, API/JWT, test, lint, and structure documentation
 - `[ ]` Admin analytics and role-based admin hardening are still pending
-- `[ ]` GraphQL bonus analytics are still pending
 - `[ ]` Final deployment link is not assigned yet
 
 ## Deployment or Video Placeholder
@@ -229,6 +298,5 @@ If a live deployment is not prepared yet, use this section as the submission pla
 
 ## Known Remaining Scope
 
-- GraphQL analytics are intentionally deferred to the bonus phase.
-- README does not include GraphQL example queries yet because GraphQL is not implemented.
 - Admin analytics and role-aware admin permissions remain future work outside the completed core path.
+- Product cards and product detail pages use uploaded images when available, with local static placeholder artwork as the fallback.

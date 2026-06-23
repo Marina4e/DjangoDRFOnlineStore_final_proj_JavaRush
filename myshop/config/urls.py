@@ -5,6 +5,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from django.views.decorators.csrf import csrf_exempt
+from graphql_api.views import StaffGraphQLView
 from products.views import HomePageView, ProductDetailView
 
 
@@ -16,6 +18,7 @@ urlpatterns = [
     path("", include("users.urls")),
     path("products/", include("products.urls")),
     path("api/", include("api.urls")),
+    path("graphql/", csrf_exempt(StaffGraphQLView.as_view(graphiql=True)), name="graphql"),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(
         "api/docs/",

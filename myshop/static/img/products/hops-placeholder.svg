@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <rect width="1200" height="900" fill="#F4E7C5"/>
+  <rect x="70" y="70" width="1060" height="760" rx="38" fill="#FDF8EC"/>
+  <circle cx="890" cy="210" r="120" fill="#D8E3A5"/>
+  <circle cx="980" cy="305" r="84" fill="#C3D781"/>
+  <path d="M278 650C278 468 374 292 552 180C580 282 592 394 588 516C584 640 544 742 470 822C344 790 278 730 278 650Z" fill="#5A7F2B"/>
+  <path d="M470 822C548 736 590 634 600 512C690 580 746 646 768 712C800 812 730 860 590 860C542 860 502 848 470 822Z" fill="#7AA03D"/>
+  <path d="M532 270C564 324 580 384 580 448C580 566 526 668 418 754" stroke="#FDF8EC" stroke-width="28" stroke-linecap="round"/>
+  <path d="M456 334C512 370 552 418 576 478" stroke="#FDF8EC" stroke-width="20" stroke-linecap="round"/>
+  <path d="M414 446C480 486 528 540 560 608" stroke="#FDF8EC" stroke-width="20" stroke-linecap="round"/>
+  <text x="110" y="792" fill="#5B3A1D" font-family="Georgia, serif" font-size="76" font-weight="700">Hop Selection</text>
+  <text x="114" y="842" fill="#8A6A43" font-family="Arial, sans-serif" font-size="28">Aroma-forward ingredients for bright, citrus-driven brews</text>
+</svg>

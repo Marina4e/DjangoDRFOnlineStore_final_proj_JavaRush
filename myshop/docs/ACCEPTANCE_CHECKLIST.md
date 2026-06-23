@@ -145,12 +145,12 @@
 
 ## GraphQL Acceptance
 
-- `[ ]` GraphQL is available through a single endpoint `/graphql/`.
-- `[ ]` GraphQL analytics are protected by appropriate authorization.
-- `[ ]` Order analytics include revenue, quantity, average order value, and trends.
-- `[ ]` Product analytics include popular products and stock balances.
-- `[ ]` User analytics include activity and repeat purchases.
-- `[ ]` README or API docs include GraphQL types and example queries.
+- `[x]` GraphQL is available through a single endpoint `/graphql/`.
+- `[x]` GraphQL analytics are protected by appropriate authorization.
+- `[x]` Order analytics include revenue, quantity, average order value, and trends.
+- `[x]` Product analytics include popular products and stock balances.
+- `[x]` User analytics include activity and repeat purchases.
+- `[x]` README or API docs include GraphQL types and example queries.
 
 ## Frontend Acceptance
 
@@ -172,7 +172,7 @@
 - `[x]` Tests cover checkout, order creation, transactions, and emails.
 - `[x]` Tests cover registration, login/logout, account editing, password change, addresses, and order history.
 - `[x]` Tests cover REST API JWT auth, permissions, and own-data restrictions.
-- `[ ]` Tests cover GraphQL analytics.
+- `[x]` Tests cover GraphQL analytics.
 - `[x]` Tests cover the restriction that users cannot order more products than are in stock.
 - `[x]` Extended test coverage target is at least 80% if time allows.
 
@@ -192,7 +192,7 @@
 - `[x]` README contains API usage examples including JWT.
 - `[x]` README contains test and lint commands.
 - `[x]` README describes project structure.
-- `[ ]` README or docs describe GraphQL example queries.
+- `[x]` README or docs describe GraphQL example queries.
 - `[x]` Implementation checklist with completion marks is included.
 - `[ ]` Repository has meaningful commits and branch usage.
 - `[x]` Deployment link or video demonstration is prepared for submission.

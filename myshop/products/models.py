@@ -9,6 +9,7 @@ from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.db.models import Q, QuerySet
+from django.templatetags.static import static
 
 
 class Category(models.Model):
@@ -107,6 +108,25 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return str(self.name)
+
+    @property
+    def placeholder_image_path(self) -> str:
+        """Return a local fallback image path when no uploaded product image exists."""
+        keyword_source = f"{self.name} {self.category.name}".lower()
+        if "hop" in keyword_source:
+            return "img/products/hops-placeholder.svg"
+        if any(keyword in keyword_source for keyword in ("malt", "grain", "barley")):
+            return "img/products/malt-placeholder.svg"
+        if any(keyword in keyword_source for keyword in ("yeast", "ferment")):
+            return "img/products/yeast-placeholder.svg"
+        return "img/products/general-placeholder.svg"
+
+    @property
+    def display_image_url(self) -> str:
+        """Return the uploaded image URL or a static placeholder URL."""
+        if self.image:
+            return str(self.image.url)
+        return static(self.placeholder_image_path)
 
 
 class Review(models.Model):
