@@ -121,19 +121,19 @@
 ## REST API Acceptance
 
 - `[x]` REST API namespace is reserved under `/api/`.
-- `[ ]` JWT access and refresh token mechanism works.
-- `[ ]` `POST /api/users/register/` creates an account.
-- `[ ]` `POST /api/users/login/` returns access and refresh tokens.
-- `[ ]` `GET /api/products/` lists products with pagination, filtering, and search.
-- `[ ]` `GET /api/products/<id>/` returns product information.
-- `[ ]` `GET /api/orders/` returns the current user's orders.
-- `[ ]` `POST /api/orders/` creates an order based on the cart.
-- `[ ]` `GET /api/orders/<id>/` returns only the current user's own order detail.
-- `[ ]` `PATCH/PUT/DELETE /api/orders/<id>/` updates or cancels orders according to permission/status rules.
-- `[ ]` `GET/POST/PATCH/DELETE /api/cart/` manages cart contents.
-- `[ ]` `GET/POST /api/products/<id>/reviews/` lists and creates reviews.
-- `[ ]` Users can view or change only their own API data.
-- `[ ]` API validation errors are explicit and consistent.
+- `[x]` JWT access and refresh token mechanism works.
+- `[x]` `POST /api/users/register/` creates an account.
+- `[x]` `POST /api/users/login/` returns access and refresh tokens.
+- `[x]` `GET /api/products/` lists products with pagination, filtering, and search.
+- `[x]` `GET /api/products/<id>/` returns product information.
+- `[x]` `GET /api/orders/` returns the current user's orders.
+- `[x]` `POST /api/orders/` creates an order based on the cart.
+- `[x]` `GET /api/orders/<id>/` returns only the current user's own order detail.
+- `[x]` `PATCH/PUT/DELETE /api/orders/<id>/` updates or cancels orders according to permission/status rules.
+- `[x]` `GET/POST/PATCH/DELETE /api/cart/` manages cart contents.
+- `[x]` `GET/POST /api/products/<id>/reviews/` lists and creates reviews.
+- `[x]` Users can view or change only their own API data.
+- `[x]` API validation errors are explicit and consistent.
 
 ## API Documentation Acceptance
 
@@ -171,7 +171,7 @@
 - `[x]` Tests cover cart behavior and stock validation.
 - `[x]` Tests cover checkout, order creation, transactions, and emails.
 - `[x]` Tests cover registration, login/logout, account editing, password change, addresses, and order history.
-- `[ ]` Tests cover REST API JWT auth, permissions, and own-data restrictions.
+- `[x]` Tests cover REST API JWT auth, permissions, and own-data restrictions.
 - `[ ]` Tests cover GraphQL analytics.
 - `[x]` Tests cover the restriction that users cannot order more products than are in stock.
 - `[ ]` Extended test coverage target is at least 80% if time allows.

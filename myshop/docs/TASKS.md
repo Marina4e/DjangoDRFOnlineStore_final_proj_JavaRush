@@ -169,31 +169,31 @@
 
 ## Phase 8 - REST API and JWT
 
-- `[ ]` Configure DRF under `/api/`.
-- `[ ]` Configure JWT access and refresh tokens.
-- `[ ]` Add API user registration at `POST /api/users/register/`.
-- `[ ]` Add API JWT login at `POST /api/users/login/`.
-- `[ ]` Add product list endpoint `GET /api/products/` with pagination, filtering, and search.
-- `[ ]` Add product detail endpoint `GET /api/products/<id>/`.
-- `[ ]` Add order collection endpoint `GET /api/orders/` for the current user's orders.
-- `[ ]` Add order create endpoint `POST /api/orders/` based on the current cart.
-- `[ ]` Add order detail endpoint `GET /api/orders/<id>/` scoped to the current user's own order.
-- `[ ]` Add order update/cancel endpoint `PATCH/PUT/DELETE /api/orders/<id>/` with ownership and status rules.
-- `[ ]` Add cart management endpoint `GET/POST/PATCH/DELETE /api/cart/`.
-- `[ ]` Add review list/create endpoint `GET/POST /api/products/<id>/reviews/`.
-- `[ ]` Enforce that users can view/change only their own API data.
-- `[ ]` Add serializers with explicit validation for products, orders, cart items, users, and reviews.
-- `[ ]` Add API pagination and permissions.
-- `[ ]` Add REST API tests for JWT, products, cart, orders, reviews, permissions, and own-data restrictions.
-- `[ ]` Run `graphify .` before implementation only for code structure.
-- `[ ]` Run validation after implementation.
-- `[ ]` Run `graphify .` again after implementation if possible.
-- `[ ]` Update `docs/TASKS.md`.
-- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
-- `[ ]` Provide the exact local run command.
-- `[ ]` Provide the exact browser URL.
-- `[ ]` Provide a short manual QA checklist for the user.
-- `[ ]` Provide the next exact prompt for Phase 9.
+- `[x]` Configure DRF under `/api/`.
+- `[x]` Configure JWT access and refresh tokens.
+- `[x]` Add API user registration at `POST /api/users/register/`.
+- `[x]` Add API JWT login at `POST /api/users/login/`.
+- `[x]` Add product list endpoint `GET /api/products/` with pagination, filtering, and search.
+- `[x]` Add product detail endpoint `GET /api/products/<id>/`.
+- `[x]` Add order collection endpoint `GET /api/orders/` for the current user's orders.
+- `[x]` Add order create endpoint `POST /api/orders/` based on the current cart.
+- `[x]` Add order detail endpoint `GET /api/orders/<id>/` scoped to the current user's own order.
+- `[x]` Add order update/cancel endpoint `PATCH/PUT/DELETE /api/orders/<id>/` with ownership and status rules.
+- `[x]` Add cart management endpoint `GET/POST/PATCH/DELETE /api/cart/`.
+- `[x]` Add review list/create endpoint `GET/POST /api/products/<id>/reviews/`.
+- `[x]` Enforce that users can view/change only their own API data.
+- `[x]` Add serializers with explicit validation for products, orders, cart items, users, and reviews.
+- `[x]` Add API pagination and permissions.
+- `[x]` Add REST API tests for JWT, products, cart, orders, reviews, permissions, and own-data restrictions.
+- `[x]` Attempt Graphify before implementation with code-only intent; the CLI again rejected `graphify config products orders users api tests` because it accepts only one path, so code structure was read directly.
+- `[x]` Run validation after implementation.
+- `[x]` Skip `graphify .` after implementation because this phase explicitly disallows running Graphify on the repository root.
+- `[x]` Update `docs/TASKS.md`.
+- `[x]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[x]` Provide the exact local run command.
+- `[x]` Provide the exact browser URL.
+- `[x]` Provide a short manual QA checklist for the user.
+- `[x]` Provide the next exact prompt for Phase 9.
 - `[ ]` Wait for the user's manual browser check before marking the phase complete.
 
 ## Phase 9 - Swagger/OpenAPI and Final Coverage Expansion
