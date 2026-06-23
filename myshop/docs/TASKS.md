@@ -220,26 +220,26 @@
 
 ## Phase 10 - Final Hardening, README, Submission Prep
 
-- `[ ]` Add type annotations to functions and methods.
-- `[ ]` Add docstrings for public APIs and important modules.
-- `[ ]` Configure flake8 or equivalent linter.
-- `[ ]` Configure mypy.
-- `[ ]` Ensure tests pass.
-- `[ ]` Ensure linters pass without critical errors.
-- `[ ]` Ensure mypy passes or document accepted limitations.
-- `[ ]` Complete README with project description, Docker startup instructions, API/JWT examples, test/lint commands, and project structure.
-- `[ ]` Add implementation checklist with completion marks.
-- `[ ]` Prepare deployment link or video demonstration instructions.
+- `[x]` Add type annotations to functions and methods.
+- `[x]` Add docstrings for public APIs and important modules.
+- `[x]` Configure flake8 or equivalent linter.
+- `[x]` Configure mypy.
+- `[x]` Ensure tests pass.
+- `[x]` Ensure linters pass without critical errors.
+- `[x]` Ensure mypy passes or document accepted limitations.
+- `[x]` Complete README with project description, Docker startup instructions, API/JWT examples, test/lint commands, and project structure.
+- `[x]` Add implementation checklist with completion marks.
+- `[x]` Prepare deployment link or video demonstration instructions.
 - `[ ]` Maintain meaningful commits and branch names such as `feature/...`, `develop/...`, and stable `main`.
-- `[ ]` Run `graphify .` before implementation only for code structure.
-- `[ ]` Run validation after implementation.
-- `[ ]` Run `graphify .` again after implementation if possible.
-- `[ ]` Update `docs/TASKS.md`.
-- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
-- `[ ]` Provide the exact local run command.
-- `[ ]` Provide the exact browser URL.
-- `[ ]` Provide a short manual QA checklist for the user.
-- `[ ]` Provide the next exact prompt for the Bonus Phase if needed.
+- `[x]` Attempt Graphify before implementation with code-only intent; the CLI again rejected `graphify config products orders users api tests` because it accepts only one path, so code structure was read directly.
+- `[x]` Run validation after implementation.
+- `[x]` Skip `graphify .` after implementation because this phase explicitly disallows running Graphify on the repository root.
+- `[x]` Update `docs/TASKS.md`.
+- `[x]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[x]` Provide the exact local run command.
+- `[x]` Provide the exact browser URL.
+- `[x]` Provide a short manual QA checklist for the user.
+- `[x]` Provide the next exact prompt for the Bonus Phase if needed.
 - `[ ]` Wait for the user's manual browser check before marking the phase complete.
 
 ## Bonus Phase - GraphQL Analytics

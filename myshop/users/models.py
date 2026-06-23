@@ -1,3 +1,5 @@
+"""User-owned address models used by account and checkout flows."""
+
 from __future__ import annotations
 
 from django.conf import settings
@@ -5,6 +7,8 @@ from django.db import models, transaction
 
 
 class Address(models.Model):
+    """A saved delivery address belonging to one authenticated user."""
+
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -28,7 +32,8 @@ class Address(models.Model):
     def __str__(self) -> str:
         return f"{self.label} for {self.user}"
 
-    def save(self, *args, **kwargs) -> None:
+    def save(self, *args: object, **kwargs: object) -> None:
+        """Persist the address while keeping one default address per user."""
         with transaction.atomic():
             if not self.pk and not self.user.addresses.exists():
                 self.is_default = True

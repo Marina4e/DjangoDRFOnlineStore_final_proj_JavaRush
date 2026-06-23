@@ -42,6 +42,14 @@ def env_bool(name: str, default: bool = False) -> bool:
     return raw.lower() in {"1", "true", "yes", "on"}
 
 
+def normalize_timezone(value: str) -> str:
+    """Map legacy timezone aliases to the canonical values Django expects."""
+    aliases = {
+        "Europe/Kiev": "Europe/Kyiv",
+    }
+    return aliases.get(value, value)
+
+
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
     "django-insecure-change-me-and-make-it-at-least-thirty-two-bytes",
@@ -118,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = env("DJANGO_LANGUAGE_CODE", "en-us")
-TIME_ZONE = env("DJANGO_TIME_ZONE", "Europe/Kiev")
+TIME_ZONE = normalize_timezone(env("DJANGO_TIME_ZONE", "Europe/Kyiv"))
 USE_I18N = True
 USE_TZ = True
 

@@ -1,14 +1,20 @@
+"""Forms for cart quantity changes and checkout submission."""
+
 from __future__ import annotations
 
 from django import forms
 
 
 class CartQuantityForm(forms.Form):
+    """Validate quantity changes for cart operations."""
+
     quantity = forms.IntegerField(min_value=1, max_value=999)
     next = forms.CharField(required=False)
 
 
 class CheckoutForm(forms.Form):
+    """Collect contact, delivery, and mock payment details for checkout."""
+
     PAYMENT_CARD = "card"
     PAYMENT_BANK = "bank"
     PAYMENT_CASH = "cash"
@@ -51,9 +57,11 @@ class CheckoutForm(forms.Form):
             field.widget.attrs.setdefault("placeholder", field.label)
 
     def payment_method_label(self) -> str:
+        """Return the display label for the chosen payment method."""
         return dict(self.PAYMENT_METHOD_CHOICES)[self.cleaned_data["payment_method"]]
 
     def build_shipping_address(self) -> str:
+        """Flatten the validated checkout form into a shipping-address string."""
         lines = [
             f"Contact: {self.cleaned_data['full_name']}",
             f"Email: {self.cleaned_data['email']}",

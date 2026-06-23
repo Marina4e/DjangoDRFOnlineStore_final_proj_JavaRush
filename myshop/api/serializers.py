@@ -1,3 +1,5 @@
+"""Serializers for the REST API endpoints covering auth, catalog, cart, and orders."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -13,6 +15,8 @@ from users.models import Address
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
+    """Create a new API user with Django password validation."""
+
     password = serializers.CharField(write_only=True, min_length=8)
 
     class Meta:
@@ -23,7 +27,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         validate_password(value)
         return value
 
-    def create(self, validated_data: dict[str, Any]):
+    def create(self, validated_data: dict[str, Any]) -> Any:
+        """Create the user via Django's built-in `create_user` helper."""
         password = validated_data.pop("password")
         user = get_user_model().objects.create_user(password=password, **validated_data)
         return user
@@ -31,7 +36,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
 class StoreTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
-    def get_token(cls, user):
+    def get_token(cls, user: Any) -> Any:
+        """Add a username claim to the default JWT payload."""
         token = super().get_token(user)
         token["username"] = user.get_username()
         return token
@@ -56,6 +62,8 @@ class TokenAccessResponseSerializer(serializers.Serializer):
 
 
 class ProductListSerializer(serializers.ModelSerializer):
+    """Compact product representation for paginated catalog results."""
+
     category = serializers.CharField(source="category.name", read_only=True)
     category_slug = serializers.CharField(source="category.slug", read_only=True)
 
@@ -75,6 +83,8 @@ class ProductListSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    """Read-only review representation with the review author's username."""
+
     username = serializers.CharField(source="user.username", read_only=True)
 
     class Meta:
@@ -84,12 +94,16 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class ReviewCreateSerializer(serializers.ModelSerializer):
+    """Review payload accepted from authenticated purchasers."""
+
     class Meta:
         model = Review
         fields = ("rating", "comment")
 
 
 class ProductDetailSerializer(ProductListSerializer):
+    """Detailed product representation including review summary data."""
+
     reviews = ReviewSerializer(many=True, read_only=True)
     review_count = serializers.IntegerField(read_only=True)
     average_rating = serializers.DecimalField(
@@ -117,6 +131,8 @@ class ProductDetailSerializer(ProductListSerializer):
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
+    """Read-only order-item representation with product metadata."""
+
     product_id = serializers.IntegerField(source="product.id", read_only=True)
     product_name = serializers.CharField(source="product.name", read_only=True)
 
@@ -126,6 +142,8 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    """Order representation returned from the authenticated API endpoints."""
+
     items = OrderItemSerializer(many=True, read_only=True)
 
     class Meta:
@@ -143,6 +161,8 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 class OrderCreateSerializer(serializers.Serializer):
+    """Validate order creation against either a saved or inline address."""
+
     address_id = serializers.PrimaryKeyRelatedField(
         queryset=Address.objects.none(),
         required=False,
@@ -150,7 +170,7 @@ class OrderCreateSerializer(serializers.Serializer):
     )
     shipping_address = serializers.CharField(required=False, allow_blank=False)
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         request = self.context.get("request")
         if request is not None and request.user.is_authenticated:
@@ -182,6 +202,8 @@ class OrderCreateSerializer(serializers.Serializer):
 
 
 class OrderStatusUpdateSerializer(serializers.Serializer):
+    """Restrict user-driven order updates to cancellation only."""
+
     status = serializers.ChoiceField(choices=OrderStatus.choices)
 
     def validate_status(self, value: str) -> str:
@@ -193,11 +215,15 @@ class OrderStatusUpdateSerializer(serializers.Serializer):
 
 
 class CartItemActionSerializer(serializers.Serializer):
+    """Payload for cart add, update, and remove operations."""
+
     product_id = serializers.IntegerField(min_value=1)
     quantity = serializers.IntegerField(min_value=1, required=False)
 
 
 class CartLineSerializer(serializers.Serializer):
+    """Serialized cart line derived from the current session cart summary."""
+
     product_id = serializers.IntegerField(source="product.id")
     product_name = serializers.CharField(source="product.name")
     product_slug = serializers.CharField(source="product.slug")
@@ -212,6 +238,8 @@ class CartLineSerializer(serializers.Serializer):
 
 
 class CartSummarySerializer(serializers.Serializer):
+    """Serialized summary of the session-backed cart."""
+
     lines = CartLineSerializer(many=True)
     subtotal = serializers.DecimalField(max_digits=10, decimal_places=2)
     total_quantity = serializers.IntegerField()
@@ -219,5 +247,7 @@ class CartSummarySerializer(serializers.Serializer):
 
 
 class CartMutationResponseSerializer(serializers.Serializer):
+    """Standard response shape for cart mutation endpoints."""
+
     detail = serializers.CharField()
     cart = CartSummarySerializer()

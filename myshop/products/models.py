@@ -1,3 +1,5 @@
+"""Product, category, and review models for the storefront."""
+
 from __future__ import annotations
 
 from decimal import Decimal
@@ -10,6 +12,8 @@ from django.db.models import Q, QuerySet
 
 
 class Category(models.Model):
+    """A catalog category that may optionally have a parent category."""
+
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     parent = models.ForeignKey(
@@ -32,9 +36,11 @@ class Category(models.Model):
 
 class ProductQuerySet(QuerySet["Product"]):
     def active(self) -> "ProductQuerySet":
+        """Return only active products."""
         return cast(ProductQuerySet, self.filter(is_active=True))
 
     def search(self, term: str) -> "ProductQuerySet":
+        """Filter products by a case-insensitive name or description search."""
         if not term:
             return self
         return cast(
@@ -43,6 +49,7 @@ class ProductQuerySet(QuerySet["Product"]):
         )
 
     def in_category(self, category_slug: str) -> "ProductQuerySet":
+        """Filter products by category slug when one is provided."""
         if not category_slug:
             return self
         return cast(ProductQuerySet, self.filter(category__slug=category_slug))
@@ -52,6 +59,7 @@ class ProductQuerySet(QuerySet["Product"]):
         min_price: Decimal | None,
         max_price: Decimal | None,
     ) -> "ProductQuerySet":
+        """Filter products by optional minimum and maximum prices."""
         queryset: ProductQuerySet = self
         if min_price is not None:
             queryset = queryset.filter(price__gte=min_price)
@@ -61,6 +69,8 @@ class ProductQuerySet(QuerySet["Product"]):
 
 
 class Product(models.Model):
+    """A purchasable product in the online store catalog."""
+
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     description = models.TextField()
@@ -100,6 +110,8 @@ class Product(models.Model):
 
 
 class Review(models.Model):
+    """A user review left for a purchased product."""
+
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="reviews")
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,

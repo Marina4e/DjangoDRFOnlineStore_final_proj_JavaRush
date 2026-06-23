@@ -20,7 +20,7 @@
 
 ## Infrastructure Acceptance
 
-- `[ ]` The project starts with `docker-compose up` on a clean system.
+- `[x]` The project starts with `docker-compose up` on a clean system.
 - `[x]` Docker Compose configuration exists for both the Django application and PostgreSQL database.
 - `[x]` PostgreSQL is the configured database.
 - `[x]` Required environment variables are documented in `.env.example` or README.
@@ -178,8 +178,8 @@
 
 ## Code Quality Acceptance
 
-- `[ ]` Important functions and methods include type annotations.
-- `[ ]` Public APIs and important modules include docstrings.
+- `[x]` Important functions and methods include type annotations.
+- `[x]` Public APIs and important modules include docstrings.
 - `[x]` flake8 or equivalent linter is configured.
 - `[x]` mypy is configured.
 - `[x]` Linters pass without critical errors.
@@ -193,6 +193,6 @@
 - `[x]` README contains test and lint commands.
 - `[x]` README describes project structure.
 - `[ ]` README or docs describe GraphQL example queries.
-- `[ ]` Implementation checklist with completion marks is included.
+- `[x]` Implementation checklist with completion marks is included.
 - `[ ]` Repository has meaningful commits and branch usage.
-- `[ ]` Deployment link or video demonstration is prepared for submission.
+- `[x]` Deployment link or video demonstration is prepared for submission.

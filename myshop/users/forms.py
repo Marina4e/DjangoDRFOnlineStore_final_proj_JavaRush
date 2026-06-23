@@ -1,3 +1,5 @@
+"""User-facing account, address, and authentication forms."""
+
 from __future__ import annotations
 
 from django import forms
@@ -8,6 +10,7 @@ from users.models import Address
 
 
 def _input_class() -> str:
+    """Return the shared Tailwind class list for non-checkbox form widgets."""
     return (
         "w-full rounded-md border border-amber-200 bg-amber-50 px-3 py-2.5 "
         "text-sm text-stone-900 outline-none transition "
@@ -16,6 +19,7 @@ def _input_class() -> str:
 
 
 def apply_form_styling(form: forms.BaseForm) -> None:
+    """Apply the shared visual styling to standard form widgets."""
     base_class = _input_class()
     for field in form.fields.values():
         widget = field.widget
@@ -27,6 +31,8 @@ def apply_form_styling(form: forms.BaseForm) -> None:
 
 
 class RegistrationForm(UserCreationForm):
+    """Collect the extra profile fields required during registration."""
+
     email = forms.EmailField(max_length=254)
     first_name = forms.CharField(max_length=150)
     last_name = forms.CharField(max_length=150)
@@ -41,12 +47,16 @@ class RegistrationForm(UserCreationForm):
 
 
 class StoreAuthenticationForm(AuthenticationForm):
+    """Styled login form for the browser experience."""
+
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         apply_form_styling(self)
 
 
 class ProfileForm(forms.ModelForm):
+    """Allow users to edit the public profile fields stored on the auth user."""
+
     class Meta:
         model = get_user_model()
         fields = ("first_name", "last_name", "email")
@@ -57,6 +67,8 @@ class ProfileForm(forms.ModelForm):
 
 
 class AddressForm(forms.ModelForm):
+    """Create or edit a saved delivery address."""
+
     class Meta:
         model = Address
         fields = (
@@ -77,6 +89,8 @@ class AddressForm(forms.ModelForm):
 
 
 class StyledPasswordChangeForm(PasswordChangeForm):
+    """Password-change form that reuses the shared visual styling."""
+
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         apply_form_styling(self)

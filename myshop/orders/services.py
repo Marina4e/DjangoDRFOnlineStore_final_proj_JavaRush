@@ -1,3 +1,5 @@
+"""Checkout service helpers that translate a session cart into persisted orders."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -14,6 +16,8 @@ from products.models import Product
 
 @dataclass(frozen=True)
 class CheckoutLine:
+    """A single validated checkout line ready for order creation."""
+
     product: Product
     quantity: int
     line_total: Decimal
@@ -21,6 +25,8 @@ class CheckoutLine:
 
 @dataclass(frozen=True)
 class CheckoutOrderResult:
+    """The persisted order plus its validated line metadata."""
+
     order: Order
     lines: list[CheckoutLine]
     total_quantity: int
@@ -36,6 +42,7 @@ def create_order_from_session_cart(
     user: AbstractBaseUser,
     shipping_address: str,
 ) -> CheckoutOrderResult:
+    """Create an order transactionally from the current session cart."""
     cart = get_cart_quantities(session)
     if not cart:
         raise CheckoutError("Your cart is empty. Add products before checking out.")

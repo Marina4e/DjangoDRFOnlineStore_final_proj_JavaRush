@@ -1,3 +1,5 @@
+"""Cart and checkout views for the browser-based storefront flow."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -29,6 +31,7 @@ def _render_cart(
     *,
     status: int = 200,
 ) -> HttpResponse:
+    """Render either the full cart page or the HTMX cart fragment."""
     summary = get_cart_summary(request.session)
     summary["is_htmx"] = request.headers.get("HX-Request") == "true"
     template_name = "orders/partials/cart_shell.html"
@@ -38,6 +41,7 @@ def _render_cart(
 
 
 def _send_checkout_notifications(form: CheckoutForm, result: CheckoutOrderResult) -> None:
+    """Send checkout confirmation emails to the customer and site admin."""
     order = result.order
     user_subject = f"Order #{order.pk} received"
     user_body = "\n".join(
@@ -90,6 +94,7 @@ def _build_checkout_context(
     *,
     form: CheckoutForm | None = None,
 ) -> dict[str, Any]:
+    """Build the checkout page context with cart state and recent-order feedback."""
     summary = get_cart_summary(request.session, persist_changes=False)
     recent_order_id = request.session.pop("recent_order_id", None)
     recent_order = None
@@ -111,11 +116,13 @@ def _build_checkout_context(
 
 @require_GET
 def cart_detail(request: HttpRequest) -> HttpResponse:
+    """Display the current session-backed cart."""
     return _render_cart(request)
 
 
 @require_POST
 def cart_add(request: HttpRequest, product_id: int) -> HttpResponse:
+    """Add a product to the cart and redirect back to the originating page."""
     product = get_object_or_404(Product.objects.active(), pk=product_id)
     form = CartQuantityForm(request.POST)
     redirect_to = request.POST.get("next") or reverse(
@@ -140,6 +147,7 @@ def cart_add(request: HttpRequest, product_id: int) -> HttpResponse:
 
 @require_POST
 def cart_update(request: HttpRequest, product_id: int) -> HttpResponse:
+    """Update one cart line and return the refreshed cart shell."""
     product = get_object_or_404(Product.objects.active(), pk=product_id)
     form = CartQuantityForm(request.POST)
 
@@ -160,6 +168,7 @@ def cart_update(request: HttpRequest, product_id: int) -> HttpResponse:
 
 @require_POST
 def cart_remove(request: HttpRequest, product_id: int) -> HttpResponse:
+    """Remove one product from the cart and return the refreshed cart shell."""
     product = get_object_or_404(Product.objects.active(), pk=product_id)
     remove_product(request.session, product_id)
     messages.success(request, f"Removed {product.name} from the cart.")
@@ -168,11 +177,13 @@ def cart_remove(request: HttpRequest, product_id: int) -> HttpResponse:
 
 @require_GET
 def checkout_detail(request: HttpRequest) -> HttpResponse:
+    """Render the checkout page and current order summary."""
     return render(request, "orders/checkout.html", _build_checkout_context(request))
 
 
 @require_POST
 def checkout_submit(request: HttpRequest) -> HttpResponse:
+    """Validate checkout input and create an order from the session cart."""
     form = CheckoutForm(request.POST)
     if not request.user.is_authenticated:
         messages.error(request, "Sign in before placing an order.")

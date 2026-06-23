@@ -1,3 +1,5 @@
+"""Session-auth account, profile, and address views."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -10,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeDoneView, PasswordChangeView
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.db.models.query import QuerySet
 from django.urls import reverse, reverse_lazy
 from django.views.decorators.http import require_POST
 from django.views.generic import FormView, TemplateView, UpdateView
@@ -31,6 +34,7 @@ def build_account_context(
     profile_form: ProfileForm | None = None,
     address_form: AddressForm | None = None,
 ) -> dict[str, Any]:
+    """Build the shared account-page context for profile, addresses, and orders."""
     selected_status = request.GET.get("status", "").strip()
     valid_statuses = set(OrderStatus.values)
     orders_queryset = (
@@ -52,6 +56,8 @@ def build_account_context(
 
 
 class RegisterView(FormView):
+    """Handle browser registration with immediate session login."""
+
     template_name = "users/register.html"
     form_class = RegistrationForm
 
@@ -68,6 +74,8 @@ class RegisterView(FormView):
 
 
 class StoreLoginView(LoginView):
+    """Handle browser login with the project-specific success message."""
+
     template_name = "users/login.html"
     authentication_form = StoreAuthenticationForm
     redirect_authenticated_user = True
@@ -83,12 +91,15 @@ class StoreLoginView(LoginView):
 
 @require_POST
 def logout_view(request: HttpRequest) -> HttpResponse:
+    """End the current session-auth login."""
     logout(request)
     messages.success(request, "You have been signed out.")
     return redirect("home")
 
 
 class AccountView(LoginRequiredMixin, TemplateView):
+    """Render the authenticated user's account dashboard."""
+
     template_name = "users/account.html"
 
     def get_context_data(self, **kwargs: object) -> dict[str, Any]:
@@ -98,10 +109,13 @@ class AccountView(LoginRequiredMixin, TemplateView):
 
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    """Handle profile updates for the currently authenticated user."""
+
     form_class = ProfileForm
     http_method_names = ["post"]
 
-    def get_object(self, queryset=None):
+    def get_object(self, queryset: QuerySet[Any] | None = None) -> Any:
+        """Return the current authenticated user for profile editing."""
         return self.request.user
 
     def form_valid(self, form: ProfileForm) -> HttpResponse:
@@ -116,6 +130,8 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class AddressCreateView(LoginRequiredMixin, FormView):
+    """Create a saved address for the current user."""
+
     form_class = AddressForm
     http_method_names = ["post"]
 
@@ -133,11 +149,14 @@ class AddressCreateView(LoginRequiredMixin, FormView):
 
 
 class AddressUpdateView(LoginRequiredMixin, UpdateView):
+    """Edit an existing saved address owned by the current user."""
+
     model = Address
     form_class = AddressForm
     template_name = "users/address_form.html"
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[Address]:
+        """Limit address editing to the current user's saved addresses."""
         return Address.objects.filter(user=self.request.user)
 
     def form_valid(self, form: AddressForm) -> HttpResponse:
@@ -149,6 +168,7 @@ class AddressUpdateView(LoginRequiredMixin, UpdateView):
 @login_required
 @require_POST
 def address_delete(request: HttpRequest, pk: int) -> HttpResponse:
+    """Delete one saved address owned by the current user."""
     address = get_object_or_404(Address, pk=pk, user=request.user)
     address.delete()
     messages.success(request, "Address removed.")
@@ -156,6 +176,8 @@ def address_delete(request: HttpRequest, pk: int) -> HttpResponse:
 
 
 class StorePasswordChangeView(LoginRequiredMixin, PasswordChangeView):
+    """Handle password changes for the currently authenticated user."""
+
     template_name = "users/password_change.html"
     form_class = StyledPasswordChangeForm
     success_url = reverse_lazy("password-change-done")
@@ -166,4 +188,6 @@ class StorePasswordChangeView(LoginRequiredMixin, PasswordChangeView):
 
 
 class StorePasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
+    """Show the success page after a password change."""
+
     template_name = "users/password_change_done.html"

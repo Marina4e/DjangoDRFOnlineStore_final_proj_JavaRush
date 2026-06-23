@@ -1,17 +1,21 @@
+"""Catalog and product-detail views for the storefront."""
+
 from __future__ import annotations
 
 from decimal import Decimal, InvalidOperation
 from typing import Any, cast
 
 from django.db.models import Avg, Count, IntegerField, OuterRef, Prefetch, Subquery, Sum, Value
+from django.db.models.query import QuerySet
 from django.db.models.functions import Coalesce
 from django.views.generic import DetailView, ListView, TemplateView
 
 from orders.models import OrderItem
-from products.models import Category, Product, Review
+from products.models import Category, Product, ProductQuerySet, Review
 
 
 def parse_decimal(raw_value: str | None) -> Decimal | None:
+    """Parse a decimal query parameter and ignore invalid values."""
     if not raw_value:
         return None
 
@@ -22,6 +26,8 @@ def parse_decimal(raw_value: str | None) -> Decimal | None:
 
 
 class HomePageView(TemplateView):
+    """Render the storefront landing page with featured catalog data."""
+
     template_name = "products/home.html"
 
     def get_context_data(self, **kwargs: object) -> dict[str, object]:
@@ -36,6 +42,8 @@ class HomePageView(TemplateView):
 
 
 class ProductCatalogView(ListView):
+    """Render the main catalog with filtering, search, and sorting."""
+
     model = Product
     template_name = "products/catalog.html"
     context_object_name = "products"
@@ -53,7 +61,8 @@ class ProductCatalogView(ListView):
             return ["products/partials/catalog_results.html"]
         return [self.template_name]
 
-    def get_queryset(self):  # type: ignore[override]
+    def get_queryset(self) -> ProductQuerySet:  # type: ignore[override]
+        """Build the annotated queryset used by the catalog page."""
         popularity_subquery = (
             OrderItem.objects.filter(product=OuterRef("pk"))
             .values("product")
@@ -79,11 +88,12 @@ class ProductCatalogView(ListView):
         sort_key = self.request.GET.get("sort", "newest")
         ordering = self.sort_options.get(sort_key, self.sort_options["newest"])
 
-        return (
+        return cast(
+            ProductQuerySet,
             queryset.search(search_term)
             .in_category(category_slug)
             .within_price_range(min_price, max_price)
-            .order_by(ordering, "name")
+            .order_by(ordering, "name"),
         )
 
     def get_context_data(self, **kwargs: object) -> dict[str, object]:
@@ -115,6 +125,8 @@ class ProductCatalogView(ListView):
 
 
 class ProductDetailView(DetailView):
+    """Render one product detail page and its review fragment."""
+
     model = Product
     template_name = "products/detail.html"
     context_object_name = "product"
@@ -129,7 +141,8 @@ class ProductDetailView(DetailView):
             return ["products/partials/review_list.html"]
         return [self.template_name]
 
-    def get_queryset(self):  # type: ignore[override]
+    def get_queryset(self) -> QuerySet[Product]:  # type: ignore[override]
+        """Return active products with review and popularity annotations."""
         popularity_subquery = (
             OrderItem.objects.filter(product=OuterRef("pk"))
             .values("product")

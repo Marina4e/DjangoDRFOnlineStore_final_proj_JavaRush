@@ -1,9 +1,12 @@
+"""DRF views for JWT auth, catalog, cart, order, and review API endpoints."""
+
 from __future__ import annotations
 
 from decimal import Decimal
 from decimal import InvalidOperation
 from typing import cast
 
+from django.db.models.query import QuerySet
 from django.db.models import Avg, Count, Prefetch
 from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import (
@@ -50,6 +53,7 @@ from products.models import Product, Review
 
 
 def parse_decimal(raw_value: str | None) -> Decimal | None:
+    """Parse an optional decimal query parameter and ignore invalid input."""
     if not raw_value:
         return None
     try:
@@ -79,6 +83,8 @@ def parse_decimal(raw_value: str | None) -> Decimal | None:
     ],
 )
 class UserRegistrationAPIView(generics.CreateAPIView):
+    """Create an API user account."""
+
     serializer_class = UserRegistrationSerializer
     permission_classes = [permissions.AllowAny]
 
@@ -106,6 +112,8 @@ class UserRegistrationAPIView(generics.CreateAPIView):
     ],
 )
 class UserLoginAPIView(TokenObtainPairView):
+    """Exchange username/password credentials for JWT tokens."""
+
     serializer_class = StoreTokenObtainPairSerializer
 
 
@@ -132,6 +140,8 @@ class UserLoginAPIView(TokenObtainPairView):
     ],
 )
 class UserTokenRefreshAPIView(TokenRefreshView):
+    """Refresh a JWT access token."""
+
     pass
 
 
@@ -174,10 +184,13 @@ class UserTokenRefreshAPIView(TokenRefreshView):
     ],
 )
 class ProductListAPIView(generics.ListAPIView):
+    """List active products with the required search and filter options."""
+
     serializer_class = ProductListSerializer
     permission_classes = [permissions.AllowAny]
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[Product]:
+        """Build the filtered queryset for the product list endpoint."""
         queryset = Product.objects.active().select_related("category")
         search_term = self.request.query_params.get("q", "").strip()
         category_slug = self.request.query_params.get("category", "").strip()
@@ -197,10 +210,13 @@ class ProductListAPIView(generics.ListAPIView):
     description="Return a single active product with review summary and review list.",
 )
 class ProductDetailAPIView(generics.RetrieveAPIView):
+    """Return one active product with its review summary and review list."""
+
     serializer_class = ProductDetailSerializer
     permission_classes = [permissions.AllowAny]
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[Product]:
+        """Build the detail queryset with review annotations and prefetches."""
         return (
             Product.objects.active()
             .select_related("category")
@@ -243,21 +259,26 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
     ),
 )
 class ReviewListCreateAPIView(generics.ListCreateAPIView):
+    """List product reviews and create a new one for verified purchasers."""
+
     permission_classes = [permissions.AllowAny]
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[Review]:
+        """Return reviews for the addressed product in reverse-chronological order."""
         product = get_object_or_404(Product.objects.active(), pk=self.kwargs["pk"])
         return product.reviews.select_related("user").order_by("-created_at")
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> type[serializers.BaseSerializer]:
+        """Switch between the read and write serializers by method."""
         if self.request.method == "POST":
             return ReviewCreateSerializer
         return ReviewSerializer
 
-    def get_permissions(self):
+    def get_permissions(self) -> list[permissions.BasePermission]:
+        """Require authentication only for review creation requests."""
         if self.request.method == "POST":
             return [permissions.IsAuthenticated()]
-        return super().get_permissions()
+        return cast(list[permissions.BasePermission], super().get_permissions())
 
     def perform_create(self, serializer: ReviewCreateSerializer) -> None:
         product = get_object_or_404(Product.objects.active(), pk=self.kwargs["pk"])
@@ -321,6 +342,8 @@ class ReviewListCreateAPIView(generics.ListCreateAPIView):
     ),
 )
 class CartAPIView(APIView):
+    """Expose the current Django session cart over the REST API."""
+
     permission_classes = [permissions.AllowAny]
 
     def get(self, request: Request) -> Response:
@@ -424,16 +447,20 @@ class CartAPIView(APIView):
     ),
 )
 class OrderListCreateAPIView(generics.ListCreateAPIView):
+    """List or create orders scoped to the authenticated user."""
+
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[Order]:
+        """Return only the current user's orders."""
         return (
             Order.objects.filter(user=self.request.user)
             .prefetch_related("items__product")
             .order_by("-created_at")
         )
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> type[serializers.BaseSerializer]:
+        """Switch between the order list/detail serializer and create serializer."""
         if self.request.method == "POST":
             return OrderCreateSerializer
         return OrderSerializer
@@ -502,10 +529,13 @@ class OrderListCreateAPIView(generics.ListCreateAPIView):
     ),
 )
 class OrderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """Retrieve or cancel an order owned by the authenticated user."""
+
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = OrderSerializer
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[Order]:
+        """Limit order lookups to the authenticated user's records."""
         return (
             Order.objects.filter(user=self.request.user)
             .prefetch_related("items__product")
