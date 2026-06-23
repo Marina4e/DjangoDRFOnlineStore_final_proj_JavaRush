@@ -137,11 +137,11 @@
 
 ## API Documentation Acceptance
 
-- `[ ]` Swagger/OpenAPI documentation is available at `/api/docs/`.
-- `[ ]` API docs include request examples.
-- `[ ]` API docs describe JWT authorization.
-- `[ ]` API docs describe access token, refresh token, and refresh flow.
-- `[ ]` API docs schemas match implemented serializers.
+- `[x]` Swagger/OpenAPI documentation is available at `/api/docs/`.
+- `[x]` API docs include request examples.
+- `[x]` API docs describe JWT authorization.
+- `[x]` API docs describe access token, refresh token, and refresh flow.
+- `[x]` API docs schemas match implemented serializers.
 
 ## GraphQL Acceptance
 
@@ -167,14 +167,14 @@
 
 - `[x]` pytest-django is configured.
 - `[x]` Tests cover catalog, filters, search, sorting, and pagination.
-- `[ ]` Tests cover product detail and review restrictions.
+- `[x]` Tests cover product detail and review restrictions.
 - `[x]` Tests cover cart behavior and stock validation.
 - `[x]` Tests cover checkout, order creation, transactions, and emails.
 - `[x]` Tests cover registration, login/logout, account editing, password change, addresses, and order history.
 - `[x]` Tests cover REST API JWT auth, permissions, and own-data restrictions.
 - `[ ]` Tests cover GraphQL analytics.
 - `[x]` Tests cover the restriction that users cannot order more products than are in stock.
-- `[ ]` Extended test coverage target is at least 80% if time allows.
+- `[x]` Extended test coverage target is at least 80% if time allows.
 
 ## Code Quality Acceptance
 
@@ -189,7 +189,7 @@
 
 - `[x]` README contains project description.
 - `[x]` README contains Docker installation and startup instructions.
-- `[ ]` README contains API usage examples including JWT.
+- `[x]` README contains API usage examples including JWT.
 - `[x]` README contains test and lint commands.
 - `[x]` README describes project structure.
 - `[ ]` README or docs describe GraphQL example queries.

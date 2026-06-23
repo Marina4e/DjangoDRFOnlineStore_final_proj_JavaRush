@@ -2,9 +2,7 @@
 
 ## Project
 
-Online store foundation built with Django for the web interface, PostgreSQL for persistence, and Docker Compose for local infrastructure.
-
-Phase 1 includes only the project foundation. Domain models, business logic, catalog flows, cart flows, checkout flows, REST API endpoints, JWT auth, Swagger, and GraphQL are intentionally deferred to later phases.
+Online store built with Django templates for the browser UI, Django REST Framework for `/api/`, PostgreSQL for persistence, and Docker Compose for local infrastructure.
 
 ## Run
 
@@ -36,7 +34,59 @@ Phase 1 includes only the project foundation. Domain models, business logic, cat
 
 ## API
 
-REST API, JWT, Swagger/OpenAPI, and GraphQL are planned but not implemented in Phase 1.
+OpenAPI docs are available at `/api/docs/` and the raw schema is available at `/api/schema/`.
+
+JWT flow:
+
+1. `POST /api/users/login/` with username and password.
+2. Send `Authorization: Bearer <access_token>` on protected endpoints.
+3. Refresh expired access tokens with `POST /api/users/token/refresh/`.
+
+Example requests:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/users/register/ \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"api-user\",\"password\":\"VeryStrongPass123\",\"email\":\"api-user@example.com\"}"
+```
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/users/login/ \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"api-user\",\"password\":\"VeryStrongPass123\"}"
+```
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/users/token/refresh/ \
+  -H "Content-Type: application/json" \
+  -d "{\"refresh\":\"<refresh_token>\"}"
+```
+
+```bash
+curl "http://127.0.0.1:8000/api/products/?q=amber&category=extracts&min_price=10.00"
+```
+
+```bash
+curl -c cookies.txt -b cookies.txt -X POST http://127.0.0.1:8000/api/cart/ \
+  -H "Content-Type: application/json" \
+  -d "{\"product_id\":1,\"quantity\":2}"
+```
+
+```bash
+curl -c cookies.txt -b cookies.txt -X POST http://127.0.0.1:8000/api/orders/ \
+  -H "Authorization: Bearer <access_token>" \
+  -H "Content-Type: application/json" \
+  -d "{\"shipping_address\":\"42 Brewery Lane, Kyiv, 02000, Ukraine\"}"
+```
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/products/1/reviews/ \
+  -H "Authorization: Bearer <access_token>" \
+  -H "Content-Type: application/json" \
+  -d "{\"rating\":5,\"comment\":\"Excellent ingredients and fast delivery.\"}"
+```
+
+Note: the cart and order-create endpoints use the current Django session cart, so API clients must preserve cookies between cart updates and order creation.
 
 ## Structure
 

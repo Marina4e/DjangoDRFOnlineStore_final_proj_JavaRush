@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "drf_spectacular",
     "products.apps.ProductsConfig",
     "orders.apps.OrdersConfig",
     "users.apps.UsersConfig",
@@ -149,6 +150,7 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.SessionAuthentication",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 8,
 }
@@ -157,4 +159,22 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "AUTH_HEADER_TYPES": ("Bearer",),
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "MyShop REST API",
+    "DESCRIPTION": (
+        "JWT-protected API for products, session cart, orders, and reviews.\n\n"
+        "Authorization: send `Authorization: Bearer <access_token>` for protected "
+        "endpoints.\n\n"
+        "Token flow:\n"
+        "1. `POST /api/users/login/` with username and password.\n"
+        "2. Use the returned `access` token in the Authorization header.\n"
+        "3. Refresh with `POST /api/users/token/refresh/` and the `refresh` token.\n\n"
+        "Important: `/api/cart/` and `POST /api/orders/` operate on the current "
+        "Django session cart. API clients should preserve cookies between cart and "
+        "checkout/order requests."
+    ),
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
 }

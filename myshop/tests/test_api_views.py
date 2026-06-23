@@ -240,6 +240,47 @@ def test_api_order_create_from_cart_with_jwt_and_address(
     assert api_client.session.get("cart", {}) == {}
 
 
+def test_api_order_create_requires_shipping_address_or_saved_address(
+    api_client: APIClient,
+    user,
+    products,
+) -> None:
+    first, _, _ = products
+    session = api_client.session
+    session["cart"] = {str(first.pk): 1}
+    session.save()
+    authenticate_with_jwt(api_client, user.username, "strong-password-123")
+
+    response = api_client.post("/api/orders/", {}, format="json")
+
+    assert response.status_code == 400
+    assert response.json() == {
+        "non_field_errors": ["Provide either address_id or shipping_address."]
+    }
+
+
+def test_api_order_create_revalidates_stock_before_checkout(
+    api_client: APIClient,
+    user,
+    products,
+) -> None:
+    first, _, _ = products
+    session = api_client.session
+    session["cart"] = {str(first.pk): first.stock + 1}
+    session.save()
+    authenticate_with_jwt(api_client, user.username, "strong-password-123")
+
+    response = api_client.post(
+        "/api/orders/",
+        {"shipping_address": "42 Brewery Lane, Kyiv, 02000, Ukraine"},
+        format="json",
+    )
+
+    assert response.status_code == 400
+    assert "Only" in response.json()["detail"]
+    assert Order.objects.filter(user=user).count() == 0
+
+
 def test_api_order_list_and_detail_are_scoped_to_current_user(
     api_client: APIClient,
     user,
@@ -302,6 +343,33 @@ def test_api_order_update_and_delete_cancel_with_status_rules(
     assert delete_response.status_code == 400
 
 
+def test_api_order_put_rejects_non_cancelled_status(
+    api_client: APIClient,
+    user,
+    products,
+) -> None:
+    first, _, _ = products
+    order = Order.objects.create(
+        user=user,
+        status=OrderStatus.PENDING,
+        total_price=Decimal("14.00"),
+        shipping_address="Api address",
+    )
+    order.items.create(product=first, quantity=1, price=Decimal("14.00"))
+    authenticate_with_jwt(api_client, user.username, "strong-password-123")
+
+    response = api_client.put(
+        f"/api/orders/{order.pk}/",
+        {"status": OrderStatus.SHIPPED},
+        format="json",
+    )
+
+    assert response.status_code == 400
+    assert response.json() == {
+        "status": ["Users can only change their own orders to cancelled."]
+    }
+
+
 def test_api_review_create_requires_purchase_and_auth(
     api_client: APIClient,
     user,
@@ -344,3 +412,16 @@ def test_api_review_create_requires_purchase_and_auth(
         user=user,
         rating=4,
     ).exists()
+
+
+def test_api_cart_patch_requires_quantity(api_client: APIClient, products) -> None:
+    first, _, _ = products
+
+    response = api_client.patch(
+        "/api/cart/",
+        {"product_id": first.pk},
+        format="json",
+    )
+
+    assert response.status_code == 400
+    assert response.json() == {"quantity": "This field is required."}

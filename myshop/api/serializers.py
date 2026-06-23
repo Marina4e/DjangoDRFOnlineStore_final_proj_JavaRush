@@ -37,6 +37,24 @@ class StoreTokenObtainPairSerializer(TokenObtainPairSerializer):
         return token
 
 
+class TokenLoginRequestSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+
+
+class TokenPairResponseSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
+    access = serializers.CharField()
+
+
+class TokenRefreshRequestSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
+
+
+class TokenAccessResponseSerializer(serializers.Serializer):
+    access = serializers.CharField()
+
+
 class ProductListSerializer(serializers.ModelSerializer):
     category = serializers.CharField(source="category.name", read_only=True)
     category_slug = serializers.CharField(source="category.slug", read_only=True)

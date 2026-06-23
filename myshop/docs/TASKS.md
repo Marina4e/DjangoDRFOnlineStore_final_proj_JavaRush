@@ -198,24 +198,24 @@
 
 ## Phase 9 - Swagger/OpenAPI and Final Coverage Expansion
 
-- `[ ]` Configure Swagger/OpenAPI at `/api/docs/`.
-- `[ ]` Document JWT authorization scheme.
-- `[ ]` Document access and refresh token formats and refresh process.
-- `[ ]` Add request examples for registration, JWT login, products, cart, orders, and reviews.
-- `[ ]` Ensure generated schemas match implemented serializers and views.
-- `[ ]` Add OpenAPI availability/schema smoke tests.
-- `[ ]` Expand final coverage across implemented catalog, detail, cart, checkout, auth, and API behavior.
-- `[ ]` Add regression tests that are still missing, including stock and access restrictions.
-- `[ ]` Push toward the extended coverage target of at least 80% if time allows.
-- `[ ]` Run `graphify .` before implementation only for code structure.
-- `[ ]` Run validation after implementation.
-- `[ ]` Run `graphify .` again after implementation if possible.
-- `[ ]` Update `docs/TASKS.md`.
-- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
-- `[ ]` Provide the exact local run command.
-- `[ ]` Provide the exact browser URL.
-- `[ ]` Provide a short manual QA checklist for the user.
-- `[ ]` Provide the next exact prompt for Phase 10.
+- `[x]` Configure Swagger/OpenAPI at `/api/docs/`.
+- `[x]` Document JWT authorization scheme.
+- `[x]` Document access and refresh token formats and refresh process.
+- `[x]` Add request examples for registration, JWT login, products, cart, orders, and reviews.
+- `[x]` Ensure generated schemas match implemented serializers and views.
+- `[x]` Add OpenAPI availability/schema smoke tests.
+- `[x]` Expand final coverage across implemented catalog, detail, cart, checkout, auth, and API behavior.
+- `[x]` Add regression tests that are still missing, including stock and access restrictions.
+- `[x]` Push toward the extended coverage target of at least 80% if time allows.
+- `[x]` Attempt Graphify before implementation with code-only intent; the CLI again rejected `graphify config products orders users api tests` because it accepts only one path, so code structure was read directly.
+- `[x]` Run validation after implementation.
+- `[x]` Skip `graphify .` after implementation because this phase explicitly disallows running Graphify on the repository root.
+- `[x]` Update `docs/TASKS.md`.
+- `[x]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[x]` Provide the exact local run command.
+- `[x]` Provide the exact browser URL.
+- `[x]` Provide a short manual QA checklist for the user.
+- `[x]` Provide the next exact prompt for Phase 10.
 - `[ ]` Wait for the user's manual browser check before marking the phase complete.
 
 ## Phase 10 - Final Hardening, README, Submission Prep
