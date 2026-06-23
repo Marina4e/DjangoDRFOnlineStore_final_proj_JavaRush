@@ -125,46 +125,46 @@
 
 ## Phase 6 - Checkout Web UI
 
-- `[ ]` Implement checkout page `/checkout/` with contact details and delivery address form.
-- `[ ]` Add mock payment method selection.
-- `[ ]` Create order records inside a database transaction.
-- `[ ]` Create order items with price snapshots.
-- `[ ]` Decrease stock or otherwise enforce stock availability at order creation.
-- `[ ]` Send email notification to the user.
-- `[ ]` Send email notification to the administrator.
-- `[ ]` Handle checkout errors and form validation cleanly.
-- `[ ]` Add checkout tests for validation, transaction behavior, order creation, order items, stock handling, and email notifications.
-- `[ ]` Run `graphify .` before implementation only for code structure.
-- `[ ]` Run validation after implementation.
-- `[ ]` Run `graphify .` again after implementation if possible.
-- `[ ]` Update `docs/TASKS.md`.
-- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
-- `[ ]` Provide the exact local run command.
-- `[ ]` Provide the exact browser URL.
-- `[ ]` Provide a short manual QA checklist for the user.
-- `[ ]` Provide the next exact prompt for Phase 7.
+- `[x]` Implement checkout page `/checkout/` with contact details and delivery address form.
+- `[x]` Add mock payment method selection.
+- `[x]` Create order records inside a database transaction.
+- `[x]` Create order items with price snapshots.
+- `[x]` Decrease stock or otherwise enforce stock availability at order creation.
+- `[x]` Send email notification to the user.
+- `[x]` Send email notification to the administrator.
+- `[x]` Handle checkout errors and form validation cleanly.
+- `[x]` Add checkout tests for validation, transaction behavior, order creation, order items, stock handling, and email notifications.
+- `[x]` Attempt Graphify before implementation with code-only intent; the CLI again rejected `graphify config products orders users api tests` because it accepts only one path, so code structure was read directly.
+- `[x]` Run validation after implementation.
+- `[!]` Run `graphify .` again after implementation if possible; the command scanned 39 code files, then stopped because non-code files would require semantic extraction.
+- `[x]` Update `docs/TASKS.md`.
+- `[x]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[x]` Provide the exact local run command.
+- `[x]` Provide the exact browser URL.
+- `[x]` Provide a short manual QA checklist for the user.
+- `[x]` Provide the next exact prompt for Phase 7.
 - `[ ]` Wait for the user's manual browser check before marking the phase complete.
 
 ## Phase 7 - Authentication and Users
 
-- `[ ]` Implement browser registration with Django session authentication.
-- `[ ]` Implement browser login and logout with Django session authentication.
-- `[ ]` Implement password change.
-- `[ ]` Implement profile editing.
-- `[ ]` Implement delivery address management.
-- `[ ]` Implement account order history with filtering.
-- `[ ]` Ensure account pages require authenticated users.
-- `[ ]` Replace any visual-reference localStorage auth simulation with real Django auth state.
-- `[ ]` Add tests for registration, login/logout, profile editing, password change, addresses, and order history filtering.
-- `[ ]` Run `graphify .` before implementation only for code structure.
-- `[ ]` Run validation after implementation.
-- `[ ]` Run `graphify .` again after implementation if possible.
-- `[ ]` Update `docs/TASKS.md`.
-- `[ ]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
-- `[ ]` Provide the exact local run command.
-- `[ ]` Provide the exact browser URL.
-- `[ ]` Provide a short manual QA checklist for the user.
-- `[ ]` Provide the next exact prompt for Phase 8.
+- `[x]` Implement browser registration with Django session authentication.
+- `[x]` Implement browser login and logout with Django session authentication.
+- `[x]` Implement password change.
+- `[x]` Implement profile editing.
+- `[x]` Implement delivery address management.
+- `[x]` Implement account order history with filtering.
+- `[x]` Ensure account pages require authenticated users.
+- `[x]` Replace any visual-reference localStorage auth simulation with real Django auth state.
+- `[x]` Add tests for registration, login/logout, profile editing, password change, addresses, and order history filtering.
+- `[x]` Attempt Graphify before implementation with code-only intent; the CLI again rejected `graphify config products orders users api tests` because it accepts only one path, so code structure was read directly.
+- `[x]` Run validation after implementation.
+- `[!]` Run `graphify .` again after implementation if possible; the command still stopped after AST scanning because non-code files would require semantic extraction.
+- `[x]` Update `docs/TASKS.md`.
+- `[x]` Update `docs/ACCEPTANCE_CHECKLIST.md` when relevant.
+- `[x]` Provide the exact local run command.
+- `[x]` Provide the exact browser URL.
+- `[x]` Provide a short manual QA checklist for the user.
+- `[x]` Provide the next exact prompt for Phase 8.
 - `[ ]` Wait for the user's manual browser check before marking the phase complete.
 
 ## Phase 8 - REST API and JWT

@@ -39,7 +39,7 @@
 - `[ ]` `Order` has `user`, `status`, `total_price`, shipping address data, `created_at`, and `updated_at`.
 - `[ ]` `OrderItem` has `order`, `product`, `quantity`, and purchase-time price snapshot.
 - `[ ]` `Review` has `product`, `user`, rating 1-5, `comment`, and `created_at`.
-- `[ ]` Optional `Address` model exists if reusable delivery address management needs it.
+- `[x]` Optional `Address` model exists if reusable delivery address management needs it.
 - `[ ]` Optional `Payment` model exists if mock payment state needs persistence.
 - `[ ]` Constraints prevent invalid prices, quantities, stock values, ratings, and statuses.
 
@@ -79,29 +79,29 @@
 
 ## Checkout Acceptance
 
-- `[ ]` Checkout page `/checkout/` is available.
-- `[ ]` Checkout collects contact details and delivery address.
-- `[ ]` Checkout includes mock payment method selection.
-- `[ ]` Checkout validates form input.
-- `[ ]` Checkout creates an order record in the database.
-- `[ ]` Checkout creates order items with price snapshots.
-- `[ ]` Checkout handles stock availability inside the order creation flow.
-- `[ ]` Checkout uses a database transaction for order creation.
-- `[ ]` Email notification is sent to the user.
-- `[ ]` Email notification is sent to the administrator.
-- `[ ]` Checkout errors are handled clearly.
+- `[x]` Checkout page `/checkout/` is available.
+- `[x]` Checkout collects contact details and delivery address.
+- `[x]` Checkout includes mock payment method selection.
+- `[x]` Checkout validates form input.
+- `[x]` Checkout creates an order record in the database.
+- `[x]` Checkout creates order items with price snapshots.
+- `[x]` Checkout handles stock availability inside the order creation flow.
+- `[x]` Checkout uses a database transaction for order creation.
+- `[x]` Email notification is sent to the user.
+- `[x]` Email notification is sent to the administrator.
+- `[x]` Checkout errors are handled clearly.
 
 ## Account Acceptance
 
-- `[ ]` Registration works through the web interface with Django session auth.
-- `[ ]` Login works through the web interface with Django session auth.
-- `[ ]` Logout works through the web interface with Django session auth.
-- `[ ]` Password change works.
-- `[ ]` Profile editing works.
-- `[ ]` Delivery address management works.
-- `[ ]` Order history is available in `/account/`.
-- `[ ]` Order history supports filtering.
-- `[ ]` Account pages enforce access control.
+- `[x]` Registration works through the web interface with Django session auth.
+- `[x]` Login works through the web interface with Django session auth.
+- `[x]` Logout works through the web interface with Django session auth.
+- `[x]` Password change works.
+- `[x]` Profile editing works.
+- `[x]` Delivery address management works.
+- `[x]` Order history is available in `/account/`.
+- `[x]` Order history supports filtering.
+- `[x]` Account pages enforce access control.
 
 ## Admin Acceptance
 
@@ -160,8 +160,8 @@
 - `[x]` Tailwind CSS styles the templates.
 - `[x]` Visual styling is inspired by Hop & Barley but not copied directly.
 - `[ ]` Pages are responsive across mobile and desktop.
-- `[ ]` Forms show useful validation errors.
-- `[ ]` Core flows do not rely on localStorage auth simulation.
+- `[x]` Forms show useful validation errors.
+- `[x]` Core flows do not rely on localStorage auth simulation.
 
 ## Testing Acceptance
 
@@ -169,11 +169,11 @@
 - `[x]` Tests cover catalog, filters, search, sorting, and pagination.
 - `[ ]` Tests cover product detail and review restrictions.
 - `[x]` Tests cover cart behavior and stock validation.
-- `[ ]` Tests cover checkout, order creation, transactions, and emails.
-- `[ ]` Tests cover registration, login/logout, account editing, password change, addresses, and order history.
+- `[x]` Tests cover checkout, order creation, transactions, and emails.
+- `[x]` Tests cover registration, login/logout, account editing, password change, addresses, and order history.
 - `[ ]` Tests cover REST API JWT auth, permissions, and own-data restrictions.
 - `[ ]` Tests cover GraphQL analytics.
-- `[ ]` Tests cover the restriction that users cannot order more products than are in stock.
+- `[x]` Tests cover the restriction that users cannot order more products than are in stock.
 - `[ ]` Extended test coverage target is at least 80% if time allows.
 
 ## Code Quality Acceptance

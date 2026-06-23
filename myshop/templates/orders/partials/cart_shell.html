@@ -106,8 +106,14 @@
       </dl>
 
       <p class="mt-4 text-sm leading-6 text-stone-600">
-        Pricing uses the current product prices from the catalog. Checkout and order creation come in the next phase.
+        Pricing uses the current product prices from the catalog. Checkout validates stock again before creating the order.
       </p>
+      <a
+        href="{% url 'checkout-detail' %}"
+        class="mt-5 inline-flex rounded-md bg-stone-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-stone-800"
+      >
+        Proceed to checkout
+      </a>
     </aside>
   </div>
 {% endif %}

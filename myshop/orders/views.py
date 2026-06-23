@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+from typing import Any
 from typing import cast
 
 from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -15,7 +18,9 @@ from orders.cart import (
     remove_product,
     update_product_quantity,
 )
-from orders.forms import CartQuantityForm
+from orders.forms import CartQuantityForm, CheckoutForm
+from orders.models import Order
+from orders.services import CheckoutError, CheckoutOrderResult, create_order_from_session_cart
 from products.models import Product
 
 
@@ -30,6 +35,78 @@ def _render_cart(
     if not summary["is_htmx"]:
         template_name = "orders/cart.html"
     return render(request, template_name, summary, status=status)
+
+
+def _send_checkout_notifications(form: CheckoutForm, result: CheckoutOrderResult) -> None:
+    order = result.order
+    user_subject = f"Order #{order.pk} received"
+    user_body = "\n".join(
+        [
+            f"Hello {form.cleaned_data['full_name']},",
+            "",
+            f"We received your order #{order.pk}.",
+            f"Payment method: {form.payment_method_label()}",
+            f"Items: {result.total_quantity}",
+            f"Total: ${order.total_price}",
+            "",
+            "Shipping details:",
+            order.shipping_address,
+        ]
+    )
+    send_mail(
+        user_subject,
+        user_body,
+        settings.DEFAULT_FROM_EMAIL,
+        [form.cleaned_data["email"]],
+        fail_silently=False,
+    )
+
+    admin_emails = [email for _, email in settings.ADMINS if email]
+    if admin_emails:
+        admin_body = "\n".join(
+            [
+                f"Order #{order.pk} was placed.",
+                f"Customer: {form.cleaned_data['full_name']}",
+                f"Customer email: {form.cleaned_data['email']}",
+                f"Payment method: {form.payment_method_label()}",
+                f"Items: {result.total_quantity}",
+                f"Total: ${order.total_price}",
+                "",
+                "Shipping details:",
+                order.shipping_address,
+            ]
+        )
+        send_mail(
+            f"New order #{order.pk}",
+            admin_body,
+            settings.DEFAULT_FROM_EMAIL,
+            admin_emails,
+            fail_silently=False,
+        )
+
+
+def _build_checkout_context(
+    request: HttpRequest,
+    *,
+    form: CheckoutForm | None = None,
+) -> dict[str, Any]:
+    summary = get_cart_summary(request.session, persist_changes=False)
+    recent_order_id = request.session.pop("recent_order_id", None)
+    recent_order = None
+    if recent_order_id and request.user.is_authenticated:
+        recent_order = (
+            Order.objects.filter(pk=recent_order_id, user=request.user)
+            .prefetch_related("items__product")
+            .first()
+        )
+
+    context: dict[str, Any] = {
+        "form": form or CheckoutForm(),
+        "cart_summary": summary,
+        "requires_login": not request.user.is_authenticated,
+        "recent_order": recent_order,
+    }
+    return context
 
 
 @require_GET
@@ -87,3 +164,58 @@ def cart_remove(request: HttpRequest, product_id: int) -> HttpResponse:
     remove_product(request.session, product_id)
     messages.success(request, f"Removed {product.name} from the cart.")
     return _render_cart(request)
+
+
+@require_GET
+def checkout_detail(request: HttpRequest) -> HttpResponse:
+    return render(request, "orders/checkout.html", _build_checkout_context(request))
+
+
+@require_POST
+def checkout_submit(request: HttpRequest) -> HttpResponse:
+    form = CheckoutForm(request.POST)
+    if not request.user.is_authenticated:
+        messages.error(request, "Sign in before placing an order.")
+        return render(
+            request,
+            "orders/checkout.html",
+            _build_checkout_context(request, form=form),
+            status=403,
+        )
+
+    if not form.is_valid():
+        messages.error(request, "Please correct the checkout form errors below.")
+        return render(
+            request,
+            "orders/checkout.html",
+            _build_checkout_context(request, form=form),
+            status=400,
+        )
+
+    try:
+        result = create_order_from_session_cart(
+            session=request.session,
+            user=request.user,
+            shipping_address=form.build_shipping_address(),
+        )
+        _send_checkout_notifications(form, result)
+    except CheckoutError as exc:
+        messages.error(request, str(exc))
+        return render(
+            request,
+            "orders/checkout.html",
+            _build_checkout_context(request, form=form),
+            status=400,
+        )
+    except Exception:
+        messages.error(request, "We could not place your order right now. Please try again.")
+        return render(
+            request,
+            "orders/checkout.html",
+            _build_checkout_context(request, form=form),
+            status=500,
+        )
+
+    request.session["recent_order_id"] = result.order.pk
+    messages.success(request, f"Order #{result.order.pk} placed successfully.")
+    return redirect(reverse("checkout-detail"))

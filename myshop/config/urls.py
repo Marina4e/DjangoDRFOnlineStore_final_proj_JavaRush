@@ -12,8 +12,8 @@ urlpatterns = [
     path("product/<slug:slug>/", ProductDetailView.as_view(), name="product-detail"),
     path("admin/", admin.site.urls),
     path("", include("orders.urls")),
+    path("", include("users.urls")),
     path("products/", include("products.urls")),
-    path("users/", include("users.urls")),
     path("api/", include("api.urls")),
 ]
 

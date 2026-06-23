@@ -32,6 +32,10 @@ def _save_cart_data(session: SessionBase, cart: dict[str, int]) -> None:
     session.modified = True
 
 
+def get_cart_quantities(session: SessionBase) -> dict[str, int]:
+    return _get_cart_data(session)
+
+
 def add_product(session: SessionBase, product: Product, quantity: int) -> int:
     if quantity < 1:
         raise CartError("Quantity must be at least 1.")
@@ -68,7 +72,17 @@ def remove_product(session: SessionBase, product_id: int) -> None:
         _save_cart_data(session, cart)
 
 
-def get_cart_summary(session: SessionBase) -> dict[str, object]:
+def clear_cart(session: SessionBase) -> None:
+    if CART_SESSION_KEY in session:
+        session.pop(CART_SESSION_KEY, None)
+        session.modified = True
+
+
+def get_cart_summary(
+    session: SessionBase,
+    *,
+    persist_changes: bool = True,
+) -> dict[str, object]:
     cart = _get_cart_data(session)
     product_ids = [int(product_id) for product_id in cart.keys()]
     products = Product.objects.active().filter(id__in=product_ids).select_related("category")
@@ -100,7 +114,7 @@ def get_cart_summary(session: SessionBase) -> dict[str, object]:
         subtotal += line_total
         total_quantity += safe_quantity
 
-    if cleaned_cart != cart:
+    if persist_changes and cleaned_cart != cart:
         _save_cart_data(session, cleaned_cart)
 
     return {

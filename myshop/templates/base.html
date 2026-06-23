@@ -19,6 +19,16 @@
             <a href="{% url 'home' %}" class="transition hover:text-stone-950">Home</a>
             <a href="{% url 'product-list' %}" class="transition hover:text-stone-950">Catalog</a>
             <a href="{% url 'cart-detail' %}" class="transition hover:text-stone-950">Cart</a>
+            {% if request.user.is_authenticated %}
+              <a href="{% url 'account-detail' %}" class="transition hover:text-stone-950">Account</a>
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="transition hover:text-stone-950">Logout</button>
+              </form>
+            {% else %}
+              <a href="{% url 'login' %}" class="transition hover:text-stone-950">Sign in</a>
+              <a href="{% url 'register' %}" class="transition hover:text-stone-950">Register</a>
+            {% endif %}
             <a href="/admin/" class="transition hover:text-stone-950">Admin</a>
           </nav>
         </div>
