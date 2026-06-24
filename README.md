@@ -95,110 +95,6 @@ cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
 .\.venv\Scripts\python.exe manage.py seed_demo_catalog
 ```
 
-## Screenshots / Demo
-
-### Home Page
-
-Shows the landing page hero and featured products section.
-
-![Home page](docs/screenshots/home-page.png)
-
-### Catalog Page
-
-Shows filters, sorting, and product cards linking to product detail pages.
-
-![Catalog page](docs/screenshots/catalog-page.png)
-
-### Catalog With Varied Demo Products
-
-Shows the seeded demo catalog with diverse placeholder/product imagery.
-
-![Catalog varied products](docs/screenshots/catalog-varied-products.png)
-
-### Product Detail Page
-
-Shows product information, quantity selection, and add-to-cart flow.
-
-![Product detail page](docs/screenshots/product-detail-page.png)
-
-### Product Reviews Section
-
-Shows the browser review form and rendered customer reviews.
-
-![Product reviews section](docs/screenshots/product-reviews-section.png)
-
-### Cart Page
-
-Shows session cart contents, totals, and the checkout button.
-
-![Cart page](docs/screenshots/cart-page.png)
-
-### Checkout Page
-
-Shows delivery details, mock payment method, and the order summary.
-
-![Checkout page](docs/screenshots/checkout-page.png)
-
-### Order Detail Page
-
-Shows the frontend order summary and purchased items after checkout.
-
-![Order detail page](docs/screenshots/order-detail-page.png)
-
-### Account Page
-
-Shows profile editing, address management, and account overview.
-
-![Account page](docs/screenshots/account-page.png)
-
-### Admin Product Analytics
-
-Shows the Django admin product changelist with analytics summary cards and product sales columns.
-
-![Admin product analytics](docs/screenshots/admin-products-analytics.png)
-
-### Admin User Analytics
-
-Shows the Django admin user changelist with registered users, staff users, and repeat purchaser summaries.
-
-![Admin user analytics](docs/screenshots/admin-users-analytics.png)
-
-### Swagger / OpenAPI
-
-Shows the REST API documentation interface and protected endpoints.
-
-![Swagger API](docs/screenshots/swagger-api.png)
-
-### GraphQL Analytics UI
-
-Shows staff-only analytics queries in GraphiQL.
-
-![GraphQL analytics UI](docs/screenshots/graphql-analytics-ui.png)
-
-### Terminal GraphQL Verification
-
-Shows local terminal verification of the GraphQL analytics endpoint.
-
-![GraphQL terminal verification](docs/screenshots/graphql-terminal-verification.png)
-
-### Demo Data Command
-
-Shows the demo catalog seeding command running successfully.
-
-![Seed demo catalog command](docs/screenshots/seed-demo-catalog-command.png)
-
-### Docker Startup
-
-Shows the Docker Compose application and database startup.
-
-![Docker Compose up](docs/screenshots/docker-compose-up.png)
-
-### pytest Validation
-
-Shows a passing pytest validation run.
-
-![pytest validation](docs/screenshots/pytest-validation.png)
-
 ## Specification Compliance
 
 This section compares the current repository state against [docs/PROJECT_SPEC.md](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/docs/PROJECT_SPEC.md), using [AGENTS.md](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/AGENTS.md) as the implementation/process guide.
@@ -459,7 +355,7 @@ cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
 - `[x]` Tests, flake8, and mypy are configured
 - `[x]` Admin analytics and role-based admin hardening are implemented
 - `[x]` Purchase-gated browser review submission is implemented
-- `[x]` Final deployment link is not assigned yet
+- `[x]` Final deployment link is assigned
 
 ## Render Deployment
 
