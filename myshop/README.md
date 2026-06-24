@@ -134,6 +134,18 @@ Shows profile editing, address management, and account overview.
 
 ![Account page](docs/screenshots/account-page.png)
 
+### Admin Product Analytics
+
+Shows the Django admin product changelist with analytics summary cards and product sales columns.
+
+![Admin product analytics](docs/screenshots/admin-products-analytics.png)
+
+### Admin User Analytics
+
+Shows the Django admin user changelist with registered users, staff users, and repeat purchaser summaries.
+
+![Admin user analytics](docs/screenshots/admin-users-analytics.png)
+
 ### Swagger / OpenAPI
 
 Shows the REST API documentation interface and protected endpoints.
@@ -177,12 +189,12 @@ This section compares the current repository state against [docs/PROJECT_SPEC.md
 | Requirement | Status | Notes |
 |---|---|---|
 | Product catalog (`/` and `/products/`) | Done | Homepage, catalog, pagination, filtering, search, sorting by price, popularity, and novelty are implemented. |
-| Product page (`/product/<slug>/`) | Partial | Detail page, image, price, rating display, add-to-cart, and browser reviews exist. Review rating is validated, but browser-side review submission is not currently purchase-gated. |
+| Product page (`/product/<slug>/`) | Done | Detail page, image, price, rating display, add-to-cart, and browser reviews are implemented. Browser review submission is limited to authenticated purchasers. |
 | Cart (`/cart/`) | Done | Session-backed cart supports add, update, remove, stock checks, totals, and browser messages. |
 | Checkout (`/checkout/`) | Done | Browser checkout form, mock payment, transactional order creation, order items, stock validation, and email notifications are implemented. |
 | Personal account (`/account/`) | Done | Registration, login/logout, password change, profile editing, address management, frontend order history, and order detail views are implemented. |
-| Admin panel basics (`/admin/`) | Done | Products, categories, orders, reviews, and users are manageable through Django admin. |
-| Admin analytics and role-specific admin rights | Not done | The spec requested admin analytics and deeper role-aware hardening. Those are still outside the implemented scope. |
+| Admin panel basics (`/admin/`) | Done | Products, categories, orders, reviews, users, and saved addresses are manageable through Django admin. |
+| Admin analytics and role-specific admin rights | Done | Order, product, and user changelists include staff-only summary cards, and admin access continues to follow Django staff + model-permission rules. |
 | REST API (`/api/`) | Done | Products, cart, orders, users, and reviews are available through DRF with ownership and validation rules. |
 | JWT auth | Done | Registration, login, access token, and refresh token flows are implemented. |
 | Swagger / OpenAPI (`/api/docs/`) | Done | drf-spectacular docs are available with JWT guidance and request examples. |
@@ -191,7 +203,7 @@ This section compares the current repository state against [docs/PROJECT_SPEC.md
 | Docker Compose | Done | `docker compose` setup for app + database is documented and was used during verification. |
 | Typing and docstrings | Done | Type annotations and docstrings were added across the project’s public modules and important functions. |
 | Tests | Done | pytest-django coverage includes catalog, cart, checkout, account, REST API, and GraphQL analytics behavior. |
-| Review submission only after purchase | Partial | Enforced for the REST API, but not fully enforced in the browser review form flow. |
+| Review submission only after purchase | Done | Enforced for both the REST API and the browser review form flow. |
 | Deployment link | Not done | No real deployment link is included. Only local/Docker startup instructions and screenshot/video placeholders are documented. |
 | CI/CD | Not done | Optional improvement from the spec recommendations; not implemented. |
 | Modern dependency manager (`poetry`, `uv`, etc.) | Not done | `requirements.txt` is used. |
@@ -452,9 +464,28 @@ cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
 - `[x]` GraphQL analytics endpoint is implemented for staff/admin use
 - `[x]` Demo data seeding command exists
 - `[x]` Tests, flake8, and mypy are configured
-- `[ ]` Admin analytics and role-based admin hardening are still pending
-- `[ ]` Purchase-gated browser review submission is still pending
+- `[x]` Admin analytics and role-based admin hardening are implemented
+- `[x]` Purchase-gated browser review submission is implemented
 - `[ ]` Final deployment link is not assigned yet
+
+## Render Deployment Prep
+
+The project is not publicly deployed yet. It is prepared for Render deployment and can be run locally with Docker.
+
+Checked-in deployment support:
+
+- [render.yaml](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/render.yaml) provisions a web service and PostgreSQL database
+- `gunicorn` is configured as the production app server
+- WhiteNoise serves collected static files in production
+- `config/settings.py` accepts `DATABASE_URL`, Render hostnames, and CSRF trusted origins from environment variables
+
+Typical Render flow:
+
+1. Push the repository to GitHub.
+2. Create a new Blueprint on Render and select the repo.
+3. Let Render apply `render.yaml`.
+4. Set any remaining environment values that you want to override, such as `DJANGO_ALLOWED_HOSTS` or `DJANGO_CSRF_TRUSTED_ORIGINS`.
+5. Open the deployed site, run `python manage.py migrate` from the Render shell if needed, and create a superuser.
 
 ## Deployment or Video Placeholder
 

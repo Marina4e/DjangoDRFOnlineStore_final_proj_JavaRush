@@ -1,6 +1,9 @@
 .env
 .env.*
 !.env.example
+AGENTS.md
+TASKS_AI.md
+PROMPTS.md
 
 .venv/
 venv/
@@ -22,6 +25,12 @@ logs/
 
 .idea/
 .vscode/
+.codex/
+.graphify/
+graphify-out/
+.cursor/
+.claude/
+.continue/
 
 node_modules/
 dist/

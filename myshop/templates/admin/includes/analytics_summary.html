@@ -1,0 +1,17 @@
+{% if summary_cards %}
+  <div style="margin: 0 0 1.5rem;">
+    <h2 style="margin-bottom: 0.75rem;">Analytics summary</h2>
+    <div style="display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+      {% for card in summary_cards %}
+        <div style="background: var(--body-bg); border: 1px solid var(--hairline-color); border-radius: 10px; padding: 14px 16px;">
+          <div style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--body-quiet-color);">
+            {{ card.label }}
+          </div>
+          <div style="font-size: 1.4rem; font-weight: 700; margin-top: 6px;">
+            {{ card.value }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

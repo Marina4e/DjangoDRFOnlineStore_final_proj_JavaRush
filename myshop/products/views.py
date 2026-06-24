@@ -6,6 +6,7 @@ from decimal import Decimal, InvalidOperation
 from typing import Any, cast
 
 from django.contrib import messages
+from django.contrib.auth.models import AbstractBaseUser, AnonymousUser
 from django.db.models import Avg, Count, IntegerField, OuterRef, Prefetch, Subquery, Sum, Value
 from django.db.models.query import QuerySet
 from django.db.models.functions import Coalesce
@@ -14,7 +15,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, TemplateView
 
-from orders.models import OrderItem
+from orders.models import OrderItem, OrderStatus
 from products.forms import ReviewForm
 from products.models import Category, Product, ProductQuerySet, Review
 
@@ -28,6 +29,23 @@ def parse_decimal(raw_value: str | None) -> Decimal | None:
         return Decimal(raw_value)
     except InvalidOperation:
         return None
+
+
+def user_can_review_product(user: AbstractBaseUser | AnonymousUser, product: Product) -> bool:
+    """Return whether the user purchased the product in a non-cancelled order."""
+    if not user.is_authenticated:
+        return False
+
+    return OrderItem.objects.filter(
+        order__user=user,
+        order__status__in=[
+            OrderStatus.PENDING,
+            OrderStatus.PAID,
+            OrderStatus.SHIPPED,
+            OrderStatus.DELIVERED,
+        ],
+        product=product,
+    ).exists()
 
 
 class HomePageView(TemplateView):
@@ -144,6 +162,14 @@ class ProductDetailView(DetailView):
         if not request.user.is_authenticated:
             messages.error(request, "Sign in to add a review.")
             return redirect(f"{reverse('login')}?next={request.path}")
+        if not user_can_review_product(request.user, self.object):
+            messages.error(
+                request,
+                "You can leave a review only after purchasing this product.",
+            )
+            return redirect(
+                reverse("product-detail", kwargs={"slug": self.object.slug}) + "#reviews"
+            )
 
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -203,6 +229,11 @@ class ProductDetailView(DetailView):
             if product.stock > 0
             else "bg-rose-100 text-rose-800"
         )
+        can_submit_review = user_can_review_product(self.request.user, product)
         context["review_form"] = kwargs.get("review_form") or ReviewForm()
         context["review_login_url"] = f"{reverse('login')}?next={self.request.path}"
+        context["can_submit_review"] = can_submit_review
+        context["review_requires_purchase"] = (
+            self.request.user.is_authenticated and not can_submit_review
+        )
         return context

@@ -75,7 +75,6 @@
           <p class="max-w-2xl text-base leading-7 text-stone-700">{{ product.description }}</p>
         </div>
 
-        <img
         <div class="rounded-lg border border-amber-200 bg-white p-5 shadow-sm">
           <div class="mb-4 flex items-center justify-between gap-4">
             <div>
@@ -124,7 +123,7 @@
         </p>
         <p class="mt-2 text-xs text-stone-500">Allowed values: 1, 2, 3, 4, 5.</p>
 
-        {% if request.user.is_authenticated %}
+        {% if can_submit_review %}
           <form method="post" action="{% url 'product-detail' slug=product.slug %}#reviews" class="mt-5 space-y-4">
             {% csrf_token %}
             <div class="space-y-2">
@@ -148,6 +147,15 @@
               Add review
             </button>
           </form>
+        {% elif review_requires_purchase %}
+          <div class="mt-5 rounded-lg border border-dashed border-amber-300 bg-amber-50 px-4 py-4">
+            <p class="text-sm text-stone-700">
+              Reviews are available only after you purchase this product from your account.
+            </p>
+            <p class="mt-2 text-xs text-stone-500">
+              Complete checkout first, then come back here to leave a rating and comment.
+            </p>
+          </div>
         {% else %}
           <div class="mt-5 rounded-lg border border-dashed border-amber-300 bg-amber-50 px-4 py-4">
             <p class="text-sm text-stone-700">Sign in to leave a rating and comment for this product.</p>

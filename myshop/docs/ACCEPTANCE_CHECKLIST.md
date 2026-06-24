@@ -62,8 +62,8 @@
 - `[x]` Product page displays name, description, price, image, rating, and reviews.
 - `[x]` Product page includes add-to-cart and quantity controls.
 - `[x]` Review rating is limited to 1-5.
-- `[ ]` Reviews can be submitted only by authenticated users who purchased the product.
-- `[ ]` Users who did not purchase the product cannot submit a review.
+- `[x]` Reviews can be submitted only by authenticated users who purchased the product.
+- `[x]` Users who did not purchase the product cannot submit a review.
 
 ## Cart Acceptance
 
@@ -106,17 +106,17 @@
 ## Admin Acceptance
 
 - `[x]` Django admin is wired at `/admin/`.
-- `[ ]` Admin can manage products.
-- `[ ]` Admin can manage categories.
-- `[ ]` Admin can manage orders.
-- `[ ]` Admin can manage reviews.
-- `[ ]` Admin can manage users.
-- `[ ]` Admin includes search and filters.
-- `[ ]` Admin includes useful custom actions.
-- `[ ]` Admin analytics show revenue.
-- `[ ]` Admin analytics show top products.
-- `[ ]` Admin analytics show number of orders.
-- `[ ]` Admin access rights are configured for different roles.
+- `[x]` Admin can manage products.
+- `[x]` Admin can manage categories.
+- `[x]` Admin can manage orders.
+- `[x]` Admin can manage reviews.
+- `[x]` Admin can manage users.
+- `[x]` Admin includes search and filters.
+- `[x]` Admin includes useful custom actions.
+- `[x]` Admin analytics show revenue.
+- `[x]` Admin analytics show top products.
+- `[x]` Admin analytics show number of orders.
+- `[x]` Admin access rights are configured for different roles.
 
 ## REST API Acceptance
 
@@ -194,5 +194,5 @@
 - `[x]` README describes project structure.
 - `[x]` README or docs describe GraphQL example queries.
 - `[x]` Implementation checklist with completion marks is included.
-- `[ ]` Repository has meaningful commits and branch usage.
+- `[x]` Repository has meaningful commits and branch usage.
 - `[x]` Deployment link or video demonstration is prepared for submission.

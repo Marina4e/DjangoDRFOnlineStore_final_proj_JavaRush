@@ -5,6 +5,7 @@ from decimal import Decimal
 import pytest
 from django.urls import reverse
 
+from orders.models import Order, OrderItem, OrderStatus
 from products.models import Category, Product, Review
 
 
@@ -133,6 +134,18 @@ def test_product_detail_logged_in_user_can_create_review(
         password="strong-password-123",
     )
     client.force_login(user)
+    order = Order.objects.create(
+        user=user,
+        status=OrderStatus.DELIVERED,
+        total_price=detail_product.price,
+        shipping_address="12 Brewery Street, Kyiv",
+    )
+    OrderItem.objects.create(
+        order=order,
+        product=detail_product,
+        quantity=1,
+        price=detail_product.price,
+    )
 
     response = client.post(
         reverse("product-detail", kwargs={"slug": detail_product.slug}),
@@ -148,6 +161,49 @@ def test_product_detail_logged_in_user_can_create_review(
         comment="Very smooth fermentation and dependable performance.",
     ).exists()
     assert b"Your review has been saved." in response.content
+
+
+def test_product_detail_hides_review_form_from_logged_in_non_purchaser(
+    client,
+    detail_product,
+    django_user_model,
+) -> None:
+    user = django_user_model.objects.create_user(
+        username="catalog-viewer",
+        email="catalog-viewer@example.com",
+        password="strong-password-123",
+    )
+    client.force_login(user)
+
+    response = client.get(reverse("product-detail", kwargs={"slug": detail_product.slug}))
+
+    assert response.status_code == 200
+    assert b"Reviews are available only after you purchase this product" in response.content
+    assert b"Add review" in response.content
+    assert b"Sign in to review" not in response.content
+
+
+def test_product_detail_blocks_review_submission_for_logged_in_non_purchaser(
+    client,
+    detail_product,
+    django_user_model,
+) -> None:
+    user = django_user_model.objects.create_user(
+        username="blocked-reviewer",
+        email="blocked-reviewer@example.com",
+        password="strong-password-123",
+    )
+    client.force_login(user)
+
+    response = client.post(
+        reverse("product-detail", kwargs={"slug": detail_product.slug}),
+        {"rating": "5", "comment": "Should not be accepted."},
+        follow=True,
+    )
+
+    assert response.status_code == 200
+    assert not Review.objects.filter(product=detail_product, user=user).exists()
+    assert b"You can leave a review only after purchasing this product." in response.content
 
 
 def test_product_detail_post_redirects_anonymous_reviewers_to_login(client, detail_product) -> None:

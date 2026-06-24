@@ -56,9 +56,9 @@
 - `[x]` Add database constraints for positive prices, positive stock, positive quantities, review rating 1-5, and valid order statuses.
 - `[x]` Add admin screens for products, categories, orders, and reviews.
 - `[x]` Add admin search, list filters, useful list displays, and basic ordering.
-- `[ ]` Add admin custom actions where they provide clear value.
-- `[ ]` Add admin analytics for revenue, top products, and number of orders using aggregations/annotations.
-- `[ ]` Configure role-aware admin access rights.
+- `[x]` Add admin custom actions where they provide clear value.
+- `[x]` Add admin analytics for revenue, top products, and number of orders using aggregations/annotations.
+- `[x]` Configure role-aware admin access rights.
 
 ## Phase 3 - Product Catalog Web UI
 
@@ -89,7 +89,7 @@
 
 - `[x]` Build product detail page `/product/<slug>/` with name, description, price, image, rating, reviews, and quantity selection UI.
 - `[x]` Show review list and rating display on the product page.
-- `[x]` Prepare review-related query behavior without implementing purchase-gated submission yet.
+- `[x]` Prepare and complete purchase-gated review submission for authenticated purchasers only.
 - `[x]` Add tests for product detail rendering and review display behavior.
 - `[x]` Run `graphify .` before implementation only for code structure.
 - `[x]` Run validation after implementation.
