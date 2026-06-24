@@ -5,12 +5,17 @@ from __future__ import annotations
 from decimal import Decimal, InvalidOperation
 from typing import Any, cast
 
+from django.contrib import messages
 from django.db.models import Avg, Count, IntegerField, OuterRef, Prefetch, Subquery, Sum, Value
 from django.db.models.query import QuerySet
 from django.db.models.functions import Coalesce
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.views.generic import DetailView, ListView, TemplateView
 
 from orders.models import OrderItem
+from products.forms import ReviewForm
 from products.models import Category, Product, ProductQuerySet, Review
 
 
@@ -133,6 +138,29 @@ class ProductDetailView(DetailView):
     slug_field = "slug"
     slug_url_kwarg = "slug"
 
+    def post(self, request: HttpRequest, *args: object, **kwargs: object) -> HttpResponse:
+        """Accept one browser review submission for the current product."""
+        self.object = self.get_object()
+        if not request.user.is_authenticated:
+            messages.error(request, "Sign in to add a review.")
+            return redirect(f"{reverse('login')}?next={request.path}")
+
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            Review.objects.update_or_create(
+                product=self.object,
+                user=request.user,
+                defaults=form.cleaned_data,
+            )
+            messages.success(request, "Your review has been saved.")
+            return redirect(
+                reverse("product-detail", kwargs={"slug": self.object.slug}) + "#reviews"
+            )
+
+        context = self.get_context_data(review_form=form)
+        messages.error(request, "Please correct the review form errors below.")
+        return render(request, self.template_name, context, status=400)
+
     def get_template_names(self) -> list[str]:
         if (
             self.request.headers.get("HX-Request") == "true"
@@ -175,4 +203,6 @@ class ProductDetailView(DetailView):
             if product.stock > 0
             else "bg-rose-100 text-rose-800"
         )
+        context["review_form"] = kwargs.get("review_form") or ReviewForm()
+        context["review_login_url"] = f"{reverse('login')}?next={self.request.path}"
         return context

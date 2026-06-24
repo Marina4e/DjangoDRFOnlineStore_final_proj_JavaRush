@@ -38,10 +38,11 @@ def test_cart_page_renders_empty_state(client) -> None:
 def test_add_to_cart_stores_session_data(client, cart_product) -> None:
     response = client.post(
         reverse("cart-add", kwargs={"product_id": cart_product.id}),
-        {"quantity": "2", "next": reverse("product-detail", kwargs={"slug": cart_product.slug})},
+        {"quantity": "2", "next": reverse("cart-detail")},
     )
 
     assert response.status_code == 302
+    assert response.headers["Location"] == reverse("cart-detail")
     assert client.session["cart"][str(cart_product.id)] == 2
 
 
@@ -91,13 +92,23 @@ def test_cart_remove_deletes_item_from_session(client, cart_product) -> None:
 def test_add_to_cart_rejects_quantity_over_stock(client, cart_product) -> None:
     response = client.post(
         reverse("cart-add", kwargs={"product_id": cart_product.id}),
-        {"quantity": "12", "next": reverse("product-detail", kwargs={"slug": cart_product.slug})},
+        {"quantity": "12", "next": reverse("cart-detail")},
         follow=True,
     )
 
     assert response.status_code == 200
     assert str(cart_product.id) not in client.session.get("cart", {})
     assert b"Requested quantity exceeds available stock." in response.content
+
+
+def test_add_to_cart_without_next_redirects_to_cart_page(client, cart_product) -> None:
+    response = client.post(
+        reverse("cart-add", kwargs={"product_id": cart_product.id}),
+        {"quantity": "1"},
+    )
+
+    assert response.status_code == 302
+    assert response.headers["Location"] == reverse("cart-detail")
 
 
 def test_cart_update_rejects_quantity_over_stock(client, cart_product) -> None:

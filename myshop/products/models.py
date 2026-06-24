@@ -113,6 +113,16 @@ class Product(models.Model):
     def placeholder_image_path(self) -> str:
         """Return a local fallback image path when no uploaded product image exists."""
         keyword_source = f"{self.name} {self.category.name}".lower()
+        if any(
+            keyword in keyword_source
+            for keyword in ("stout", "porter", "dark", "coffee", "cocoa")
+        ):
+            return "img/products/stout-placeholder.svg"
+        if any(
+            keyword in keyword_source
+            for keyword in ("cider", "cherry", "apple", "fruit", "berry")
+        ):
+            return "img/products/fruit-placeholder.svg"
         if "hop" in keyword_source:
             return "img/products/hops-placeholder.svg"
         if any(keyword in keyword_source for keyword in ("malt", "grain", "barley")):
@@ -126,7 +136,7 @@ class Product(models.Model):
         """Return the uploaded image URL or a static placeholder URL."""
         if self.image:
             return str(self.image.url)
-        return static(self.placeholder_image_path)
+        return cast(str, static(self.placeholder_image_path))
 
 
 class Review(models.Model):

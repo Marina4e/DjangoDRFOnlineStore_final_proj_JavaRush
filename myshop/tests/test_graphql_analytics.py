@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from datetime import timezone as dt_timezone
 from decimal import Decimal
+from typing import Any, Protocol, cast
 
 import pytest
 from django.urls import reverse
@@ -13,6 +14,14 @@ from products.models import Category, Product
 
 
 pytestmark = pytest.mark.django_db
+
+
+class GraphQLTestResponse(Protocol):
+    """Minimal response interface used by the GraphQL endpoint tests."""
+
+    status_code: int
+
+    def json(self) -> dict[str, Any]: ...
 
 
 @pytest.fixture
@@ -108,11 +117,14 @@ def analytics_data(django_user_model):
     }
 
 
-def graphql_post(client, query: str) -> object:
-    return client.post(
-        reverse("graphql"),
-        data=json.dumps({"query": query}),
-        content_type="application/json",
+def graphql_post(client, query: str) -> GraphQLTestResponse:
+    return cast(
+        GraphQLTestResponse,
+        client.post(
+            reverse("graphql"),
+            data=json.dumps({"query": query}),
+            content_type="application/json",
+        ),
     )
 
 

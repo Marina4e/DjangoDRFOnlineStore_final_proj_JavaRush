@@ -15,7 +15,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models.query import QuerySet
 from django.urls import reverse, reverse_lazy
 from django.views.decorators.http import require_POST
-from django.views.generic import FormView, TemplateView, UpdateView
+from django.views.generic import DetailView, FormView, TemplateView, UpdateView
 
 from orders.models import Order, OrderStatus
 from users.forms import (
@@ -28,6 +28,15 @@ from users.forms import (
 from users.models import Address
 
 
+def user_orders_queryset(request: HttpRequest) -> QuerySet[Order]:
+    """Return the current user's orders with items and products prefetched."""
+    return (
+        Order.objects.filter(user=request.user)
+        .prefetch_related("items__product")
+        .order_by("-created_at")
+    )
+
+
 def build_account_context(
     request: HttpRequest,
     *,
@@ -37,11 +46,7 @@ def build_account_context(
     """Build the shared account-page context for profile, addresses, and orders."""
     selected_status = request.GET.get("status", "").strip()
     valid_statuses = set(OrderStatus.values)
-    orders_queryset = (
-        Order.objects.filter(user=request.user)
-        .prefetch_related("items__product")
-        .order_by("-created_at")
-    )
+    orders_queryset = user_orders_queryset(request)
     if selected_status in valid_statuses:
         orders_queryset = orders_queryset.filter(status=selected_status)
 
@@ -106,6 +111,41 @@ class AccountView(LoginRequiredMixin, TemplateView):
         context = cast(dict[str, Any], super().get_context_data(**kwargs))
         context.update(build_account_context(self.request))
         return context
+
+
+class AccountOrdersView(LoginRequiredMixin, TemplateView):
+    """Render a dedicated page with the authenticated user's order history."""
+
+    template_name = "users/order_list.html"
+
+    def get_context_data(self, **kwargs: object) -> dict[str, Any]:
+        context = cast(dict[str, Any], super().get_context_data(**kwargs))
+        selected_status = self.request.GET.get("status", "").strip()
+        valid_statuses = set(OrderStatus.values)
+        orders = user_orders_queryset(self.request)
+        if selected_status in valid_statuses:
+            orders = orders.filter(status=selected_status)
+        context.update(
+            {
+                "orders": orders,
+                "selected_status": selected_status,
+                "status_choices": OrderStatus.choices,
+            }
+        )
+        return context
+
+
+class AccountOrderDetailView(LoginRequiredMixin, DetailView):
+    """Render one ownership-scoped order detail page for the current user."""
+
+    model = Order
+    template_name = "users/order_detail.html"
+    context_object_name = "order"
+    pk_url_kwarg = "pk"
+
+    def get_queryset(self) -> QuerySet[Order]:
+        """Limit order detail access to the authenticated user's own orders."""
+        return user_orders_queryset(self.request)
 
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):

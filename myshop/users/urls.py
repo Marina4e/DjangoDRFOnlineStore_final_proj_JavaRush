@@ -2,6 +2,8 @@ from django.urls import path
 
 from users.views import (
     AccountView,
+    AccountOrderDetailView,
+    AccountOrdersView,
     AddressCreateView,
     AddressUpdateView,
     ProfileUpdateView,
@@ -19,6 +21,12 @@ urlpatterns = [
     path("login/", StoreLoginView.as_view(), name="login"),
     path("logout/", logout_view, name="logout"),
     path("account/", AccountView.as_view(), name="account-detail"),
+    path("account/orders/", AccountOrdersView.as_view(), name="account-orders"),
+    path(
+        "account/orders/<int:pk>/",
+        AccountOrderDetailView.as_view(),
+        name="account-order-detail",
+    ),
     path("account/profile/", ProfileUpdateView.as_view(), name="account-profile-update"),
     path("account/addresses/add/", AddressCreateView.as_view(), name="address-create"),
     path(

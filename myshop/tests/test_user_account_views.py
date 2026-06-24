@@ -179,6 +179,76 @@ def test_account_order_history_is_scoped_to_user_and_filterable(
     assert b"Other address" not in response.content
 
 
+def test_my_orders_page_requires_login(client) -> None:
+    response = client.get(reverse("account-orders"))
+
+    assert response.status_code == 302
+    assert response.url == f"{reverse('login')}?next={reverse('account-orders')}"
+
+
+def test_my_orders_page_shows_only_current_users_orders_with_items(
+    client,
+    user,
+    other_user,
+    product,
+) -> None:
+    own_order = Order.objects.create(
+        user=user,
+        status=OrderStatus.PAID,
+        total_price=Decimal("24.00"),
+        shipping_address="Alice address",
+    )
+    own_order.items.create(product=product, quantity=3, price=Decimal("8.00"))
+    other_order = Order.objects.create(
+        user=other_user,
+        status=OrderStatus.SHIPPED,
+        total_price=Decimal("16.00"),
+        shipping_address="Other address",
+    )
+    other_order.items.create(product=product, quantity=2, price=Decimal("8.00"))
+
+    client.force_login(user)
+
+    response = client.get(reverse("account-orders"))
+
+    assert response.status_code == 200
+    assert b"My orders" in response.content
+    assert f"Order #{own_order.pk}".encode() in response.content
+    assert f"Order #{other_order.pk}".encode() not in response.content
+    assert b"Cascade Hops" in response.content
+    assert b"$24.00" in response.content
+    assert b"Other address" not in response.content
+
+
+def test_order_detail_page_is_owner_scoped(client, user, other_user, product) -> None:
+    own_order = Order.objects.create(
+        user=user,
+        status=OrderStatus.PAID,
+        total_price=Decimal("24.00"),
+        shipping_address="Alice address",
+    )
+    own_order.items.create(product=product, quantity=3, price=Decimal("8.00"))
+    other_order = Order.objects.create(
+        user=other_user,
+        status=OrderStatus.PAID,
+        total_price=Decimal("16.00"),
+        shipping_address="Other address",
+    )
+    other_order.items.create(product=product, quantity=2, price=Decimal("8.00"))
+
+    client.force_login(user)
+
+    own_response = client.get(reverse("account-order-detail", kwargs={"pk": own_order.pk}))
+    other_response = client.get(reverse("account-order-detail", kwargs={"pk": other_order.pk}))
+
+    assert own_response.status_code == 200
+    assert b"Order #" in own_response.content
+    assert b"Cascade Hops" in own_response.content
+    assert b"$8.00" in own_response.content
+    assert b"$24.00" in own_response.content
+    assert other_response.status_code == 404
+
+
 def test_address_crud_and_default_switching_work_for_owner(client, user) -> None:
     client.force_login(user)
 

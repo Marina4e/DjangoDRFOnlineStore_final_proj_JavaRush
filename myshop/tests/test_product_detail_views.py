@@ -57,6 +57,9 @@ def test_product_detail_page_renders(client, detail_product) -> None:
     assert b"House Saison Yeast" in response.content
     assert b"Dry and peppery fermentation profile" in response.content
     assert b"Add to cart" in response.content
+    assert b"Add review" in response.content
+    assert b"Allowed values: 1, 2, 3, 4, 5." in response.content
+    assert b"1 = poor, 2 = fair, 3 = good, 4 = very good, 5 = excellent." in response.content
     assert detail_product.placeholder_image_path.encode() in response.content
 
 
@@ -109,3 +112,51 @@ def test_product_detail_handles_products_without_reviews(client) -> None:
     assert response.status_code == 200
     assert b"No ratings yet" in response.content
     assert b"This product is currently unavailable" in response.content
+
+
+def test_product_detail_shows_login_prompt_for_anonymous_reviewers(client, detail_product) -> None:
+    response = client.get(reverse("product-detail", kwargs={"slug": detail_product.slug}))
+
+    assert response.status_code == 200
+    assert b"Sign in to leave a rating and comment for this product." in response.content
+    assert reverse("login").encode() in response.content
+
+
+def test_product_detail_logged_in_user_can_create_review(
+    client,
+    detail_product,
+    django_user_model,
+) -> None:
+    user = django_user_model.objects.create_user(
+        username="new_reviewer",
+        email="new-reviewer@example.com",
+        password="strong-password-123",
+    )
+    client.force_login(user)
+
+    response = client.post(
+        reverse("product-detail", kwargs={"slug": detail_product.slug}),
+        {"rating": "4", "comment": "Very smooth fermentation and dependable performance."},
+        follow=True,
+    )
+
+    assert response.status_code == 200
+    assert Review.objects.filter(
+        product=detail_product,
+        user=user,
+        rating=4,
+        comment="Very smooth fermentation and dependable performance.",
+    ).exists()
+    assert b"Your review has been saved." in response.content
+
+
+def test_product_detail_post_redirects_anonymous_reviewers_to_login(client, detail_product) -> None:
+    response = client.post(
+        reverse("product-detail", kwargs={"slug": detail_product.slug}),
+        {"rating": "5", "comment": "Excellent."},
+    )
+
+    assert response.status_code == 302
+    assert response.headers["Location"] == (
+        f"{reverse('login')}?next={reverse('product-detail', kwargs={'slug': detail_product.slug})}"
+    )

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block content %}
+  <section class="border-b border-amber-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <p class="text-sm uppercase tracking-[0.18em] text-amber-700">Orders</p>
+      <h1 class="mt-2 text-3xl font-semibold tracking-tight text-stone-950">My orders</h1>
+      <p class="mt-3 max-w-2xl text-sm leading-6 text-stone-600">
+        Review your own order history, totals, statuses, and purchased items from the browser account area.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="rounded-xl border border-amber-200 bg-white p-6 shadow-sm">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <h2 class="text-2xl font-semibold tracking-tight text-stone-950">Order history</h2>
+          <p class="mt-2 text-sm text-stone-600">Only your own orders are visible here.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <form method="get" class="flex items-center gap-3">
+            <label for="status" class="text-sm font-medium text-stone-700">Status</label>
+            <select
+              id="status"
+              name="status"
+              class="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
+            >
+              <option value="">All</option>
+              {% for value, label in status_choices %}
+                <option value="{{ value }}"{% if selected_status == value %} selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="rounded-md border border-amber-300 px-3 py-2 text-sm font-medium text-stone-800 transition hover:bg-amber-50">Filter</button>
+          </form>
+          <a href="{% url 'account-detail' %}" class="rounded-md border border-stone-200 px-3 py-2 text-sm font-medium text-stone-700 transition hover:bg-stone-50">Account</a>
+        </div>
+      </div>
+
+      <div class="mt-6 space-y-4">
+        {% for order in orders %}
+          <article class="rounded-lg border border-amber-100 bg-amber-50 p-5">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <h3 class="text-lg font-semibold text-stone-950">
+                  <a href="{% url 'account-order-detail' pk=order.pk %}" class="transition hover:text-amber-900">Order #{{ order.pk }}</a>
+                </h3>
+                <p class="text-sm text-stone-600">{{ order.created_at|date:"j M Y, H:i" }}</p>
+              </div>
+              <div class="text-sm text-stone-700">
+                <p class="font-medium text-stone-900">{{ order.get_status_display }}</p>
+                <p>Total: ${{ order.total_price }}</p>
+              </div>
+            </div>
+            <div class="mt-4 overflow-hidden rounded-lg border border-amber-200 bg-white">
+              <div class="grid grid-cols-[1.8fr_0.6fr_0.8fr] gap-3 border-b border-amber-100 px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">
+                <span>Product</span>
+                <span>Qty</span>
+                <span>Price</span>
+              </div>
+              {% for item in order.items.all %}
+                <div class="grid grid-cols-[1.8fr_0.6fr_0.8fr] gap-3 px-4 py-3 text-sm text-stone-700 {% if not forloop.last %}border-b border-amber-100{% endif %}">
+                  <span>{{ item.product.name }}</span>
+                  <span>{{ item.quantity }}</span>
+                  <span>${{ item.price }}</span>
+                </div>
+              {% endfor %}
+            </div>
+          </article>
+        {% empty %}
+          <div class="rounded-lg border border-dashed border-amber-300 bg-amber-50 px-5 py-8 text-center text-sm text-stone-600">
+            No orders match the current filter.
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

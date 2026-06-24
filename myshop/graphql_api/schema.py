@@ -201,7 +201,10 @@ class Query(graphene.ObjectType):
         """Return average order value across non-cancelled orders."""
         require_staff(info)
         order_values = list(
-            Order.objects.filter(ANALYTICS_ORDER_FILTER).values_list("total_price", flat=True)
+            Order.objects.filter(ANALYTICS_ORDER_FILTER).values_list(
+                "total_price",
+                flat=True,
+            )
         )
         if not order_values:
             return Decimal("0.00")
@@ -214,7 +217,11 @@ class Query(graphene.ObjectType):
     ) -> list[RevenueTrendType]:
         """Return grouped revenue trends by day or month."""
         require_staff(info)
-        truncator = TruncMonth("created_at") if granularity == RevenueTrendGranularity.MONTH else TruncDate("created_at")
+        truncator = (
+            TruncMonth("created_at")
+            if granularity == RevenueTrendGranularity.MONTH
+            else TruncDate("created_at")
+        )
         rows = (
             Order.objects.filter(ANALYTICS_ORDER_FILTER)
             .annotate(period=truncator)
@@ -259,7 +266,11 @@ class Query(graphene.ObjectType):
     ) -> list[ProductAnalyticsType]:
         """Return products ordered by sold quantity."""
         require_staff(info)
-        queryset = annotated_product_analytics(limit=None).order_by("-sold_quantity", "-revenue", "name")[:limit]
+        queryset = annotated_product_analytics(limit=None).order_by(
+            "-sold_quantity",
+            "-revenue",
+            "name",
+        )[:limit]
         return [
             ProductAnalyticsType(
                 product_id=product.pk,
@@ -280,7 +291,11 @@ class Query(graphene.ObjectType):
     ) -> list[ProductAnalyticsType]:
         """Return products ordered by generated revenue."""
         require_staff(info)
-        queryset = annotated_product_analytics(limit=None).order_by("-revenue", "-sold_quantity", "name")[:limit]
+        queryset = annotated_product_analytics(limit=None).order_by(
+            "-revenue",
+            "-sold_quantity",
+            "name",
+        )[:limit]
         return [
             ProductAnalyticsType(
                 product_id=product.pk,
@@ -301,7 +316,10 @@ class Query(graphene.ObjectType):
     ) -> list[ProductAnalyticsType]:
         """Return current stock balances with analytics metadata."""
         require_staff(info)
-        queryset = annotated_product_analytics(limit=None).order_by("-stock", "name")[:limit]
+        queryset = annotated_product_analytics(limit=None).order_by(
+            "-stock",
+            "name",
+        )[:limit]
         return [
             ProductAnalyticsType(
                 product_id=product.pk,
@@ -322,7 +340,11 @@ class Query(graphene.ObjectType):
     ) -> list[UserAnalyticsType]:
         """Return users with at least one non-cancelled order."""
         require_staff(info)
-        queryset = annotated_user_analytics().filter(order_count__gte=1).order_by("-order_count", "username")[:limit]
+        queryset = (
+            annotated_user_analytics()
+            .filter(order_count__gte=1)
+            .order_by("-order_count", "username")[:limit]
+        )
         return [
             UserAnalyticsType(
                 user_id=user.pk,
@@ -341,7 +363,11 @@ class Query(graphene.ObjectType):
     ) -> list[UserAnalyticsType]:
         """Return users with at least two non-cancelled orders."""
         require_staff(info)
-        queryset = annotated_user_analytics().filter(order_count__gte=2).order_by("-order_count", "username")[:limit]
+        queryset = (
+            annotated_user_analytics()
+            .filter(order_count__gte=2)
+            .order_by("-order_count", "username")[:limit]
+        )
         return [
             UserAnalyticsType(
                 user_id=user.pk,

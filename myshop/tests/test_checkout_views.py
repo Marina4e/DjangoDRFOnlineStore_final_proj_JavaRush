@@ -144,7 +144,11 @@ def test_checkout_creates_order_items_sends_emails_and_clears_cart(
     assert len(mail.outbox) == 2
     assert mail.outbox[0].to == ["alex@example.com"]
     assert mail.outbox[1].to == ["admin@example.com"]
-    assert b"Order #" in response.content
+    assert response.redirect_chain[-1][0].endswith(
+        reverse("account-order-detail", kwargs={"pk": order.pk})
+    )
+    assert f"Order #{order.pk}".encode() in response.content
+    assert b"placed successfully" in response.content
 
 
 def test_checkout_rejects_insufficient_stock_and_keeps_cart(

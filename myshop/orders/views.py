@@ -125,10 +125,7 @@ def cart_add(request: HttpRequest, product_id: int) -> HttpResponse:
     """Add a product to the cart and redirect back to the originating page."""
     product = get_object_or_404(Product.objects.active(), pk=product_id)
     form = CartQuantityForm(request.POST)
-    redirect_to = request.POST.get("next") or reverse(
-        "product-detail",
-        kwargs={"slug": product.slug},
-    )
+    redirect_to = request.POST.get("next") or reverse("cart-detail")
 
     if not form.is_valid():
         messages.error(request, "Enter a valid quantity before adding to the cart.")
@@ -229,4 +226,4 @@ def checkout_submit(request: HttpRequest) -> HttpResponse:
 
     request.session["recent_order_id"] = result.order.pk
     messages.success(request, f"Order #{result.order.pk} placed successfully.")
-    return redirect(reverse("checkout-detail"))
+    return redirect(reverse("account-order-detail", kwargs={"pk": result.order.pk}))
