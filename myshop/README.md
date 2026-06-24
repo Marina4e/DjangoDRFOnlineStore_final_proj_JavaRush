@@ -12,9 +12,15 @@
 ## Quick Verification
 
 Fastest path for a reviewer:
+## Live Demo
+
+Public deployment:
+- Main site: https://myshop-web-53xi.onrender.com
+- Admin: https://myshop-web-53xi.onrender.com/admin/
+- API docs: https://myshop-web-53xi.onrender.com/api/docs/
+- GraphQL: https://myshop-web-53xi.onrender.com/graphql/
 
 ```powershell
-cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
@@ -40,6 +46,17 @@ cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
 ```
 
 ## Browser URLs
+## Production Browser URLs
+
+- Home: https://myshop-web-53xi.onrender.com/
+- Catalog: https://myshop-web-53xi.onrender.com/products/
+- Cart: https://myshop-web-53xi.onrender.com/cart/
+- Checkout: https://myshop-web-53xi.onrender.com/checkout/
+- Account: https://myshop-web-53xi.onrender.com/account/
+- My orders: https://myshop-web-53xi.onrender.com/account/orders/
+- Admin: https://myshop-web-53xi.onrender.com/admin/
+- Swagger/OpenAPI: https://myshop-web-53xi.onrender.com/api/docs/
+- GraphQL analytics: https://myshop-web-53xi.onrender.com/graphql/
 
 - Home: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 - Catalog: [http://127.0.0.1:8000/products/](http://127.0.0.1:8000/products/)
@@ -231,31 +248,7 @@ This section compares the current repository state against [docs/PROJECT_SPEC.md
 
 ### Setup
 
-```powershell
-cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-Copy-Item .env.example .env
-```
-
 Keep `POSTGRES_HOST=localhost` in `.env` for local non-Docker development.
-
-### Run
-
-```powershell
-cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
-.\.venv\Scripts\python.exe manage.py migrate
-.\.venv\Scripts\python.exe manage.py seed_demo_catalog
-.\.venv\Scripts\python.exe manage.py runserver 127.0.0.1:8000
-```
-
-### Create a Superuser
-
-```powershell
-cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
-.\.venv\Scripts\python.exe manage.py createsuperuser
-```
 
 ## Docker Compose
 
@@ -466,45 +459,17 @@ cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
 - `[x]` Tests, flake8, and mypy are configured
 - `[x]` Admin analytics and role-based admin hardening are implemented
 - `[x]` Purchase-gated browser review submission is implemented
-- `[ ]` Final deployment link is not assigned yet
+- `[x]` Final deployment link is not assigned yet
 
-## Render Deployment Prep
+## Render Deployment
 
-The project is not publicly deployed yet. It is prepared for Render deployment and can be run locally with Docker.
+## Deployment Status
 
-Checked-in deployment support:
+The project is publicly deployed on Render:
 
-- [render.yaml](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/render.yaml) provisions a web service and PostgreSQL database
-- `gunicorn` is configured as the production app server
-- WhiteNoise serves collected static files in production
-- `config/settings.py` accepts `DATABASE_URL`, Render hostnames, and CSRF trusted origins from environment variables
+https://myshop-web-53xi.onrender.com
 
-Typical Render flow:
-
-1. Push the repository to GitHub.
-2. Create a new Blueprint on Render and select the repo.
-3. Let Render apply `render.yaml`.
-4. Set any remaining environment values that you want to override, such as `DJANGO_ALLOWED_HOSTS` or `DJANGO_CSRF_TRUSTED_ORIGINS`.
-5. Open the deployed site, run `python manage.py migrate` from the Render shell if needed, and create a superuser.
-
-## Deployment or Video Placeholder
-
-No fake deployment link is provided.
-
-- Deployment URL: `TBD`
-- Demo video URL: `TBD`
-
-Suggested video/demo flow:
-
-1. Show `docker compose up -d --build`
-2. Show `python manage.py migrate` and `python manage.py seed_demo_catalog`
-3. Walk through home, catalog, product detail, cart, checkout, orders, and admin
-4. Show `/api/docs/` and one JWT-protected API request
-5. Show `/graphql/` as a staff/admin user
-6. Show `python manage.py check` and `pytest -v`
-
-## Notes
-
-- `docs/PROJECT_SPEC.md` is the functional source of truth.
-- `AGENTS.md` is used as the implementation/process guide, not as the product requirements source.
-- Product images use uploaded files when available and fall back to local placeholder artwork.
+Notes:
+- The service is hosted on Render free tier.
+- The first request after inactivity may take additional time because the instance can spin down.
+- PostgreSQL is provisioned through Render.
