@@ -7,36 +7,213 @@
 
 # myshop
 
-## Project Description
+`myshop` is a Django online store built from the requirements in [docs/PROJECT_SPEC.md](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/docs/PROJECT_SPEC.md). It includes a browser storefront, session-based cart and checkout flow, a JWT-protected DRF API, Swagger/OpenAPI docs, and a staff-only GraphQL analytics endpoint.
 
-`myshop` is a Django online store built from the assignment requirements in [docs/PROJECT_SPEC.md](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/docs/PROJECT_SPEC.md). It includes:
+## Quick Verification
 
-- a browser storefront built with Django templates, HTMX, Alpine.js, and Tailwind CSS
-- session-based cart, checkout, and account flows
-- a DRF-based REST API under `/api/`
-- JWT authentication for external API clients
-- Swagger/OpenAPI documentation at `/api/docs/`
-- PostgreSQL and Docker Compose support for local infrastructure
+Fastest path for a reviewer:
 
-The project now also includes a staff-only GraphQL analytics endpoint at `/graphql/`.
+```powershell
+cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+Copy-Item .env.example .env
+.\.venv\Scripts\python.exe manage.py migrate
+.\.venv\Scripts\python.exe manage.py seed_demo_catalog
+.\.venv\Scripts\python.exe manage.py runserver 127.0.0.1:8000
+```
 
-## Features
+In a second terminal:
 
-- Catalog pages with search, sorting, pagination, category filters, and price filters
-- Product detail pages with review display and add-to-cart controls
-- Session-backed cart management with stock validation
-- Transactional checkout with order item price snapshots and email notifications
-- Browser registration, login/logout, password change, profile editing, and address management
-- Account order history filtered to the authenticated user
-- JWT-protected REST API for products, cart, orders, users, and reviews
-- Swagger/OpenAPI docs with request examples and JWT guidance
-- Staff-only GraphQL analytics for orders, products, and users
+```powershell
+cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
+.\.venv\Scripts\python.exe manage.py check
+.\.venv\Scripts\python.exe -m pytest -v
+```
+
+Optional admin user:
+
+```powershell
+cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
+.\.venv\Scripts\python.exe manage.py createsuperuser
+```
+
+## Browser URLs
+
+- Home: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- Catalog: [http://127.0.0.1:8000/products/](http://127.0.0.1:8000/products/)
+- Product detail example: [http://127.0.0.1:8000/product/stout-night/](http://127.0.0.1:8000/product/stout-night/)
+- Cart: [http://127.0.0.1:8000/cart/](http://127.0.0.1:8000/cart/)
+- Checkout: [http://127.0.0.1:8000/checkout/](http://127.0.0.1:8000/checkout/)
+- Account: [http://127.0.0.1:8000/account/](http://127.0.0.1:8000/account/)
+- My orders: [http://127.0.0.1:8000/account/orders/](http://127.0.0.1:8000/account/orders/)
+- Admin: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+- Swagger/OpenAPI: [http://127.0.0.1:8000/api/docs/](http://127.0.0.1:8000/api/docs/)
+- OpenAPI schema: [http://127.0.0.1:8000/api/schema/](http://127.0.0.1:8000/api/schema/)
+- GraphQL analytics: [http://127.0.0.1:8000/graphql/](http://127.0.0.1:8000/graphql/)
+
+## Demo Data Commands
+
+Seed or refresh demo catalog data:
+
+```powershell
+cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
+.\.venv\Scripts\python.exe manage.py seed_demo_catalog
+```
+
+Reset catalog data and seed again:
+
+```powershell
+cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
+.\.venv\Scripts\python.exe manage.py seed_demo_catalog --reset
+```
+
+Full local reset:
+
+```powershell
+cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
+.\.venv\Scripts\python.exe manage.py flush --noinput
+.\.venv\Scripts\python.exe manage.py migrate
+.\.venv\Scripts\python.exe manage.py seed_demo_catalog
+```
+
+## Screenshots / Demo
+
+### Home Page
+
+Shows the landing page hero and featured products section.
+
+![Home page](docs/screenshots/home-page.png)
+
+### Catalog Page
+
+Shows filters, sorting, and product cards linking to product detail pages.
+
+![Catalog page](docs/screenshots/catalog-page.png)
+
+### Catalog With Varied Demo Products
+
+Shows the seeded demo catalog with diverse placeholder/product imagery.
+
+![Catalog varied products](docs/screenshots/catalog-varied-products.png)
+
+### Product Detail Page
+
+Shows product information, quantity selection, and add-to-cart flow.
+
+![Product detail page](docs/screenshots/product-detail-page.png)
+
+### Product Reviews Section
+
+Shows the browser review form and rendered customer reviews.
+
+![Product reviews section](docs/screenshots/product-reviews-section.png)
+
+### Cart Page
+
+Shows session cart contents, totals, and the checkout button.
+
+![Cart page](docs/screenshots/cart-page.png)
+
+### Checkout Page
+
+Shows delivery details, mock payment method, and the order summary.
+
+![Checkout page](docs/screenshots/checkout-page.png)
+
+### Order Detail Page
+
+Shows the frontend order summary and purchased items after checkout.
+
+![Order detail page](docs/screenshots/order-detail-page.png)
+
+### Account Page
+
+Shows profile editing, address management, and account overview.
+
+![Account page](docs/screenshots/account-page.png)
+
+### Swagger / OpenAPI
+
+Shows the REST API documentation interface and protected endpoints.
+
+![Swagger API](docs/screenshots/swagger-api.png)
+
+### GraphQL Analytics UI
+
+Shows staff-only analytics queries in GraphiQL.
+
+![GraphQL analytics UI](docs/screenshots/graphql-analytics-ui.png)
+
+### Terminal GraphQL Verification
+
+Shows local terminal verification of the GraphQL analytics endpoint.
+
+![GraphQL terminal verification](docs/screenshots/graphql-terminal-verification.png)
+
+### Demo Data Command
+
+Shows the demo catalog seeding command running successfully.
+
+![Seed demo catalog command](docs/screenshots/seed-demo-catalog-command.png)
+
+### Docker Startup
+
+Shows the Docker Compose application and database startup.
+
+![Docker Compose up](docs/screenshots/docker-compose-up.png)
+
+### pytest Validation
+
+Shows a passing pytest validation run.
+
+![pytest validation](docs/screenshots/pytest-validation.png)
+
+## Specification Compliance
+
+This section compares the current repository state against [docs/PROJECT_SPEC.md](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/docs/PROJECT_SPEC.md), using [AGENTS.md](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/AGENTS.md) as the implementation/process guide.
+
+| Requirement | Status | Notes |
+|---|---|---|
+| Product catalog (`/` and `/products/`) | Done | Homepage, catalog, pagination, filtering, search, sorting by price, popularity, and novelty are implemented. |
+| Product page (`/product/<slug>/`) | Partial | Detail page, image, price, rating display, add-to-cart, and browser reviews exist. Review rating is validated, but browser-side review submission is not currently purchase-gated. |
+| Cart (`/cart/`) | Done | Session-backed cart supports add, update, remove, stock checks, totals, and browser messages. |
+| Checkout (`/checkout/`) | Done | Browser checkout form, mock payment, transactional order creation, order items, stock validation, and email notifications are implemented. |
+| Personal account (`/account/`) | Done | Registration, login/logout, password change, profile editing, address management, frontend order history, and order detail views are implemented. |
+| Admin panel basics (`/admin/`) | Done | Products, categories, orders, reviews, and users are manageable through Django admin. |
+| Admin analytics and role-specific admin rights | Not done | The spec requested admin analytics and deeper role-aware hardening. Those are still outside the implemented scope. |
+| REST API (`/api/`) | Done | Products, cart, orders, users, and reviews are available through DRF with ownership and validation rules. |
+| JWT auth | Done | Registration, login, access token, and refresh token flows are implemented. |
+| Swagger / OpenAPI (`/api/docs/`) | Done | drf-spectacular docs are available with JWT guidance and request examples. |
+| GraphQL analytics (`/graphql/`) | Bonus done | Staff-only GraphQL analytics endpoint is implemented for orders, products, and users. |
+| PostgreSQL | Done | PostgreSQL is configured as the project database target. |
+| Docker Compose | Done | `docker compose` setup for app + database is documented and was used during verification. |
+| Typing and docstrings | Done | Type annotations and docstrings were added across the project’s public modules and important functions. |
+| Tests | Done | pytest-django coverage includes catalog, cart, checkout, account, REST API, and GraphQL analytics behavior. |
+| Review submission only after purchase | Partial | Enforced for the REST API, but not fully enforced in the browser review form flow. |
+| Deployment link | Not done | No real deployment link is included. Only local/Docker startup instructions and screenshot/video placeholders are documented. |
+| CI/CD | Not done | Optional improvement from the spec recommendations; not implemented. |
+| Modern dependency manager (`poetry`, `uv`, etc.) | Not done | `requirements.txt` is used. |
+| Meaningful commit history / branch workflow | Not verified in README | This is a repository process requirement from the spec, but this README does not claim it has been formally reviewed here. |
+
+## Main Features
+
+- Browser storefront built with Django templates, HTMX, Alpine.js, and Tailwind CSS
+- Searchable and filterable product catalog
+- Product detail pages with images, reviews, and quantity controls
+- Session cart with stock validation
+- Transactional checkout and order creation
+- Session-auth account area with addresses and order history
+- JWT-protected DRF API for external clients
+- Swagger/OpenAPI docs
+- Staff-only GraphQL analytics endpoint
 
 ## Local Development
 
 ### Prerequisites
 
-- Python 3.12+ or a compatible local interpreter
+- Python 3.13 recommended
 - PostgreSQL running locally
 - A virtual environment
 
@@ -55,35 +232,36 @@ Keep `POSTGRES_HOST=localhost` in `.env` for local non-Docker development.
 ### Run
 
 ```powershell
+cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
 .\.venv\Scripts\python.exe manage.py migrate
-.\.venv\Scripts\python.exe manage.py runserver
+.\.venv\Scripts\python.exe manage.py seed_demo_catalog
+.\.venv\Scripts\python.exe manage.py runserver 127.0.0.1:8000
 ```
 
-Optional admin user:
+### Create a Superuser
 
 ```powershell
+cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
 .\.venv\Scripts\python.exe manage.py createsuperuser
 ```
 
 ## Docker Compose
 
-The Docker workflow was verified against the checked-in [docker-compose.yml](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/docker-compose.yml) and [Dockerfile](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/Dockerfile).
+Verified project files:
 
-### Setup and Run
+- [docker-compose.yml](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/docker-compose.yml)
+- [Dockerfile](D:/VSCode_Python_Projects_26/DjangoDRFOnlineStore_final_proj_JavaRush/myshop/Dockerfile)
+
+### Docker Run Commands
 
 ```powershell
 cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
 Copy-Item .env.example .env
 docker compose up -d --build
 docker compose run --rm web python manage.py migrate --noinput
+docker compose run --rm web python manage.py seed_demo_catalog
 docker compose run --rm web python manage.py createsuperuser
 ```
-
-Notes:
-
-- `docker compose` overrides `POSTGRES_HOST` to `db` for the `web` container automatically.
-- The checked-in container command starts the Django development server on `0.0.0.0:8000`.
-- Migrations are not run automatically during container startup, so `docker compose run --rm web python manage.py migrate --noinput` is required after the first boot.
 
 Useful follow-up commands:
 
@@ -92,40 +270,34 @@ docker compose logs -f web
 docker compose down
 ```
 
-## URLs
+Notes:
 
-- Home: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-- Catalog: [http://127.0.0.1:8000/products/](http://127.0.0.1:8000/products/)
-- Product detail example pattern: [http://127.0.0.1:8000/product/<slug>/](http://127.0.0.1:8000/product/<slug>/)
-- Cart: [http://127.0.0.1:8000/cart/](http://127.0.0.1:8000/cart/)
-- Checkout: [http://127.0.0.1:8000/checkout/](http://127.0.0.1:8000/checkout/)
-- Account: [http://127.0.0.1:8000/account/](http://127.0.0.1:8000/account/)
-- Admin: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
-- API docs: [http://127.0.0.1:8000/api/docs/](http://127.0.0.1:8000/api/docs/)
-- API schema: [http://127.0.0.1:8000/api/schema/](http://127.0.0.1:8000/api/schema/)
-- GraphQL analytics: [http://127.0.0.1:8000/graphql/](http://127.0.0.1:8000/graphql/)
+- Docker Compose overrides `POSTGRES_HOST` to `db` for the web container.
+- Migrations are not run automatically on first startup.
+- The checked-in container serves Django on `0.0.0.0:8000`.
 
-## Tests and Quality Checks
+## Test and Quality Commands
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest --cov=. --cov-report=term
+cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
 .\.venv\Scripts\python.exe manage.py check
+.\.venv\Scripts\python.exe -m pytest -v
 .\.venv\Scripts\python.exe manage.py migrate --check
 .\.venv\Scripts\python.exe -m flake8 .
 .\.venv\Scripts\python.exe -m mypy .
 ```
 
-Current automated coverage from the last Phase 10 validation run: `97%`.
+## REST API and JWT
 
-## API and JWT Examples
-
-OpenAPI docs are available at `/api/docs/` and the raw schema is available at `/api/schema/`.
+OpenAPI docs are available at `/api/docs/`, and the raw schema is available at `/api/schema/`.
 
 JWT flow:
 
-1. `POST /api/users/login/` with username and password.
-2. Send `Authorization: Bearer <access_token>` on protected endpoints.
-3. Refresh expired access tokens with `POST /api/users/token/refresh/`.
+1. `POST /api/users/login/` with username and password
+2. Send `Authorization: Bearer <access_token>` on protected endpoints
+3. Refresh an expired access token with `POST /api/users/token/refresh/`
+
+### Example API Requests
 
 Registration:
 
@@ -189,19 +361,19 @@ Note: `/api/cart/` and `POST /api/orders/` use the current Django session cart, 
 
 The GraphQL analytics endpoint is available at `/graphql/`.
 
-Access rules:
+### Access Rules
 
-- anonymous users are rejected
-- authenticated non-staff users are rejected
-- only staff/admin users can access the GraphQL analytics data
+- Anonymous users are rejected
+- Authenticated non-staff users are rejected
+- Only staff/admin users can access analytics data
 
-How to get access:
+### How to Access GraphiQL
 
-1. Create a staff or superuser account.
-2. Sign in through the browser at `/admin/` or any existing Django session-auth flow.
-3. Open `/graphql/` in the same browser session.
+1. Create a staff or superuser account
+2. Sign in through the browser at `/admin/` or another session-auth page
+3. Open `/graphql/` in the same browser session
 
-What the schema exposes:
+### Available Queries
 
 - `totalRevenue`
 - `totalQuantitySold`
@@ -214,19 +386,13 @@ What the schema exposes:
 - `repeatPurchasers(limit: Int)`
 - `orderCountPerUser(limit: Int)`
 
-Example query:
+### Example GraphQL Query
 
 ```graphql
 query AnalyticsDashboard {
   totalRevenue
   totalQuantitySold
   averageOrderValue
-  revenueTrends(granularity: MONTH) {
-    period
-    revenue
-    orderCount
-    quantitySold
-  }
   popularProducts(limit: 5) {
     name
     soldQuantity
@@ -234,69 +400,80 @@ query AnalyticsDashboard {
     stock
     imageUrl
   }
-  activeUsers(limit: 5) {
-    username
-    orderCount
-    totalSpent
-  }
-  repeatPurchasers(limit: 5) {
-    username
-    orderCount
+  stockBalances(limit: 5) {
+    name
+    stock
   }
 }
 ```
 
-How to test `/graphql/`:
+### Local GraphQL Verification
 
-- browser: sign in as a staff/admin user and open `/graphql/` to use GraphiQL
-- automated request: send a POST request with a GraphQL JSON body while authenticated as a staff/admin user
+Browser:
+
+- Sign in as a staff/admin user
+- Open [http://127.0.0.1:8000/graphql/](http://127.0.0.1:8000/graphql/)
+- Paste the example query and run it in GraphiQL
+
+Terminal:
+
+```powershell
+cd D:\VSCode_Python_Projects_26\DjangoDRFOnlineStore_final_proj_JavaRush\myshop
+.\.venv\Scripts\python.exe manage.py shell -c "import json; from django.contrib.auth import get_user_model; from django.test import Client; User=get_user_model(); user=User.objects.get(username='admin'); client=Client(HTTP_HOST='127.0.0.1:8000'); client.force_login(user); response=client.post('/graphql/', data=json.dumps({'query':'{ totalRevenue stockBalances(limit: 2) { name stock } }'}), content_type='application/json'); print(response.status_code); print(response.content.decode())"
+```
 
 ## Project Structure
 
 - `config/` Django settings, root URLs, ASGI, and WSGI
-- `products/` catalog models, admin, and storefront product views
-- `orders/` cart helpers, checkout forms, order services, and cart/checkout views
-- `users/` browser auth, profile, address models/forms/views
-- `api/` DRF serializers, API views, and API routes
+- `products/` catalog models, admin, views, forms, and browser-facing product pages
+- `orders/` cart helpers, checkout forms, order services, and browser order flow
+- `users/` session auth, profile, address models/forms/views, and account pages
+- `api/` DRF serializers, API views, and REST routes
 - `graphql_api/` GraphQL analytics schema and protected endpoint view
-- `templates/` shared Django templates and HTMX partials
+- `templates/` Django templates and HTMX partials
 - `static/` shared static assets
 - `media/` uploaded media for development
 - `tests/` pytest-django test suite
 - `scripts/` helper scripts including validation
-- `docs/` planning, specification, and acceptance-tracking documents
+- `docs/` specification, planning notes, screenshots, and acceptance-tracking documents
 
 ## Implementation Checklist
 
 - `[x]` PostgreSQL configuration exists
 - `[x]` Docker Compose configuration exists
 - `[x]` Catalog, search, sorting, filters, and pagination are implemented
-- `[x]` Product detail and review display are implemented
-- `[x]` Cart management and stock validation are implemented
-- `[x]` Checkout, order creation, transaction handling, and emails are implemented
+- `[x]` Product detail page is implemented
+- `[x]` Session cart and stock validation are implemented
+- `[x]` Browser checkout and order creation are implemented
 - `[x]` Browser registration, login, account pages, and address management are implemented
+- `[x]` Frontend order history and order detail pages are implemented
 - `[x]` REST API with JWT authentication is implemented
 - `[x]` Swagger/OpenAPI documentation is implemented
 - `[x]` GraphQL analytics endpoint is implemented for staff/admin use
-- `[x]` Tests, flake8, and mypy pass
-- `[x]` README contains run, Docker, API/JWT, test, lint, and structure documentation
+- `[x]` Demo data seeding command exists
+- `[x]` Tests, flake8, and mypy are configured
 - `[ ]` Admin analytics and role-based admin hardening are still pending
+- `[ ]` Purchase-gated browser review submission is still pending
 - `[ ]` Final deployment link is not assigned yet
 
 ## Deployment or Video Placeholder
 
-If a live deployment is not prepared yet, use this section as the submission placeholder:
+No fake deployment link is provided.
 
 - Deployment URL: `TBD`
 - Demo video URL: `TBD`
-- Suggested demo recording flow:
-  1. Show `docker compose up -d --build`
-  2. Show `python manage.py migrate` or `docker compose exec web python manage.py migrate`
-  3. Walk through catalog, product, cart, checkout, account, and admin
-  4. Show `/api/docs/` and one JWT-protected API call
-  5. Show `pytest`, `flake8`, and `mypy` passing
 
-## Known Remaining Scope
+Suggested video/demo flow:
 
-- Admin analytics and role-aware admin permissions remain future work outside the completed core path.
-- Product cards and product detail pages use uploaded images when available, with local static placeholder artwork as the fallback.
+1. Show `docker compose up -d --build`
+2. Show `python manage.py migrate` and `python manage.py seed_demo_catalog`
+3. Walk through home, catalog, product detail, cart, checkout, orders, and admin
+4. Show `/api/docs/` and one JWT-protected API request
+5. Show `/graphql/` as a staff/admin user
+6. Show `python manage.py check` and `pytest -v`
+
+## Notes
+
+- `docs/PROJECT_SPEC.md` is the functional source of truth.
+- `AGENTS.md` is used as the implementation/process guide, not as the product requirements source.
+- Product images use uploaded files when available and fall back to local placeholder artwork.
