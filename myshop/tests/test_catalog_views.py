@@ -116,7 +116,7 @@ def test_catalog_cards_render_product_images_or_placeholders(client, catalog_dat
     response = client.get(reverse("product-list"))
 
     assert response.status_code == 200
-    assert product.placeholder_image_path.encode() in response.content
+    assert product.display_image_url.encode() in response.content
 
 
 def test_catalog_filters_by_category(client, catalog_data) -> None:

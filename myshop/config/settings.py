@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 from datetime import timedelta
+from urllib.parse import parse_qs, unquote, urlparse
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,6 +43,38 @@ def env_bool(name: str, default: bool = False) -> bool:
     return raw.lower() in {"1", "true", "yes", "on"}
 
 
+def build_database_config() -> dict[str, object]:
+    """Build DATABASES['default'] from DATABASE_URL or POSTGRES_* settings."""
+    database_url = os.getenv("DATABASE_URL")
+    if not database_url:
+        return {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env("POSTGRES_DB", "myshop"),
+            "USER": env("POSTGRES_USER", "myshop"),
+            "PASSWORD": env("POSTGRES_PASSWORD", "myshop"),
+            "HOST": env("POSTGRES_HOST", "localhost"),
+            "PORT": env("POSTGRES_PORT", "5432"),
+        }
+
+    parsed = urlparse(database_url)
+    query_params = parse_qs(parsed.query)
+    options: dict[str, str] = {}
+    if "sslmode" in query_params and query_params["sslmode"]:
+        options["sslmode"] = query_params["sslmode"][0]
+
+    config: dict[str, object] = {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": parsed.path.lstrip("/"),
+        "USER": unquote(parsed.username or ""),
+        "PASSWORD": unquote(parsed.password or ""),
+        "HOST": parsed.hostname or "",
+        "PORT": str(parsed.port or "5432"),
+    }
+    if options:
+        config["OPTIONS"] = options
+    return config
+
+
 def normalize_timezone(value: str) -> str:
     """Map legacy timezone aliases to the canonical values Django expects."""
     aliases = {
@@ -60,6 +93,9 @@ ALLOWED_HOSTS = [
     for host in env("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
     if host.strip()
 ]
+render_external_hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+if render_external_hostname and render_external_hostname not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(render_external_hostname)
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -79,6 +115,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -109,14 +146,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("POSTGRES_DB", "myshop"),
-        "USER": env("POSTGRES_USER", "myshop"),
-        "PASSWORD": env("POSTGRES_PASSWORD", "myshop"),
-        "HOST": env("POSTGRES_HOST", "localhost"),
-        "PORT": env("POSTGRES_PORT", "5432"),
-    }
+    "default": build_database_config()
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -134,6 +164,15 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+WHITENOISE_MANIFEST_STRICT = False
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
@@ -150,6 +189,16 @@ ADMINS = [("Admin", env("DJANGO_ADMIN_EMAIL", "admin@example.com"))]
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in env("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",")
+    if origin.strip()
+]
+if render_external_hostname:
+    render_origin = f"https://{render_external_hostname}"
+    if render_origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(render_origin)
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [

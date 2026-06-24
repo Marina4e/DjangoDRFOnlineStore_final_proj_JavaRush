@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: myshop-web
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn config.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.11
+      - key: DJANGO_DEBUG
+        value: "0"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_ADMIN_EMAIL
+        value: admin@example.com
+      - key: DATABASE_URL
+        fromDatabase:
+          name: myshop-db
+          property: connectionString
+
+databases:
+  - name: myshop-db
+    plan: free
+    databaseName: myshop
+    user: myshop

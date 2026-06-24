@@ -60,7 +60,7 @@ def test_product_detail_page_renders(client, detail_product) -> None:
     assert b"Add review" in response.content
     assert b"Allowed values: 1, 2, 3, 4, 5." in response.content
     assert b"1 = poor, 2 = fair, 3 = good, 4 = very good, 5 = excellent." in response.content
-    assert detail_product.placeholder_image_path.encode() in response.content
+    assert detail_product.display_image_url.encode() in response.content
 
 
 def test_product_detail_context_contains_rating_summary(client, detail_product) -> None:
