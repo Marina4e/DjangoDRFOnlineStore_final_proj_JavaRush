@@ -175,6 +175,9 @@ def cart_remove(request: HttpRequest, product_id: int) -> HttpResponse:
 @require_GET
 def checkout_detail(request: HttpRequest) -> HttpResponse:
     """Render the checkout page and current order summary."""
+    if not request.user.is_authenticated:
+        messages.error(request, "Sign in before placing an order.")
+        return redirect(f"{reverse('login')}?next={reverse('checkout-detail')}")
     return render(request, "orders/checkout.html", _build_checkout_context(request))
 
 
@@ -184,12 +187,7 @@ def checkout_submit(request: HttpRequest) -> HttpResponse:
     form = CheckoutForm(request.POST)
     if not request.user.is_authenticated:
         messages.error(request, "Sign in before placing an order.")
-        return render(
-            request,
-            "orders/checkout.html",
-            _build_checkout_context(request, form=form),
-            status=403,
-        )
+        return redirect(f"{reverse('login')}?next={reverse('checkout-detail')}")
 
     if not form.is_valid():
         messages.error(request, "Please correct the checkout form errors below.")

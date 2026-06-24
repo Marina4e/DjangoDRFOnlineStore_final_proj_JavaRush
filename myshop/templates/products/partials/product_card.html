@@ -2,12 +2,18 @@
 
 <article class="overflow-hidden rounded-lg border border-amber-200 bg-white shadow-sm">
   <div class="overflow-hidden bg-gradient-to-br from-amber-100 via-amber-50 to-stone-100">
-    <img
-      src="{% if product.image %}{{ product.image.url }}{% else %}{% static product.placeholder_image_path %}{% endif %}"
-      alt="{{ product.name }}"
-      class="aspect-[4/3] w-full object-cover"
-      loading="lazy"
+    <a
+      href="{% url 'product-detail' slug=product.slug %}"
+      aria-label="Open {{ product.name }} details"
+      class="block transition hover:opacity-95"
     >
+      <img
+        src="{% if product.image %}{{ product.image.url }}{% else %}{% static product.placeholder_image_path %}{% endif %}"
+        alt="{{ product.name }}"
+        class="aspect-[4/3] w-full object-cover"
+        loading="lazy"
+      >
+    </a>
   </div>
   <div class="space-y-4 p-5">
     <div class="space-y-2">

@@ -63,6 +63,23 @@ def checkout_payload(**overrides: str) -> dict[str, str]:
 
 def test_checkout_page_renders_summary_and_form(client, checkout_products) -> None:
     first, _ = checkout_products
+    user = client.session
+    user["cart"] = {str(first.id): 2}
+    user.save()
+
+    response = client.get(reverse("checkout-detail"))
+
+    assert response.status_code == 302
+    assert response.url == f"{reverse('login')}?next={reverse('checkout-detail')}"
+
+
+def test_checkout_page_renders_summary_and_form_for_authenticated_user(
+    client,
+    checkout_user,
+    checkout_products,
+) -> None:
+    first, _ = checkout_products
+    client.force_login(checkout_user)
     session = client.session
     session["cart"] = {str(first.id): 2}
     session.save()
@@ -81,10 +98,13 @@ def test_checkout_submit_requires_authenticated_user(client, checkout_products) 
     session["cart"] = {str(first.id): 1}
     session.save()
 
-    response = client.post(reverse("checkout-submit"), checkout_payload())
+    response = client.post(reverse("checkout-submit"), checkout_payload(), follow=True)
 
-    assert response.status_code == 403
+    assert response.status_code == 200
     assert Order.objects.count() == 0
+    assert response.redirect_chain[-1][0].endswith(
+        f"{reverse('login')}?next={reverse('checkout-detail')}"
+    )
     assert b"Sign in before placing an order." in response.content
 
 
